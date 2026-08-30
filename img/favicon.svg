@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Fondo circular -->
+  <circle cx="32" cy="32" r="32" fill="#FAF3E8"/>
+
+  <!-- Platillo -->
+  <ellipse cx="32" cy="46" rx="18" ry="3" fill="#DDCBB4"/>
+
+  <!-- Cuerpo de la taza -->
+  <path d="M16 24h26v14a13 13 0 0 1-13 13 13 13 0 0 1-13-13V24z" fill="#6F4E37"/>
+
+  <!-- Línea de café (borde superior) -->
+  <path d="M16 24h26v3H16z" fill="#C97C5D"/>
+
+  <!-- Asa -->
+  <path d="M42 27h3a6 6 0 0 1 0 12h-3v-4h3a2 2 0 0 0 0-4h-3z" fill="#6F4E37"/>
+
+  <!-- Vapor -->
+  <path d="M24 17c-2-2-2-4 0-6" stroke="#C97C5D" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M32 17c-2-2-2-4 0-6" stroke="#C97C5D" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>
