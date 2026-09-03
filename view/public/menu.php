@@ -51,6 +51,142 @@
             <a href="menu.php">Ver menú</a>
         </nav>
 
+        <!-- Hero -->
+        <section>
+            <div>
+                <span>NUESTRA CARTA</span>
+                <h1>Menú</h1>
+                <p>Preparado a diario con ingredientes seleccionados. Elige tu bebida o antojo favorito.</p>
+            </div>
+        </section>
+
+        <!-- Coffee Section -->
+        <section>
+            <div>
+                <h2>Cafés calientes</h2>
+
+                <div>
+                    <?php
+                    # foreach ($productList as $product) {
+                    #    if ($product->getCategory() === "Cafe") {
+                    ?>
+                    <div>
+                        <div></div>
+
+                        <div>
+                            <h3>$Nombre del cafe</h3>
+                            <p>$Descripcion del cafe</p>
+
+                            <div>
+                                <span>$precio</span>
+                                <a href="detalle.php?producto=<?= print('$nombre producto') ?>">Ver detalle</a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                    #     }
+                    # }
+                    ?>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cold drinks section -->
+        <section>
+            <div>
+                <h2>Bebidas frías</h2>
+
+                <div>
+                    <?php
+                    # foreach ($productList as $product) {
+                    #    if ($product->getCategory() === "Bebidas") {
+                    ?>
+                    <div>
+                        <div></div>
+
+                        <div>
+                            <h3>$Nombre de la bebida</h3>
+                            <p>$Descripcion de la bebida</p>
+
+                            <div>
+                                <span>$precio</span>
+                                <!-- <a href="detalle.php?producto=<?= print('$nombre producto') ?>">Ver detalle</a> -->
+                                <a href="detalle.php">Ver detalle</a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                    #     }
+                    # }
+                    ?>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dessert section -->
+        <section>
+            <div>
+                <h2>Postres</h2>
+
+                <div>
+                    <?php
+                    # foreach ($productList as $product) {
+                    #    if ($product->getCategory() === "Postres") {
+                    ?>
+                    <div>
+                        <div></div>
+
+                        <div>
+                            <h3>$Nombre del postre</h3>
+                            <p>$Descripcion del postre</p>
+
+                            <div>
+                                <span>$precio</span>
+                                <!-- <a href="detalle.php?producto=<?= print('$nombre producto') ?>">Ver detalle</a> -->
+                                <a href="detalle.php">Ver detalle</a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                    #     }
+                    # }
+                    ?>
+                </div>
+            </div>
+        </section>
+
+        <!-- Breakfast section -->
+        <section>
+            <div>
+                <h2>Desayunos</h2>
+
+                <div>
+                    <?php
+                    # foreach ($productList as $product) {
+                    #    if ($product->getCategory() === "Desayunos") {
+                    ?>
+                    <div>
+                        <div></div>
+
+                        <div>
+                            <h3>$Nombre del desayunos</h3>
+                            <p>$Descripcion del desayuno</p>
+
+                            <div>
+                                <span>$precio</span>
+                                <!-- <a href="detalle.php?producto=<?= print('$nombre producto') ?>">Ver detalle</a> -->
+                                <a href="detalle.php">Ver detalle</a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                    #     }
+                    # }
+                    ?>
+                </div>
+            </div>
+        </section>
+
         <footer>
             <div>
                 <div>
