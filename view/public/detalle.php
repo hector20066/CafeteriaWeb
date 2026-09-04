@@ -52,6 +52,61 @@
             <a href="menu.php">Ver menú</a>
         </nav>
 
+        <div>
+            <div>
+                <a href="../../index.html">Inicio</a> / <a href="menu.php">Menú</a> / <span></span>
+            </div>
+
+            <!-- Principal section -->
+            <section>
+                <div>
+                    <div></div>
+
+                    <div>
+                        <span>$categoria</span>
+                        <h1>$Nombre del producto</h1>
+                        <p>$precio</p>
+                        <p>$descripcion</p>
+
+                        <h3>Características</h3>
+                        <ul>
+                            <li>$caracteristica 1</li>
+                            <li>$caracteristica 2</li>
+                            <li>$caracteristica 3</li>
+                        </ul>
+
+                        <a href="contacto.html">Consultar disponibilidad</a>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div>
+                    <div>
+                        <span>TAMBIÉN TE PUEDE GUSTAR</span>
+                        <h2>Productos relacionados</h2>
+                    </div>
+
+                    <div>
+
+                        <div>
+                            <div></div>
+                            <div>
+                                <h3>$Nombre del producto</h3>
+                                <p>$Descripción del producto</p>
+
+                                <div>
+                                    <span>$Precio</span>
+                                    <a href="detalle.php">Ver detalle</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
         <!-- Footer -->
         <footer>
             <div>
