@@ -1,8 +1,8 @@
 <?php
 
-use Decimal\Decimal;
+    use Decimal\Decimal;
 
-class Product {
+    class Product {
 
         private int $id;
         private Category $category;
