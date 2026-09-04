@@ -22,7 +22,7 @@ class Product {
         public function setCategory(Category $category) : void {
             $this->category = $category;
         }
-        
+
         public function setName(string $name) : void {
             $this->name = $name;
         }
