@@ -10,22 +10,22 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-        <header>
-            <div>
-                <a href="index.html"><img src="img/favicon.svg" alt="grano&alma-icon" width="30" height="30">Grano & Alma</a>
+        <header class="site-header">
+            <div class="container">
+                <a href="index.html" class="logo"><img src="img/favicon.svg" alt="grano&alma-icon" class="logo_icon" width="30" height="30">Grano & Alma</a>
 
-                <nav>
-                    <a href="index.html">Inicio</a>
+                <nav class="principal-nav">
+                    <a href="index.html" class="active">Inicio</a>
                     <a href="view/public/nosotros.html">Nosotros</a>
                     <a href="view/public/menu.php">Menú</a>
                     <a href="view/public/contacto.html">Contacto</a>
                 </nav>
 
-                <div>
-                    <a href="view/login/login.php">Iniciar sesión</a>
-                    <a href="view/public/menu.php">Ver menú</a>
+                <div class="header-actions">
+                    <a href="view/login/login.php" class="btn btn-secondary">Iniciar sesión</a>
+                    <a href="view/public/menu.php" class="btn btn-primary">Ver menú</a>
 
-                    <button>
+                    <button class="btn-mobile-menu">
                         <span></span><span></span><span></span>
                     </button>
                 </div>
@@ -33,10 +33,10 @@
         </header>
 
         <!-- Menu móvil -->
-        <nav>
-            <div>
-                <span><img src="img/favicon.svg" alt="grano&alma-icon" width="30" height="30">Grano & Alma</span>
-                <button>&times;</button>
+        <nav class="nav-mobile">
+            <div class="nav-mobile-top">
+                <span class="logo"><img src="img/favicon.svg" alt="grano&alma-icon" class="logo-icon" width="30" height="30">Grano & Alma</span>
+                <button class="nav-mobile-close">&times;</button>
             </div>
 
             <ul>
@@ -46,85 +46,85 @@
                 <li><a href="view/public/contacto.html">Contacto</a></li>
             </ul>
 
-            <a href="view/public/menu.php">Ver menú</a>
-            <a href="view/login/login.php">Iniciar sesión</a>
+            <a href="view/public/menu.php" class="btn btn-primary">Ver menú</a>
+            <a href="view/login/login.php" class="btn btn-secondary">Iniciar sesión</a>
         </nav>
 
         <!-- Hero -->
-        <section id="hero">
-            <div>
+        <section class="section hero-full">
+            <div class="container grid-2">
                 <div>
-                    <span>Café de especialidad</span>
+                    <span class="eyebrow">Café de especialidad</span>
                     <h1>Un momento de calma<br>en cada taza.</h1>
-                    <p>En Grano & Alma preparamos cada bebida con calma, usando granos seleccionados y técnicas de barista, en un espacio pensado para pausar el día.</p>
-                    <a href="view/public/menu.php">Ver menú</a>
-                    <a href="view/public/nosotros.html">Conócenos</a>
+                    <p class="text-secondary">En Grano & Alma preparamos cada bebida con calma, usando granos seleccionados y técnicas de barista, en un espacio pensado para pausar el día.</p>
+                    <a href="view/public/menu.php" class="btn btn-primary">Ver menú</a>
+                    <a href="view/public/nosotros.html" class="btn btn-secondary">Conócenos</a>
                 </div>
 
-                <div>
-                    <div></div>
-                    <div style="background-image:url('img/coffe.jpg');"></div>
-                    <div style="background-image: url('img/coffeebeans.jpg');"></div>
+                <div class="hero-visual">
+                    <div class="hero-visual_shape"></div>
+                    <div class="hero-visual_main" style="background-image:url('img/coffe.jpg');"></div>
+                    <div class="hero-visual-secondary" style="background-image: url('img/coffeebeans.jpg');"></div>
                 </div>
             </div> 
         </section>
 
         <!-- Presentation -->
-        <section id="presentation">
-            <div>
-                <div style="background-image: url('img/coffeeShop.jpg'); min-height: 280px;"></div>
+        <section class="section section-alt">
+            <div class="container grid-2">
+                <div class="cover-image" style="background-image: url('img/coffeeShop.jpg'); min-height: 280px;"></div>
                 <div>
-                    <span>NUESTRO ESPACIO</span>
+                    <span class="eyebrow">NUESTRO ESPACIO</span>
                     <h2>Un rincón tranquilo en medio de la ciudad</h2>
-                    <p>Diseñamos Grano & Alma como un lugar para estudiar, trabajar o simplemente desconectar, con luz natural, madera cálida y buen café siempre a la mano</p>
+                    <p class="text-secondary">Diseñamos Grano & Alma como un lugar para estudiar, trabajar o simplemente desconectar, con luz natural, madera cálida y buen café siempre a la mano</p>
                 </div>
             </div>
         </section>
 
         <!-- Featured Products -->
-        <section id="featured_products">
-            <div>
-                <div>
-                    <span>FAVORITOS</span>
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="eyebrow">FAVORITOS</span>
                     <h2>Productos destacados</h2>
                 </div>
 
-                <div>
-                    <div>
-                        <div style="background-image: url('img/destacados-latte.jpg')"></div>
-                        <div>
-                            <h3>Latte</h3>
-                            <p>Espresso suave con leche vaporizada y arte latte.</p>
+                <div class="products-grid grid-3">
+                    <div class="product-card">
+                        <div class="product-card-image" style="background-image: url('img/destacados-latte.jpg')"></div>
+                        <div class="product-card-body">
+                            <h3 class="product-card-name">Latte</h3>
+                            <p class="text-secondary">Espresso suave con leche vaporizada y arte latte.</p>
 
-                            <div>
-                                <span>$ 9.500</span>
-                                <a href="">Ver detalle</a>
+                            <div class="product-card-footer">
+                                <span class="product-card-price">$ 9.500</span>
+                                <a href="" class="btn btn-secondary">Ver detalle</a>
                             </div>
                         </div>
                     </div>
 
-                    <div>
-                        <div style="background-image: url('img/destacados-cheesecake.jpg');"></div>
-                        <div>
-                            <h3>Cold Brew</h3>
-                            <p>Café de extraccion fría, suave y refrescante.</p>
+                    <div class="product-card">
+                        <div class="product-card-image" style="background-image: url('img/destacados-cheesecake.jpg');"></div>
+                        <div class="product-card-body">
+                            <h3 class="product-card-name">Cold Brew</h3>
+                            <p class="text-secondary">Café de extraccion fría, suave y refrescante.</p>
 
-                            <div>
-                                <span>$ 10.500</span>
-                                <a href="">Ver detalle</a>
+                            <div class="product-card-footer">
+                                <span class="product-card-price">$ 10.500</span>
+                                <a href="" class="btn btn-secondary">Ver detalle</a>
                             </div>
                         </div>
                     </div>
 
-                    <div>
-                        <div style="background-image: url(img/destacados-cheesecake.jpg);"></div>
-                        <div>
-                            <h3>Cheesecake</h3>
+                    <div class="product-card">
+                        <div class="product-card-image" style="background-image: url(img/destacados-cheesecake.jpg);"></div>
+                        <div class="product-card-body">
+                            <h3 class="product-card-body">Cheesecake</h3>
                             <p>Cremoso, con base de galleta y toque de limón.</p>
 
-                            <div>
-                                <span>$ 11.000</span>
-                                <a href="">Ver detalle</a>
+                            <div class="product-card-footer">
+                                <span class="product-card-price">$ 11.000</span>
+                                <a href="" class="btn btn-secondary">Ver detalle</a>
                             </div>
                         </div>
                     </div>
@@ -133,64 +133,61 @@
         </section>
 
         <!-- Characteristics -->
-        <section id="characteristics">
-            <div>
-                <div>
-                    <span>POR QUÉ GRANO & ALMA</span>
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-header">
+                    <span class="eyebrow">POR QUÉ GRANO & ALMA</span>
                     <h2>Lo que nos hace diferentes</h2>
                 </div>
 
-                <div>
-                    <div>
-                        <div></div>
+                <div class="grid-features">
+                    <div class="card-feature">
+                        <div class="card-feature-icon"></div>
                         <h3>Café de especialidad</h3>
-                        <p>Granos seleccionados y tostados con cuidado.</p>
+                        <p class="text-secondary">Granos seleccionados y tostados con cuidado.</p>
                     </div>
 
-                    <div>
-                        <div></div>
+                    <div class="card-feature">
+                        <div class="card-feature-icon"></div>
                         <h3>Ambiente tranquilo</h3>
-                        <p>Un espacio pensado para pausar el ritmo del día.</p>
+                        <p class="text-secondary">Un espacio pensado para pausar el ritmo del día.</p>
                     </div>
 
-                    <div>
-                        <div></div>
+                    <div class="card-feature">
+                        <div class="card-feature-icon"></div>
                         <h3>Ingredientes locales</h3>
-                        <p>Trabajamos con productores y panaderías de la zona.</p>
+                        <p class="text-secondary">Trabajamos con productores y panaderías de la zona.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Final CTA -->
-        <section>
-            <div>
-                <div style="position: absolute; inset: 0; min-height: 380px; border-radius: 0; background-image: url('img/visual-section.jpg'); background-attachment: fixed;"></div>
-                <div style="position: absolute; inset: 0; background-color: rgba(46, 32, 25, 0.45);"></div>
-
-                <div>
-                    <span>NUESTRO RITUAL DIARIO</span>
-                    <h2>Cada taza se prepara despacio, para que tú también lo hagas</h2>
-                </div>
+        <section style="position: relative; min-height: 380px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+            <div class="cover-image" style="position: absolute; inset: 0; min-height: 380px; border-radius: 0; background-image: url('img/visual-section.jpg'); background-attachment: fixed;"></div>
+            <div style="position:absolute; inset:0; background-color:rgba(46,32,25,0.45);"></div>
+            <div class="container" style="position: relative; text-align: center;">
+                <span class="eyebrow">NUESTRO RITUAL DIARIO</span>
+                <h2>Cada taza se prepara despacio, para que tú también lo hagas</h2>
             </div>
         </section>
 
-        <section>
-            <div>
+        <section class="section">
+            <div class="container">
                 <h2>¿Listo para tu próxima taza?</h2>
                 <p>Te esperamos todos los días con el café listo un lugar tranquilo para ti.</p>
-                <a href="view/public/contacto.html">Visítanos</a>
+                <a href="view/public/contacto.html" class="btn">Visítanos</a>
             </div>
         </section>
 
-        <footer>
-            <div>
-                <div>
-                    <div>Grano & Alma</div>
-                    <p>Café de especialidad en un espacio diseñado para desconectar sin salir de la ciudad.</p>
+        <footer class="footer-site">
+            <div class="container food-grid">
+                <div class="foot-column">
+                    <div class="foot-logo">Grano & Alma</div>
+                    <p class="text-secondary">Café de especialidad en un espacio diseñado para desconectar sin salir de la ciudad.</p>
                 </div>
 
-                <div>
+                <div class="foot-column">
                     <h4>Navegación</h4>
 
                     <ul>
@@ -201,21 +198,21 @@
                     </ul>
                 </div>
 
-                <div>
+                <div class="foot-column">
                     <h4>Contacto</h4>
 
                     <ul>
-                        <li>Tr 2b #13-54</li>
-                        <li>313 776 2626</li>
-                        <li>hectorluisacevedocontreras00@gmail.com</li>
-                        <li>Lun-Sáb: 7:00am - 8:00pm</li>
+                        <li class="text-secondary">Tr 2b #13-54</li>
+                        <li class="text-secondary">313 776 2626</li>
+                        <li class="text-secondary">hectorluisacevedocontreras00@gmail.com</li>
+                        <li class="text-secondary">Lun-Sáb: 7:00am - 8:00pm</li>
                     </ul>
                 </div>
 
-                <div>
+                <div class="foot-column">
                     <h4>Síguenos</h4>
 
-                    <div>
+                    <div class="foot-networks">
                         <a href="">IG</a>
                         <a href="">FB</a>
                         <a href="">TT</a>
@@ -223,16 +220,16 @@
                 </div>
             </div>
 
-            <div>© 2026 Grano & Alma. Todos los derechos reservados.</div>
+            <div class="foot-copyright">© 2026 Grano & Alma. Todos los derechos reservados.</div>
         </footer>
 
-        <a href="https://wa.me/573001234567?text=Hola%20Grano%20%26%20Alma%2C%20quisiera%20hacer%20una%20consulta" target="_blank" rel="noopener" class="boton-flotante boton-whatsapp" aria-label="Escríbenos por WhatsApp">
+        <a href="https://wa.me/573001234567?text=Hola%20Grano%20%26%20Alma%2C%20quisiera%20hacer%20una%20consulta" target="_blank" rel="noopener" class="floating-button button-whatsapp" aria-label="Escríbenos por WhatsApp">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.44.79 3.06 1.2 4.72 1.2h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.13h-.01c-1.47 0-2.92-.4-4.18-1.14l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 01-1.26-4.37c0-4.53 3.69-8.22 8.24-8.22 2.2 0 4.27.86 5.83 2.42a8.15 8.15 0 012.41 5.81c0 4.53-3.69 8.21-8.24 8.21zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.23.89 2.41 1.01 2.58.12.17 1.75 2.67 4.25 3.74.59.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.28z"/>
             </svg>
         </a>
 
-        <button class="boton-flotante boton-subir" id="btnSubir" aria-label="Volver arriba">
+        <button class="floating-button button-increase" id="btnSubir" aria-label="Volver arriba">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M12 19V5"/>
                 <path d="M5 12l7-7 7 7"/>
