@@ -28,7 +28,7 @@
                 <div class="header-actions">
                     <a href="menu.php" class="btn btn-primary">Ver menú</a>
 
-                    <button class="btn-mobil-menu">
+                    <button class="btn-mobil-menu" id="btnOpenMenu">
                         <span></span><span></span><span></span>
                     </button>
                 </div>
@@ -36,10 +36,10 @@
         </header>
 
         <!-- Mobile menu -->
-        <nav class="nav-mobile">
+        <nav class="nav-mobile" id="navMobile">
             <div class="nav-mobile-top">
                 <span class="logo"><img src="../../img/favicon.svg" alt="grano&alma-icon" class="logo-icon" width="30" height="30">Grano & Alma</span>
-                <button class="nav-mobile-close">&times;</button>
+                <button class="nav-mobile-close" id="btnCloseMenu">&times;</button>
             </div>
 
             <ul>
@@ -52,24 +52,24 @@
             <a href="menu.php" class="btn btn-primary">Ver menú</a>
         </nav>
 
-        <div>
+        <div id="principal-detail">
             <div class="container breadcrumb">
-                <a href="../../index.html">Inicio</a> / <a href="menu.php">Menú</a> / <span></span>
+                <a href="../../index.html">Inicio</a> / <a href="menu.php">Menú</a> / <span id="detail-breadcrumb-name"></span>
             </div>
 
             <!-- Principal section -->
             <section class="section">
                 <div class="container grid-2">
-                    <div class="cover-image"></div>
+                    <div class="cover-image" id="image-detail"></div>
 
                     <div>
-                        <span class="eyebrow">$categoria</span>
-                        <h1>$Nombre del producto</h1>
-                        <p>$precio</p>
-                        <p class="text-secondary">$descripcion</p>
+                        <span class="eyebrow" id="category-detail">$categoria</span>
+                        <h1 id="detail-name">$Nombre del producto</h1>
+                        <p id="detail-price">$precio</p>
+                        <p class="text-secondary" id="detail-description">$descripcion</p>
 
                         <h3>Características</h3>
-                        <ul>
+                        <ul id="detail-characteristics">
                             <li>$caracteristica 1</li>
                             <li>$caracteristica 2</li>
                             <li>$caracteristica 3</li>
@@ -87,7 +87,7 @@
                         <h2>Productos relacionados</h2>
                     </div>
 
-                    <div class="products-grid grid-3">
+                    <div class="products-grid grid-3" id="detail-related">
 
                         <div class="product-card">
                             <div class="product-card-image"></div>
@@ -157,7 +157,7 @@
             </svg>
         </a>
 
-        <button class="floating-button button-increase" id="btnSubir" aria-label="Volver arriba">
+        <button class="floating-button button-increase" id="btnIncrease" aria-label="Volver arriba">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M12 19V5"/>
                 <path d="M5 12l7-7 7 7"/>

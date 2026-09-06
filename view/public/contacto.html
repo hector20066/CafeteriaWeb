@@ -24,7 +24,7 @@
                 <div class="header-actions">
                     <a href="menu.php" class="btn btn-primary">Ver menú</a>
 
-                    <button class="btn-mobile-menu">
+                    <button class="btn-mobile-menu" id="btnOpenMenu">
                         <span></span><span></span><span></span>
                     </button>
                 </div>
@@ -32,10 +32,10 @@
         </header>
 
         <!-- Mobile menu -->
-        <nav class="nav-mobile">
+        <nav class="nav-mobile" id="navMobile">
             <div class="nav-mobile-top">
                 <span class="logo"><img src="../../img/favicon.svg" alt="grano&alma-icon" class="logo-icon" width="30" height="30">Grano & Alma</span>
-                <button class="nav-mobile-close">&times;</button>
+                <button class="nav-mobile-close" id="btnCloseMenu">&times;</button>
             </div>
 
             <ul>
@@ -181,7 +181,7 @@
             </svg>
         </a>
 
-        <button class="floating-button button-increase" id="btnSubir" aria-label="Volver arriba">
+        <button class="floating-button button-increase" id="btnIncrease" aria-label="Volver arriba">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M12 19V5"/>
                 <path d="M5 12l7-7 7 7"/>
