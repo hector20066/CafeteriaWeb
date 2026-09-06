@@ -1,0 +1,22 @@
+:root {
+    --primary-color: #6f4e37;
+    --primary-color-hover: #5a3e2b;
+    --secondary-color: #c97c5d;
+    --background-color: #faf3e8;
+    --background-color-alt: #f0e4d3;
+    --color-text: #2e2019;
+    --secondary-text-color: #7a6a5d;
+    --border-color: #ddcbb4;
+    --white-color: #ffffff;
+
+    --source-title: 'Fraunces', serif;
+    --text-source: 'Inter', sans-serif;
+
+    --radio-button: 8px;
+    --radio-card: 12px;
+    --shadow-card: 0 2px 12px rgba(46, 32, 25, 0.08);
+    --shadow-card-hover: 0 8px 20px rgba(46, 32, 25, 0.16);
+
+    --max-width: 1200px;
+    --section-spacing: 96px;
+}
