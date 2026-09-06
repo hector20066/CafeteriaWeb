@@ -28,7 +28,7 @@
                 <div class="header-actions">
                     <a href="menu.php" class="btn btn-primary">Ver menú</a>
 
-                    <button class="btn-mobil-menu" id="btnOpenMenu">
+                    <button class="btn-mobil-menu" id="btnOpenMenu" aria-label="Abrir menú">
                         <span></span><span></span><span></span>
                     </button>
                 </div>
@@ -60,29 +60,29 @@
             <!-- Principal section -->
             <section class="section">
                 <div class="container grid-2">
-                    <div class="cover-image" id="image-detail"></div>
+                    <div class="cover-image" id="image-detail" style="min-height: 420px;"></div>
 
                     <div>
                         <span class="eyebrow" id="category-detail">$categoria</span>
-                        <h1 id="detail-name">$Nombre del producto</h1>
-                        <p id="detail-price">$precio</p>
+                        <h1 id="detail-name" style="font-size: 36px;">$Nombre del producto</h1>
+                        <p id="detail-price" style="font-size: 24px; font-weight: 700; color: var(--primary-color); margin: 12px 0 18px 0">$precio</p>
                         <p class="text-secondary" id="detail-description">$descripcion</p>
 
-                        <h3>Características</h3>
-                        <ul id="detail-characteristics">
+                        <h3 style="margin-top: 28px; font-size: 16px;">Características</h3>
+                        <ul id="detail-characteristics" style="margin-top: 12px; display: flex; flex-direction: column; gap: 8px">
                             <li>$caracteristica 1</li>
                             <li>$caracteristica 2</li>
                             <li>$caracteristica 3</li>
                         </ul>
 
-                        <a href="contacto.html" class="btn btn-primary">Consultar disponibilidad</a>
+                        <a href="contacto.html" class="btn btn-primary" style="margin-top: 32px;">Consultar disponibilidad</a>
                     </div>
                 </div>
             </section>
 
             <section class="section section-alt">
                 <div class="container">
-                    <div class="section-header">
+                    <div class="section-header" style="margin-bottom: 32px;">
                         <span class="eyebrow">TAMBIÉN TE PUEDE GUSTAR</span>
                         <h2>Productos relacionados</h2>
                     </div>
@@ -141,9 +141,9 @@
                     <h4>Síguenos</h4>
 
                     <div class="foot-networks">
-                        <a href="">IG</a>
-                        <a href="">FB</a>
-                        <a href="">TT</a>
+                        <a href="" aria-label="Instagram">IG</a>
+                        <a href="" aria-label="Facebook">FB</a>
+                        <a href="" aria-label="TikTok">TT</a>
                     </div>
                 </div>
             </div>

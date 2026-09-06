@@ -27,7 +27,7 @@
                 <div class="header-actions">
                     <a href="menu.php" class="btn btn-primary">Ver menú</a>
 
-                    <button class="btn-mobile-menu" id="btnOpenMenu">
+                    <button class="btn-mobile-menu" id="btnOpenMenu" aria-label="Abrir menú">
                         <span></span><span></span><span></span>
                     </button>
                 </div>
@@ -38,7 +38,7 @@
         <nav class="nav-mobile" id="navMobile">
             <div class="nav-mobile-top">
                 <span class="logo"><img src="../../img/favicon.svg" alt="grano&alma-icon" class="logo-icon" width="30" height="30">Grano & Alma</span>
-                <button class="nav-mobile-close" id="btnCloseMenu">&times;</button>
+                <button class="nav-mobile-close" id="btnCloseMenu" aria-label="Cerrar menú">&times;</button>
             </div>
 
             <ul>
@@ -52,18 +52,18 @@
         </nav>
 
         <!-- Hero -->
-        <section class="section">
-            <div class="container">
+        <section class="section" style="padding-bottom: 40px;">
+            <div class="container" style="text-align: center;">
                 <span class="eyebrow">NUESTRA CARTA</span>
                 <h1>Menú</h1>
-                <p class="text-secondary">Preparado a diario con ingredientes seleccionados. Elige tu bebida o antojo favorito.</p>
+                <p class="text-secondary" style="max-width: 480px; margin: 14px auto 0 auto;">Preparado a diario con ingredientes seleccionados. Elige tu bebida o antojo favorito.</p>
             </div>
         </section>
 
         <!-- Coffee Section -->
-        <section class="section">
+        <section class="section" style="padding-top: 0;">
             <div class="container">
-                <h2>Cafés calientes</h2>
+                <h2 style="margin-bottom: 28px;">Cafés calientes</h2>
 
                 <div class="products-grid">
                     <?php
@@ -71,7 +71,7 @@
                     #    if ($product->getCategory() === "Cafe") {
                     ?>
                     <div class="product-card">
-                        <div class="product-card-image"></div>
+                        <div class="product-card-image" style="background-image: url('../../img/<?php ?>');"></div>
 
                         <div class="product-card-body">
                             <h3 class="product-card-name">$Nombre del cafe</h3>
@@ -94,7 +94,7 @@
         <!-- Cold drinks section -->
         <section class="section section-alt">
             <div class="container">
-                <h2>Bebidas frías</h2>
+                <h2 style="margin-bottom: 28px;">Bebidas frías</h2>
 
                 <div class="products-grid">
                     <?php
@@ -102,7 +102,7 @@
                     #    if ($product->getCategory() === "Bebidas") {
                     ?>
                     <div class="product-card">
-                        <div class="product-card-image"></div>
+                        <div class="product-card-image" style="background-image: url('../../img/<?php ?>');"></div>
 
                         <div class="product-card-body">
                             <h3 class="product-card-name">$Nombre de la bebida</h3>
@@ -126,7 +126,7 @@
         <!-- Dessert section -->
         <section class="section">
             <div class="container">
-                <h2>Postres</h2>
+                <h2 style="margin-bottom: 28px;">Postres</h2>
 
                 <div class="products-grid">
                     <?php
@@ -134,7 +134,7 @@
                     #    if ($product->getCategory() === "Postres") {
                     ?>
                     <div class="product-card">
-                        <div class="product-card-image"></div>
+                        <div class="product-card-image" style="background-image: url('../../img/<?php ?>');"></div>
 
                         <div class="product-card-body">
                             <h3 class="product-card-name">$Nombre del postre</h3>
@@ -158,7 +158,7 @@
         <!-- Breakfast section -->
         <section class="section section-alt">
             <div class="container">
-                <h2>Desayunos</h2>
+                <h2 style="margin-bottom: 28px;">Desayunos</h2>
 
                 <div class="products-grid">
                     <?php
@@ -166,7 +166,7 @@
                     #    if ($product->getCategory() === "Desayunos") {
                     ?>
                     <div class="product-card">
-                        <div class="product-card-image"></div>
+                        <div class="product-card-image" style="background-image: url('../../img/<?php ?>');"></div>
 
                         <div class="product-card-body">
                             <h3 class="product-card-name">$Nombre del desayunos</h3>
@@ -220,9 +220,9 @@
                     <h4>Síguenos</h4>
 
                     <div class="foot-networks">
-                        <a href="">IG</a>
-                        <a href="">FB</a>
-                        <a href="">TT</a>
+                        <a href="" aria-label="Instagram">IG</a>
+                        <a href="" aria-label="Facebook">FB</a>
+                        <a href="" aria-label="TikTok">TT</a>
                     </div>
                 </div>
             </div>
