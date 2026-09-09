@@ -75,3 +75,40 @@ h3 {
 p {
     color: var(--color-text);
 }
+
+.text-secondary {
+    color: var(--secondary-text-color);
+    font-size: 15px;
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.section {
+    padding: var(--section-spacing);
+}
+
+.section-alt {
+    background-color: var(--background-color-alt);
+}
+
+.section-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 48px auto;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
