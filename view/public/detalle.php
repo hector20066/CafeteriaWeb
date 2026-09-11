@@ -18,7 +18,7 @@
             <div>
                 <a href="../../index.html" class="logo"><img src="../../img/favicon.svg" alt="grano&alma-icon" class="logo-icon" width="30" height="30">Grano & Alma</a>
 
-                <nav class="nav-principal">
+                <nav class="principal-nav">
                     <a href="../../index.html">Inicio</a>
                     <a href="nosotros.html">Nosotros</a>
                     <a href="menu.php" class="active">Menú</a>
@@ -111,12 +111,12 @@
         <footer class="footer-site">
             <div class="container foot-grid">
                 <div class="foot-column">
-                    <div class="foot-logo">Grano & Alma</div>
+                    <div class="foot-logo">GRANO & ALMA</div>
                     <p class="text-secondary">Café de especialidad en un espacio diseñado para desconectar sin salir de la ciudad.</p>
                 </div>
 
                 <div class="foot-column">
-                    <h4>Navegación</h4>
+                    <h4>NAVEGACIÓN</h4>
 
                     <ul>
                         <li><a href="../../index.html">Inicio</a></li>
@@ -127,7 +127,7 @@
                 </div>
 
                 <div class="foot-column">
-                    <h4>Contacto</h4>
+                    <h4>CONTACTO</h4>
 
                     <ul>
                         <li class="text-secondary">Tr 2b #13-54</li>
@@ -138,7 +138,7 @@
                 </div>
 
                 <div class="foot-column">
-                    <h4>Síguenos</h4>
+                    <h4>SÍGUENOS</h4>
 
                     <div class="foot-networks">
                         <a href="" aria-label="Instagram">IG</a>
