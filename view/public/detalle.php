@@ -13,7 +13,6 @@
         <link rel="stylesheet" href="../../css/style.css">
     </head>
     <body>
-        <?= print("hola mundo"); ?>
         <header class="site-header">
             <div class="container">
                 <a href="../../index.html" class="logo"><img src="../../img/favicon.svg" alt="grano&alma-icon" class="logo_icon" width="30" height="30">Grano & Alma</a>

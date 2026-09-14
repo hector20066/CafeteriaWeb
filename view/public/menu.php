@@ -1,5 +1,5 @@
 <?php
-    print("Hola mundo")     
+       
 ?>
 <!doctype html>
 <html lang="en">
