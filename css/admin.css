@@ -1,0 +1,64 @@
+body {
+    background-color: var(--background-color);
+}
+
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Login */
+.admin-login {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.admin-login-card {
+    width: 100%;
+    max-width: 400px;
+    background-color: var(--white-color);
+    border-radius: var(--radio-card);
+    box-shadow: var(--shadow-card-hover);
+    padding: 40px 36px;
+}
+
+.admin-login-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.admin-login-logo img {
+    width: 32px;
+    height: 32px;
+}
+
+.admin-login-logo span {
+    font-family: var(--source-title);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.admin-login-subtitle {
+    text-align: center;
+    color: var(--secondary-text-color);
+    font-size: 14px;
+    margin-bottom: 28px;
+}
+
+.admin-login-return {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.admin-login-return a {
+    color: var(--primary-color);
+    font-weight: 600;
+}

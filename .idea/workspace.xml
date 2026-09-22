@@ -18,7 +18,7 @@
     </execution>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="47" />
+    <option name="cachedIndexableFilesCount" value="51" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -41,6 +41,7 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
+<<<<<<< HEAD
       <entry key="MS100" value="1.0" />
       <entry key="MS500" value="1.0" />
       <entry key="S2" value="1.0" />
@@ -96,6 +97,63 @@
       <entry key="H4" value="1255.542256427883" />
       <entry key="D1" value="2181.9058282431465" />
       <entry key="W1" value="2430.0621288952098" />
+=======
+      <entry key="MS100" value="1.6244999155512567" />
+      <entry key="MS500" value="2.2208571786603715" />
+      <entry key="S2" value="3.266899995630029" />
+      <entry key="S5" value="4.560652422848408" />
+      <entry key="S10" value="6.930597505354728" />
+      <entry key="S30" value="13.260220702321845" />
+      <entry key="S60" value="17.125830064666054" />
+      <entry key="M2" value="21.408372343961858" />
+      <entry key="M5" value="35.51283311423051" />
+      <entry key="M10" value="52.23346007423103" />
+      <entry key="M15" value="65.58083496733393" />
+      <entry key="M30" value="111.38570389753576" />
+      <entry key="H1" value="227.53924412029545" />
+      <entry key="H2" value="489.0780089435123" />
+      <entry key="H4" value="878.5097721776639" />
+      <entry key="D1" value="1627.0842096951783" />
+      <entry key="W1" value="1830.1479452815183" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="9.938733493160328E-154" />
+      <entry key="S10" value="4.454453057071527E-77" />
+      <entry key="S30" value="5.626047232807486E-26" />
+      <entry key="S60" value="3.367517337640392E-13" />
+      <entry key="M2" value="8.852378569518773E-7" />
+      <entry key="M5" value="0.011076033855130434" />
+      <entry key="M10" value="0.5402631404424124" />
+      <entry key="M15" value="2.3290168702135268" />
+      <entry key="M30" value="11.360043779747683" />
+      <entry key="H1" value="34.394020303144046" />
+      <entry key="H2" value="89.46319052467766" />
+      <entry key="H4" value="171.80898662334522" />
+      <entry key="D1" value="324.4952205533512" />
+      <entry key="W1" value="364.74256419454997" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.9398669098110446" />
+      <entry key="MS500" value="1.9439977394332217" />
+      <entry key="S2" value="3.1775828442407303" />
+      <entry key="S5" value="4.513522270559449" />
+      <entry key="S10" value="6.895193439626163" />
+      <entry key="S30" value="13.237590208128575" />
+      <entry key="S60" value="17.11117440543473" />
+      <entry key="M2" value="21.39907237071687" />
+      <entry key="M5" value="35.51729022184473" />
+      <entry key="M10" value="52.76763661564928" />
+      <entry key="M15" value="67.90225296530713" />
+      <entry key="M30" value="122.73189437397797" />
+      <entry key="H1" value="261.91177891416413" />
+      <entry key="H2" value="578.5131479207678" />
+      <entry key="H4" value="1050.2911445720847" />
+      <entry key="D1" value="1951.5702956183056" />
+      <entry key="W1" value="2194.8890257178314" />
+>>>>>>> main
     </decayedShown>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/usr/bin/php" />
@@ -108,6 +166,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
@@ -131,8 +190,31 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion.inline&quot;,
     &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JavaScript Debug.index.html.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "javascript.preferred.runtime.type.id": "node",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/home/hlacevedo/ProyectosWeb/CafeteriaWeb",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "settings.sync",
+    "to.speed.mode.migration.done": "true"
+>>>>>>> main
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/CafeteriaWeb/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
@@ -146,8 +228,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-PS-262.9437.196" />
-        <option value="bundled-php-predefined-a98d8de5180a-9522f28f0b20-com.jetbrains.php.sharedIndexes-PS-262.9437.196" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-PS-262.10315.130" />
+        <option value="bundled-php-predefined-a98d8de5180a-9522f28f0b20-com.jetbrains.php.sharedIndexes-PS-262.10315.130" />
       </set>
     </attachedChunks>
   </component>
@@ -170,8 +252,18 @@
       <workItem from="1788354024492" duration="7691000" />
       <workItem from="1788395241590" duration="15000" />
       <workItem from="1788395265927" duration="8494000" />
+<<<<<<< HEAD
       <workItem from="1788530141984" duration="3378000" />
       <workItem from="1788556972522" duration="1615000" />
+=======
+      <workItem from="1788530141984" duration="320000" />
+      <workItem from="1788721641589" duration="4343000" />
+      <workItem from="1788727623641" duration="2199000" />
+      <workItem from="1788970507600" duration="1722000" />
+      <workItem from="1789135717250" duration="8093000" />
+      <workItem from="1789479482180" duration="9000" />
+      <workItem from="1789482740497" duration="140000" />
+>>>>>>> main
     </task>
     <servers />
   </component>
