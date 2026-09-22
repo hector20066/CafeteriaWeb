@@ -1,6 +1,5 @@
 <?php
 
-class DAOCategoriesImpl
-{
+class DAOCategoriesImpl {
 
 }

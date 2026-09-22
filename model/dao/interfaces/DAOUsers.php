@@ -1,6 +1,5 @@
 <?php
 
-interface DAOUsers
-{
+interface DAOUsers {
 
 }

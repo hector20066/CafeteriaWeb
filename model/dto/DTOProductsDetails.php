@@ -1,8 +1,8 @@
 <?php
 
-use Decimal\Decimal;
+    use Decimal\Decimal;
 
-class DTOProductsDetails {
+    class DTOProductsDetails {
 
         private int $id;
         private string $category;

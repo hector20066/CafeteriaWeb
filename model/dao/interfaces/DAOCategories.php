@@ -1,6 +1,5 @@
 <?php
 
-interface DAOCategories
-{
+interface DAOCategories {
 
 }

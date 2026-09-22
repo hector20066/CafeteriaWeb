@@ -1,6 +1,5 @@
 <?php
 
-class DAOUsersImpl
-{
+class DAOUsersImpl {
 
 }
