@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Document</title>
+        <title>Panel administrativo — Grano & Alma</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
         <link rel="icon" type="image/svg+xml" href="../../img/favicon.svg">
@@ -95,7 +95,7 @@
                         <div class="admin-stat-card-icon">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.5 3.6-7 8-7s8 2.5 8 7"/></svg>
                         </div>
-                        <div class="admin-stat-card-value">16</div>
+                        <div class="admin-stat-card-value">4</div>
                         <div class="admin-stat-card-label">Empleados registrados</div>
                     </div>
 
@@ -103,7 +103,7 @@
                         <div class="admin-stat-card-icon">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M4 15l4-4 4 3 5-6 3 3"/></svg>
                         </div>
-                        <div class="admin-stat-card-value">16</div>
+                        <div class="admin-stat-card-value">4</div>
                         <div class="admin-stat-card-label">Categorias del menú</div>
                     </div>
                 </div>
