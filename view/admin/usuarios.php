@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Usuarios - Panel administrativo | Grano & Alma</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/svg+xml" href="../../img/favicon.svg">
+        <link rel="stylesheet" href="../../css/admin.css">
+        <link rel="stylesheet" href="../../css/style.css">
+    </head>
+    <body>
+        <div class="admin-layout">
+            <div class="admin-topbar-mobile">
+                <span class="admin-topbar-mobile-logo">
+                    <img src="../../img/favicon.svg" alt="logo" width="26" height="26">
+                    Grano & Alma
+                </span>
+                <button class="btn-mobile-menu" id="btnOpenMenuAdmin" aria-label="Abrir menú">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+
+            <nav class="nav-mobile" id="navMobileAdmin">
+                <div class="nav-mobile-top">
+                    <span class="logo"><img src="../../img/favicon.svg" alt="logo" class="logo_icon" width="30" height="30">Grano & Alma</span>
+                    <button class="nav-mobile-close" id="btnCloseMenuAdmin" aria-label="Cerrar menú">&times;</button>
+                </div>
+
+                <ul>
+                    <li><a href="index.php">Inicio</a></li>
+                    <li><a href="productos.php">Productos</a></li>
+                    <li><a href="usuarios.php">Usuarios</a></li>
+                    <li><a href="../login/login.php">Cerrar sesión</a></li>
+                </ul>
+            </nav>
+
+            <!-- Sidebar solo para desktop -->
+            <aside class="admin-sidebar">
+                <div class="admin-sidebar-logo">
+                    <img src="../../img/favicon.svg" alt="logo">
+                    <span>Grano & Alma</span>
+                </div>
+
+                <nav class="admin-nav">
+                    <a href="index.php">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+                        Inicio
+                    </a>
+
+                    <a href="productos.php">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+                        Productos
+                    </a>
+
+                    <a href="usuarios.php" class="active">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.5 3.6-7 8-7s8 2.5 8 7"/></svg>
+                        Usuarios
+                    </a>
+                </nav>
+
+                <div class="admin-sidebar-exit">
+                    <nav class="admin-nav">
+                        <a href="../login/login.php">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+                            Cerrar sesión
+                        </a>
+                    </nav>
+                </div>
+            </aside>
+
+            <main class="admin-main">
+                <div class="admin-topbar">
+                    <div>
+                        <h1>Usuarios</h1>
+                        <p class="admin-topbar-subtitle">Administra los empleados con acceso al sistema</p>
+                    </div>
+                    
+                    <div class="admin-user">
+                        <div class="admin-user-avatar">A</div>
+                        <span>Administrador</span>
+                    </div>
+                </div>
+
+                <div class="admin-card">
+                    <h2>Agregar nuevo usuario</h2>
+
+                    <form class="admin-form" action="#" method="post">
+                        <div class="input">
+                            <label for="name">Nombre completo</label>
+                            <input type="text" id="name" name="name" placeholder="Ej. Hector Acevedo" required>
+                        </div>
+
+                        <div class="input">
+                            <label for="email">Correo</label>
+                            <input type="email" id="email" name="email" placeholder="correo@gmail.com" required>
+                        </div>
+
+                        <div class="input">
+                            <label for="role">Rol</label>
+
+                            <select id="role" name="role" required>
+                                <option value="">-- Seleccione un rol --</option>
+                                <option value="administrador">Administrador</option>
+                                <option value="barista">Barista</option>
+                                <option value="mesero">Mesero</option>
+                                <option value="cajero">Cajero</option>
+                            </select>
+                        </div>
+
+                        <div class="input">
+                            <label for="password">Contraseña</label>
+                            <input type="password" id="password" name="password" placeholder="••••••••" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Crear usuario</button>
+                    </form>
+                </div>
+
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h2>Empleados registrados</h2>
+                    </div>
+
+                    <div class="admin-table-content">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Correo</th>
+                                    <th>Rol</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td data-etiqueta="Nombre"></td>
+                                    <td data-etiqueta="Correo"></td>
+                                    <td data-etiqueta="Rol"></td>
+                                    <td data-etiqueta="Estado"></td>
+                                    <td data-etiqueta="Acciones">
+                                        <div class="admin-table-actions">
+                                            <button type="button">Editar</button>
+                                            <button type="button" class="delete">Eliminar</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <script src="../../js/admin/script.js"></script>
+    </body>
+</html>

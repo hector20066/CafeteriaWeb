@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58e596fc-eaa6-4962-88aa-2d985a5ebea1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/admin/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/admin/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +19,13 @@
   </component>
   <component name="EmbeddingIndexingInfo">
     <option name="cachedIndexableFilesCount" value="51" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="PHP File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -41,6 +48,7 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
+<<<<<<< HEAD
 <<<<<<< HEAD
       <entry key="MS100" value="1.0" />
       <entry key="MS500" value="1.0" />
@@ -115,27 +123,47 @@
       <entry key="H4" value="878.5097721776639" />
       <entry key="D1" value="1627.0842096951783" />
       <entry key="W1" value="1830.1479452815183" />
+=======
+      <entry key="MS100" value="8.41235296088017E-271" />
+      <entry key="MS500" value="1.9469741659946937E-54" />
+      <entry key="S2" value="9.996448432290881E-14" />
+      <entry key="S5" value="1.7918882878876266E-5" />
+      <entry key="S10" value="0.013737656591259004" />
+      <entry key="S30" value="1.6657049581928824" />
+      <entry key="S60" value="6.06981274631822" />
+      <entry key="M2" value="12.74516555277035" />
+      <entry key="M5" value="28.859583100610404" />
+      <entry key="M10" value="47.08701520254314" />
+      <entry key="M15" value="61.19912121324526" />
+      <entry key="M30" value="107.60032319406552" />
+      <entry key="H1" value="223.6394276338983" />
+      <entry key="H2" value="484.8687181604542" />
+      <entry key="H4" value="874.7211188116398" />
+      <entry key="D1" value="1625.9126112033455" />
+      <entry key="W1" value="1829.9596276457191" />
+>>>>>>> main
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="9.938733493160328E-154" />
-      <entry key="S10" value="4.454453057071527E-77" />
-      <entry key="S30" value="5.626047232807486E-26" />
-      <entry key="S60" value="3.367517337640392E-13" />
-      <entry key="M2" value="8.852378569518773E-7" />
-      <entry key="M5" value="0.011076033855130434" />
-      <entry key="M10" value="0.5402631404424124" />
-      <entry key="M15" value="2.3290168702135268" />
-      <entry key="M30" value="11.360043779747683" />
-      <entry key="H1" value="34.394020303144046" />
-      <entry key="H2" value="89.46319052467766" />
-      <entry key="H4" value="171.80898662334522" />
-      <entry key="D1" value="324.4952205533512" />
-      <entry key="W1" value="364.74256419454997" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0" />
+      <entry key="S60" value="1.0000000000001195" />
+      <entry key="M2" value="1.000000527013584" />
+      <entry key="M5" value="1.0090009636358532" />
+      <entry key="M10" value="1.4870322331936783" />
+      <entry key="M15" value="3.1734060845502707" />
+      <entry key="M30" value="11.973979060401007" />
+      <entry key="H1" value="34.804537957229385" />
+      <entry key="H2" value="89.6932180940792" />
+      <entry key="H4" value="172.06804472821958" />
+      <entry key="D1" value="325.2615644778132" />
+      <entry key="W1" value="365.7050330990221" />
     </decayedSelected>
     <decayedShown>
+<<<<<<< HEAD
       <entry key="MS100" value="0.9398669098110446" />
       <entry key="MS500" value="1.9439977394332217" />
       <entry key="S2" value="3.1775828442407303" />
@@ -154,6 +182,25 @@
       <entry key="D1" value="1951.5702956183056" />
       <entry key="W1" value="2194.8890257178314" />
 >>>>>>> main
+=======
+      <entry key="MS100" value="0.0017240292896301848" />
+      <entry key="MS500" value="0.280097303548544" />
+      <entry key="S2" value="0.7274903418174758" />
+      <entry key="S5" value="0.8805208407291802" />
+      <entry key="S10" value="0.9520187501318552" />
+      <entry key="S30" value="2.641875243373683" />
+      <entry key="S60" value="7.054069306982686" />
+      <entry key="M2" value="13.734340405805645" />
+      <entry key="M5" value="29.861086396484996" />
+      <entry key="M10" value="48.567500582531466" />
+      <entry key="M15" value="64.3647293758724" />
+      <entry key="M30" value="119.5605663053211" />
+      <entry key="H1" value="258.4226715871035" />
+      <entry key="H2" value="574.5340377627394" />
+      <entry key="H4" value="1046.7616242126544" />
+      <entry key="D1" value="1951.165040263756" />
+      <entry key="W1" value="2195.663176087081" />
+>>>>>>> main
     </decayedShown>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/usr/bin/php" />
@@ -167,6 +214,9 @@
     <option name="showLibraryContents" value="true" />
   </component>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> main
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
@@ -177,11 +227,16 @@
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+<<<<<<< HEAD
     &quot;git-widget-placeholder&quot;: &quot;backend&quot;,
+=======
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+>>>>>>> main
     &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/hlacevedo/ProyectosWeb/CafeteriaWeb&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+<<<<<<< HEAD
     &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -213,8 +268,16 @@
     "settings.editor.selected.configurable": "settings.sync",
     "to.speed.mode.migration.done": "true"
 >>>>>>> main
+=======
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
+>>>>>>> main
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/CafeteriaWeb/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
