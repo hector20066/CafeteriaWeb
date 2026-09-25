@@ -6,13 +6,13 @@ CREATE TABLE categories (
 CREATE TABLE products (
     id INT PRIMARY KEY AUTO_INCREMENT NOT  NULL,
     name VARCHAR(100) NOT NULL,
-    slug VARCHAR(50) NOT NULL,
+    slug VARCHAR(50) NOT NULL UNIQUE,
     id_category INT NOT NULL,
     price DECIMAL(10,2) NOT NULL,
     image VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     brief_description VARCHAR(150) NOT NULL,
-    creation_date DATE,
+    creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_category) REFERENCES categories(id) ON DELETE CASCADE
 );
 
@@ -26,7 +26,7 @@ CREATE TABLE characteristics (
 CREATE TABLE users (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
     passwd VARCHAR(300) NOT NULL,
     role VARCHAR(40) NOT NULL
 );
