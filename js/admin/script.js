@@ -14,4 +14,19 @@ document.addEventListener('DOMContentLoaded', function () {
       navMovil.classList.remove('abierto');
     });
   }
+
+  var productName = document.getElementById('product_name');
+  var slug = document.getElementById('slug');
+
+  if (productName && slug) {
+    productName.addEventListener('input', function () {
+      slug.value = productName.value
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+    });
+  }
 });

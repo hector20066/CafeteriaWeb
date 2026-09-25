@@ -93,14 +93,19 @@
                         </div>
 
                         <div class="input">
+                            <label for="slug">Slug (generado automáticamente)</label>
+                            <input type="text" id="slug" name="slug" readonly required>
+                        </div>
+
+                        <div class="input">
                             <label for="category">Categoría</label>
 
                             <select id="category" name="category" required>
                                 <option value="">-- Selecciona una categoría --</option>
-                                <option value="cafes-calientes">Cafés calientes</option>
-                                <option value="bebidas-frias">Bebidas frías</option>
-                                <option value="postres">Postres</option>
-                                <option value="desayunos">Desayunos</option>
+                                <option value="1">Cafés calientes</option>
+                                <option value="2">Bebidas frías</option>
+                                <option value="3">Postres</option>
+                                <option value="4">Desayunos</option>
                             </select>
                         </div>
 
@@ -111,12 +116,17 @@
 
                         <div class="input">
                             <label for="image">Imagen</label>
-                            <input type="file" id="image" name="image" accept="image/*">
+                            <input type="file" id="image" name="image" accept="image/*" required>
                         </div>
 
                         <div class="input input-width">
-                            <label for="description">Descripción</label>
-                            <textarea id="description" name="description" placeholder="Descripción corta del producto" required></textarea>
+                            <label for="brief_description">Descripción corta</label>
+                            <textarea id="brief_description" name="brief_description" maxlength="150" placeholder="Descripción corta que aparecerá en las tarjetas" required></textarea>
+                        </div>
+
+                        <div class="input input-width">
+                            <label for="description">Descripción completa</label>
+                            <textarea id="description" name="description" placeholder="Descripción completa del producto" required></textarea>
                         </div>
 
                         <div class="input input-width">
