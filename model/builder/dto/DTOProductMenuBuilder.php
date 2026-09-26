@@ -51,31 +51,31 @@
             return new DTOProductMenu($this);
         }
 
-        public function getId(): int {
+        public function getId() : int {
             return $this->id;
         }
 
-        public function getName(): string {
+        public function getName() : string {
             return $this->name;
         }
 
-        public function getSlug(): string {
+        public function getSlug() : string {
             return $this->slug;
         }
 
-        public function getBriefDescription(): string {
+        public function getBriefDescription() : string {
             return $this->briefDescription;
         }
 
-        public function getPrice(): Decimal {
+        public function getPrice() : Decimal {
             return $this->price;
         }
 
-        public function getCategory(): string {
+        public function getCategory() : string {
             return $this->category;
         }
 
-        public function getImage(): string {
+        public function getImage() : string {
             return $this->image;
         }
 
