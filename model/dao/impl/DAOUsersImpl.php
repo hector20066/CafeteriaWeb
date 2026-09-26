@@ -1,11 +1,12 @@
 <?php
 
+require_once __DIR__ . '/../../../database/DataBase.php';
 require_once __DIR__ . '/../interfaces/DAOUsers.php';
 require_once __DIR__ . '/../../dto/DTOUsersCreate.php';
 require_once __DIR__ . '/../../dto/DTOUsersDetails.php';
 require_once __DIR__ . '/../../dto/DTOUsersLogin.php';
 
-class DAOUsersImpl implements DAOUsers {
+class DAOUsersImpl extends DataBase implements DAOUsers {
 
     /**
      * @param DTOUsersCreate $dto

@@ -1,9 +1,10 @@
 <?php
 
+require_once __DIR__ . '/../../../database/DataBase.php';
 require_once __DIR__ . '/../interfaces/DAOCharacteristics.php';
 require_once __DIR__ . '/../../dto/DTOCharacteristics.php';
 
-class DAOCharacteristicsImpl implements DAOCharacteristics {
+class DAOCharacteristicsImpl extends DataBase implements DAOCharacteristics {
 
     /**
      * @param DTOCharacteristics $dto

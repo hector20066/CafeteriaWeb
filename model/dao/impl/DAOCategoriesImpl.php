@@ -1,9 +1,10 @@
 <?php
 
+require_once __DIR__ . '/../../../database/DataBase.php';
 require_once __DIR__ . '/../interfaces/DAOCategories.php';
 require_once __DIR__ . '/../../dto/DTOCategory.php';
 
-class DAOCategoriesImpl implements DAOCategories {
+class DAOCategoriesImpl extends DataBase implements DAOCategories {
 
     /**
      * @param DTOCategory $dto
