@@ -8,6 +8,20 @@ require_once __DIR__ . '/../../dto/DTOProductMenu.php';
 
 class DAOProductsImpl extends DataBase implements DAOProducts {
 
+    private static ?DAOProductsImpl $instance = null;
+
+    private function __construct() {
+        parent::__construct();
+    }
+
+    public static function getInstance() : DAOProductsImpl {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
     /**
      * @param DTOProductCreate $dto
      * @return int

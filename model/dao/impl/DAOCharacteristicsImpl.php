@@ -6,6 +6,20 @@ require_once __DIR__ . '/../../dto/DTOCharacteristics.php';
 
 class DAOCharacteristicsImpl extends DataBase implements DAOCharacteristics {
 
+    private static ?DAOCharacteristicsImpl $instance = null;
+
+    private function __construct() {
+        parent::__construct();
+    }
+
+    public static function getInstance() : DAOCharacteristicsImpl {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
     /**
      * @param DTOCharacteristics $dto
      * @return void

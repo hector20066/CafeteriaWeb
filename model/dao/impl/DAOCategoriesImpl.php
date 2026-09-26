@@ -6,6 +6,20 @@ require_once __DIR__ . '/../../dto/DTOCategory.php';
 
 class DAOCategoriesImpl extends DataBase implements DAOCategories {
 
+    private static ?DAOCategoriesImpl $instance = null;
+
+    private function __construct() {
+        parent::__construct();
+    }
+
+    public static function getInstance() : DAOCategoriesImpl {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
     /**
      * @param DTOCategory $dto
      * @return void

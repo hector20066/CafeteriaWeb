@@ -8,6 +8,20 @@ require_once __DIR__ . '/../../dto/DTOUsersLogin.php';
 
 class DAOUsersImpl extends DataBase implements DAOUsers {
 
+    private static ?DAOUsersImpl $instance = null;
+
+    private function __construct() {
+        parent::__construct();
+    }
+
+    public static function getInstance() : DAOUsersImpl {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
     /**
      * @param DTOUsersCreate $dto
      * @return void
