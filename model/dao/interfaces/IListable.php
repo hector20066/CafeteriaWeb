@@ -1,15 +1,19 @@
 <?php
 
 /**
- * @template T
+ * @template T of object
  */
 interface IListable {
 
     /**
      * @param int $id
-     * @return object | null
+     * @return T | null
      */
     public function findById(int $id) : ?object;
+
+    /**
+     * @return list<T>
+     */
     public function findByAll() : array;
 
 }

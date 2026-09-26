@@ -1,6 +1,10 @@
 <?php
 
-interface DAOCharacteristics
-{
+/**
+ * @extends IListable<DTOCharacteristics>
+ */
+interface DAOCharacteristics extends IListable {
+
+    public function add(DTOCharacteristics $dto) : void;
 
 }
