@@ -1,25 +1,16 @@
 <?php
 
-require_once __DIR__ . '/../../../database/DataBase.php';
 require_once __DIR__ . '/../interfaces/DAOProducts.php';
 require_once __DIR__ . '/../../dto/DTOProductCreate.php';
 require_once __DIR__ . '/../../dto/DTOProductDetails.php';
 require_once __DIR__ . '/../../dto/DTOProductMenu.php';
 
-class DAOProductsImpl extends DataBase implements DAOProducts {
+class DAOProductsImpl implements DAOProducts {
 
-    private static ?DAOProductsImpl $instance = null;
+    private PDO $connection;
 
-    private function __construct() {
-        parent::__construct();
-    }
-
-    public static function getInstance() : DAOProductsImpl {
-        if (self::$instance === null) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
+    public function __construct(PDO $connection) {
+        $this->connection = $connection;
     }
 
     /**

@@ -1,25 +1,16 @@
 <?php
 
-require_once __DIR__ . '/../../../database/DataBase.php';
 require_once __DIR__ . '/../interfaces/DAOUsers.php';
 require_once __DIR__ . '/../../dto/DTOUsersCreate.php';
 require_once __DIR__ . '/../../dto/DTOUsersDetails.php';
 require_once __DIR__ . '/../../dto/DTOUsersLogin.php';
 
-class DAOUsersImpl extends DataBase implements DAOUsers {
+class DAOUsersImpl implements DAOUsers {
 
-    private static ?DAOUsersImpl $instance = null;
+    private PDO $connection;
 
-    private function __construct() {
-        parent::__construct();
-    }
-
-    public static function getInstance() : DAOUsersImpl {
-        if (self::$instance === null) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
+    public function __construct(PDO $connection) {
+        $this->connection = $connection;
     }
 
     /**

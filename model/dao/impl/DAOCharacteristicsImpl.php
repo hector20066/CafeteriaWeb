@@ -1,23 +1,14 @@
 <?php
 
-require_once __DIR__ . '/../../../database/DataBase.php';
 require_once __DIR__ . '/../interfaces/DAOCharacteristics.php';
 require_once __DIR__ . '/../../dto/DTOCharacteristics.php';
 
-class DAOCharacteristicsImpl extends DataBase implements DAOCharacteristics {
+class DAOCharacteristicsImpl implements DAOCharacteristics {
 
-    private static ?DAOCharacteristicsImpl $instance = null;
+    private PDO $connection;
 
-    private function __construct() {
-        parent::__construct();
-    }
-
-    public static function getInstance() : DAOCharacteristicsImpl {
-        if (self::$instance === null) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
+    public function __construct(PDO $connection) {
+        $this->connection = $connection;
     }
 
     /**

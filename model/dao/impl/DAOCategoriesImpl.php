@@ -1,24 +1,15 @@
 <?php
 
-require_once __DIR__ . '/../../../database/DataBase.php';
 require_once __DIR__ . '/../interfaces/DAOCategories.php';
 require_once __DIR__ . '/../../dto/DTOCategory.php';
 
-class DAOCategoriesImpl extends DataBase implements DAOCategories {
+class DAOCategoriesImpl implements DAOCategories {
 
-    private static ?DAOCategoriesImpl $instance = null;
+    private PDO $connection;
 
-    private function __construct() {
-        parent::__construct();
-    }
-
-    public static function getInstance() : DAOCategoriesImpl {
-        if (self::$instance === null) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
-    }
+    public function __construct(PDO $connection) {
+        $this->connection = $connection;
+    } 
 
     /**
      * @param DTOCategory $dto
