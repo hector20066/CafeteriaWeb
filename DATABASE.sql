@@ -29,5 +29,4 @@ CREATE TABLE users (
     email VARCHAR(100) NOT NULL UNIQUE,
     passwd VARCHAR(300) NOT NULL,
     role VARCHAR(40) NOT NULL,
-    status VARCHAR(40) NOT NULL
 );
