@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../config/env.php';
 
 class DataBase {
+
     protected PDO $connect;
 
     public function __construct() {
