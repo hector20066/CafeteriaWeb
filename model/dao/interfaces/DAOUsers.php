@@ -1,5 +1,9 @@
 <?php
 
+require_once __DIR__ . '/../../dto/DTOUsersCreate.php';
+require_once __DIR__ . '/../../dto/DTOUsersDetails.php';
+require_once __DIR__ . '/../../dto/DTOUsersLogin.php';
+
 /**
  * @extends IListable<DTOUsersDetails>
  */

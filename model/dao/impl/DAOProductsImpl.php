@@ -1,5 +1,10 @@
 <?php
 
+require_once __DIR__ . '/../interfaces/DAOProducts.php';
+require_once __DIR__ . '/../../dto/DTOProductCreate.php';
+require_once __DIR__ . '/../../dto/DTOProductDetails.php';
+require_once __DIR__ . '/../../dto/DTOProductMenu.php';
+
 class DAOProductsImpl implements DAOProducts {
 
     /**

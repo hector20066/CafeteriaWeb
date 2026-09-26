@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/../../dto/DTOCharacteristics.php';
+
 /**
  * @extends IListable<DTOCharacteristics>
  */

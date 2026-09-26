@@ -1,5 +1,8 @@
 <?php
 
+require_once __DIR__ . '/../interfaces/DAOCategories.php';
+require_once __DIR__ . '/../../dto/DTOCategory.php';
+
 class DAOCategoriesImpl implements DAOCategories {
 
     /**

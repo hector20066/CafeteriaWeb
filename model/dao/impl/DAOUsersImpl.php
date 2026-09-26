@@ -1,5 +1,10 @@
 <?php
 
+require_once __DIR__ . '/../interfaces/DAOUsers.php';
+require_once __DIR__ . '/../../dto/DTOUsersCreate.php';
+require_once __DIR__ . '/../../dto/DTOUsersDetails.php';
+require_once __DIR__ . '/../../dto/DTOUsersLogin.php';
+
 class DAOUsersImpl implements DAOUsers {
 
     /**
