@@ -46,7 +46,7 @@ class DAOCharacteristicsImpl implements DAOCharacteristics {
     }
 
     /**
-     * @return array
+     * @return list<DTOCharacteristics>
      */
     #[\Override]
     public function findByAll() : array {
@@ -62,6 +62,10 @@ class DAOCharacteristicsImpl implements DAOCharacteristics {
         return $list;
     }
 
+    /**
+     * @param int $productId
+     * @return list<DTOCharacteristics>
+     */
     public function findByProduct(int $productId) : array {
         $list = [];
         $statement = $this->connection->prepare("SELECT * FROM characteristics WHERE id_product = :id_product;");
