@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/../../model/dto/DTOCategory.php';
+
 interface CategoriesService {
 
     public function add(string $name) : void;

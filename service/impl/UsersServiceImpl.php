@@ -1,5 +1,8 @@
 <?php
 
+require_once __DIR__ . '/../../model/dto/DTOUsersDetails.php';
+require_once __DIR__ . '/../../model/dto/DTOUsersLogin.php';
+
 class UsersServiceImpl implements UsersService {
 
     /**

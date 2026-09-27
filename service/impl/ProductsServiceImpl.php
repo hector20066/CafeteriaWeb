@@ -2,6 +2,9 @@
 
 use Decimal\Decimal;
 
+require_once __DIR__ . '/../../model/dto/DTOProductDetails.php';
+require_once __DIR__ . '/../../model/dto/DTOProductMenu.php';
+
 class ProductsServiceImpl implements ProductsService {
 
     /**
