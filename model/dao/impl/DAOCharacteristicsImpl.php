@@ -17,9 +17,13 @@ class DAOCharacteristicsImpl implements DAOCharacteristics {
      */
     #[\Override]
     public function add(DTOCharacteristics $dto) : void {
-        $statement = $this->connection->prepare("INSERT INTO characteristics(id_product, feature) VALUES(:id_product, :feature);");
-        $statement->bindParam(':id_product', $dto->getProductId());
-        $statement->bindParam(':feature', $dto->getFeature());
+        $statement = $this->connection->prepare("INSERT INTO characteristics(id_product, feature) VALUES (:id_product, :feature);");
+
+        $productId = $dto->getProductId();
+        $feature = $dto->getFeature();
+
+        $statement->bindParam(':id_product', $productId);
+        $statement->bindParam(':feature', $feature);
         $statement->execute();
     }
 

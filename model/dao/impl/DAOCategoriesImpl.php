@@ -18,7 +18,10 @@ class DAOCategoriesImpl implements DAOCategories {
     #[\Override]
     public function add(DTOCategory $dto) : void {
         $statement = $this->connection->prepare("INSERT INTO categories(name) VALUES (:name);");
-        $statement->bindParam(':name', $dto->getName());
+
+        $name = $dto->getName();
+
+        $statement->bindParam(':name', $name);
         $statement->execute();
     }
 

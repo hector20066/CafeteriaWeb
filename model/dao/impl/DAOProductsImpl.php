@@ -7,6 +7,7 @@ require_once __DIR__ . '/../../dto/DTOProductCreate.php';
 require_once __DIR__ . '/../../dto/DTOProductDetails.php';
 require_once __DIR__ . '/../../dto/DTOProductMenu.php';
 require_once __DIR__ . '/../../builder/dto/DTOProductDetailsBuilder.php';
+require_once __DIR__ . '/../../builder/dto/DTOProductMenuBuilder.php';
 
 class DAOProductsImpl implements DAOProducts {
 
@@ -23,13 +24,22 @@ class DAOProductsImpl implements DAOProducts {
     #[\Override]
     public function add(DTOProductCreate $dto) : int {
         $statement = $this->connection->prepare("INSERT INTO products(name, slug, id_category, price, image, description, brief_description) VALUES (:name, :slug, :id_category, :price, :image, :description, :brief_description);");
-        $statement->bindParam(':name', $dto->getName());
-        $statement->bindParam(':slug', $dto->getSlug());
-        $statement->bindParam(':id_category', $dto->getCategoryId());
-        $statement->bindParam(':price', $dto->getPrice());
-        $statement->bindParam(':image', $dto->getImage());
-        $statement->bindParam('description', $dto->getDescription());
-        $statement->bindParam('brief_description', $dto->getBriefDescription());
+
+        $name = $dto->getName();
+        $slug = $dto->getSlug();
+        $categoryId = $dto->getCategoryId();
+        $price = $dto->getPrice();
+        $image = $dto->getImage();
+        $description = $dto->getDescription();
+        $briefDescription = $dto->getBriefDescription();
+
+        $statement->bindParam(':name', $name);
+        $statement->bindParam(':slug', $slug);
+        $statement->bindParam(':id_category', $categoryId);
+        $statement->bindParam(':price', $price);
+        $statement->bindParam(':image', $image);
+        $statement->bindParam('description', $description);
+        $statement->bindParam('brief_description', $briefDescription);
 
         $statement->execute();
 

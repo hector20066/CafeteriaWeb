@@ -20,10 +20,16 @@ class DAOUsersImpl implements DAOUsers {
     #[\Override]
     public function add(DTOUsersCreate $dto) : void {
         $statement = $this->connection->prepare("INSERT INTO users(name, email, passwd, role) VALUES (:name, :email, :passwd, :role)");
-        $statement->bindParam(':name', $dto->getName());
-        $statement->bindParam(':email', $dto->getEmail());
-        $statement->bindParam(':passwd', $dto->getPasswd());
-        $statement->bindParam(':role', $dto->getRole()->value);
+
+        $name = $dto->getName();
+        $email = $dto->getEmail();
+        $passwd = $dto->getPasswd();
+        $role = $dto->getRole()->value;
+
+        $statement->bindParam(':name', $name);
+        $statement->bindParam(':email', $email);
+        $statement->bindParam(':passwd', $passwd);
+        $statement->bindParam(':role', $role);
         $statement->execute(); 
     }
 
