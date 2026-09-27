@@ -1,8 +1,16 @@
 <?php
 
+require_once __DIR__ . '/../interfaces/CharacteristicsService.php';
+require_once __DIR__ . '/../../model/dao/interfaces/DAOCharacteristics.php';
 require_once __DIR__ . '/../../model/dto/DTOCharacteristics.php';
 
 class CharacteristicsServiceImpl implements CharacteristicsService {
+
+    private DAOCharacteristics $daoCharacteristics;
+
+    public function __construct(DAOCharacteristics $daoCharacteristics) {
+        $this->daoCharacteristics = $daoCharacteristics;
+    }
 
     /**
      * @param int $productId

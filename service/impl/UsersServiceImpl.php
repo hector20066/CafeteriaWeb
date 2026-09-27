@@ -1,9 +1,17 @@
 <?php
 
+require_once __DIR__ . '/../interfaces/UsersService.php';
+require_once __DIR__ . '/../../model/dao/interfaces/DAOUsers.php';
 require_once __DIR__ . '/../../model/dto/DTOUsersDetails.php';
 require_once __DIR__ . '/../../model/dto/DTOUsersLogin.php';
 
 class UsersServiceImpl implements UsersService {
+
+    private DAOUsers $daoUsers;
+
+    public function __construct(DAOUsers $daoUsers) {
+        $this->daoUsers = $daoUsers;
+    }
 
     /**
      * @param string $name

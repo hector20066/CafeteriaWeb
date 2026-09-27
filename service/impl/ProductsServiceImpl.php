@@ -2,10 +2,18 @@
 
 use Decimal\Decimal;
 
+require_once __DIR__ . '/../interfaces/ProductsService.php';
+require_once __DIR__ . '/../../model/dao/interfaces/DAOProducts.php';
 require_once __DIR__ . '/../../model/dto/DTOProductDetails.php';
 require_once __DIR__ . '/../../model/dto/DTOProductMenu.php';
 
 class ProductsServiceImpl implements ProductsService {
+
+    private DAOProducts $daoProducts;
+
+    public function __construct(DAOProducts $daoProducts) {
+        $this->daoProducts = $daoProducts;
+    }
 
     /**
      * @param string $name
