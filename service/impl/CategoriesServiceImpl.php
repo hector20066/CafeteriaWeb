@@ -18,7 +18,10 @@ class CategoriesServiceImpl implements CategoriesService {
      */
     #[\Override]
     public function add(string $name) : void {
+        $dto = new DTOCategory();
+        $dto->setName($name);
 
+        $this->daoCategories->add($dto);
     }
 
     /**
@@ -27,7 +30,7 @@ class CategoriesServiceImpl implements CategoriesService {
      */
     #[\Override]
     public function findById(int $id) : ?DTOCategory {
-        return null;
+        return $this->daoCategories->findById($id);
     }
 
     /**
@@ -35,7 +38,7 @@ class CategoriesServiceImpl implements CategoriesService {
      */
     #[\Override]
     public function findByAll() : array {
-        return [];
+        return $this->daoCategories->findByAll();
     }
 
 }

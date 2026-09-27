@@ -4,6 +4,7 @@ use Decimal\Decimal;
 
 require_once __DIR__ . '/../../database/ConnectionProvider.php';
 require_once __DIR__ . '/../interfaces/ProductsService.php';
+require_once __DIR__ . '/../interfaces/CharacteristicsService.php';
 require_once __DIR__ . '/../../model/dao/interfaces/DAOProducts.php';
 require_once __DIR__ . '/../../model/dto/DTOProductDetails.php';
 require_once __DIR__ . '/../../model/dto/DTOProductMenu.php';
@@ -11,10 +12,12 @@ require_once __DIR__ . '/../../model/dto/DTOProductMenu.php';
 class ProductsServiceImpl implements ProductsService {
 
     private DAOProducts $daoProducts;
+    private CharacteristicsService $characteristicsService;
     private ConnectionProvider $provider;
 
-    public function __construct(DAOProducts $daoProducts, ConnectionProvider $provider) {
+    public function __construct(DAOProducts $daoProducts, CharacteristicsService $characteristicsService, ConnectionProvider $provider) {
         $this->daoProducts = $daoProducts;
+        $this->characteristicsService = $characteristicsService;
         $this->provider = $provider;
     }
 
@@ -27,6 +30,7 @@ class ProductsServiceImpl implements ProductsService {
      * @param string $description
      * @param string $briefDescription
      * @param array $features
+     * @throws Exception
      */
     #[\Override]
     public function add(string $name, string $slug, int $categoryId, Decimal $price, string $image, string $description, string $briefDescription, array $features) : void {
@@ -34,13 +38,48 @@ class ProductsServiceImpl implements ProductsService {
 
         try {
             $connection = $this->provider->getConnection();
+            $connection->beginTransaction();
+
+            if ($this->daoProducts->findBySlugTransaction($connection, $slug) != null) {
+                throw new Exception("Este producto ya se encuentra registrado");
+            }
+
+            if ($features === []) {
+                throw new Exception("Debe ingresar las características del producto");
+            }
+
+            $productDto = $this->getDTOProductCreate($name, $slug, $categoryId, $price, $image, $description, $briefDescription);
+
+            $productId = $this->daoProducts->add($connection, $productDto);
+
+            if ($productId === 0) {
+                throw new Exception("No se ha podido registrar el producto");
+            }
+
+            foreach ($features as $feature) {
+                $this->characteristicsService->add($connection, $productId, $feature);
+            }
 
             $connection->commit();
         } catch (Exception $e) {
-            if ($connection != null) {
+            if ($connection !== null && $connection->inTransaction()) {
                 $connection->rollBack();
             }
+
+            throw $e;
         }
+    }
+
+    private function getDTOProductCreate(string $name, string $slug, int $categoryId, Decimal $price, string $image, string $description, string $briefDescription) : DTOProductCreate {
+        return new DTOProductCreateBuilder()
+            ->name($name)
+            ->slug($slug)
+            ->categoryId($categoryId)
+            ->price($price)
+            ->image($image)
+            ->description($description)
+            ->briefDescription($briefDescription)
+            ->build();
     }
 
     /**
@@ -49,7 +88,7 @@ class ProductsServiceImpl implements ProductsService {
      */
     #[\Override]
     public function findByName(string $name) : ?DTOProductDetails {
-        return null;
+        return $this->daoProducts->findByName($name);
     }
 
     /**
@@ -58,7 +97,7 @@ class ProductsServiceImpl implements ProductsService {
      */
     #[\Override]
     public function findBySlug(string $slug) : ?DTOProductDetails {
-        return null;
+        return $this->daoProducts->findBySlug($slug);
     }
 
     /**
@@ -67,7 +106,7 @@ class ProductsServiceImpl implements ProductsService {
      */
     #[\Override]
     public function findById(int $id) : ?DTOProductDetails {
-        return null;
+        return $this->daoProducts->findById($id);
     }
 
     /**
@@ -75,7 +114,7 @@ class ProductsServiceImpl implements ProductsService {
      */
     #[\Override]
     public function findByAll() : array {
-        return [];
+        return $this->daoProducts->findByAll();
     }
 
     /**
@@ -83,7 +122,7 @@ class ProductsServiceImpl implements ProductsService {
      */
     #[\Override]
     public function findByAllMenu() : array {
-        return [];
+        return $this->daoProducts->findByAllMenu();
     }
 
     /**
@@ -92,7 +131,7 @@ class ProductsServiceImpl implements ProductsService {
      */
     #[\Override]
     public function delete(int $id) : void {
-
+        $this->daoProducts->delete($id);
     }
 
 }

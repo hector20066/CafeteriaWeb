@@ -20,7 +20,11 @@ class CharacteristicsServiceImpl implements CharacteristicsService {
      */
     #[\Override]
     public function add(PDO $connection, int $productId, string $feature) : void {
+        $dto = new DTOCharacteristics();
+        $dto->setProductId($productId);
+        $dto->setFeature($feature);
 
+        $this->daoCharacteristics->add($connection, $dto);
     }
 
     /**
@@ -29,7 +33,7 @@ class CharacteristicsServiceImpl implements CharacteristicsService {
      */
     #[\Override]
     public function findById(int $id) : ?DTOCharacteristics {
-        return null;
+        return $this->daoCharacteristics->findById($id);
     }
 
     /**
@@ -37,7 +41,7 @@ class CharacteristicsServiceImpl implements CharacteristicsService {
      */
     #[\Override]
     public function findByAll() : array {
-        return [];
+        return $this->daoCharacteristics->findByAll();
     }
 
     /**
@@ -46,7 +50,7 @@ class CharacteristicsServiceImpl implements CharacteristicsService {
      */
     #[\Override]
     public function findByProduct(string $name) : array {
-        return [];
+        return $this->daoCharacteristics->findByProduct($name);
     }
 
 }

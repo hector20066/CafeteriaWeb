@@ -22,7 +22,13 @@ class UsersServiceImpl implements UsersService {
      */
     #[\Override]
     public function add(string $name, string $email, string $plainPasswd, Roles $role) : void {
+        $dto = new DTOUsersCreate();
+        $dto->setName($name);
+        $dto->setEmail($email);
+        $dto->setPasswd($plainPasswd);
+        $dto->setRole($role);
 
+        $this->daoUsers->add($dto);
     }
 
     /**
@@ -31,7 +37,7 @@ class UsersServiceImpl implements UsersService {
      */
     #[\Override]
     public function findByEmail(string $email) : ?DTOUsersDetails {
-        return null;
+        return $this->daoUsers->findByEmail($email);
     }
 
     /**
@@ -40,7 +46,7 @@ class UsersServiceImpl implements UsersService {
      */
     #[\Override]
     public function findById(int $id) : ?DTOUsersDetails {
-        return null;
+        return $this->daoUsers->findById($id);
     }
 
     /**
@@ -48,7 +54,7 @@ class UsersServiceImpl implements UsersService {
      */
     #[\Override]
     public function findByAll() : array {
-        return [];
+        return $this->daoUsers->findByAll();
     }
 
     /**
@@ -57,7 +63,7 @@ class UsersServiceImpl implements UsersService {
      */
     #[\Override]
     public function findByLogin(string $email) : ?DTOUsersLogin {
-        return null;
+        return $this->daoUsers->findByLogin($email);
     }
 
     /**
@@ -66,7 +72,7 @@ class UsersServiceImpl implements UsersService {
      */
     #[\Override]
     public function delete(int $id) : void {
-
+        $this->daoUsers->delete($id);
     }
 
 }
