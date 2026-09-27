@@ -1,9 +1,12 @@
 <?php
 
+use Decimal\Decimal;
+
 require_once __DIR__ . '/../interfaces/DAOProducts.php';
 require_once __DIR__ . '/../../dto/DTOProductCreate.php';
 require_once __DIR__ . '/../../dto/DTOProductDetails.php';
 require_once __DIR__ . '/../../dto/DTOProductMenu.php';
+require_once __DIR__ . '/../../builder/dto/DTOProductDetailsBuilder.php';
 
 class DAOProductsImpl implements DAOProducts {
 
@@ -19,7 +22,18 @@ class DAOProductsImpl implements DAOProducts {
      */
     #[\Override]
     public function add(DTOProductCreate $dto) : int {
-        return 0;
+        $statement = $this->connection->prepare("INSERT INTO products(name, slug, id_category, price, image, description, brief_description) VALUES (:name, :slug, :id_category, :price, :image, :description, :brief_description);");
+        $statement->bindParam(':name', $dto->getName());
+        $statement->bindParam(':slug', $dto->getSlug());
+        $statement->bindParam(':id_category', $dto->getCategoryId());
+        $statement->bindParam(':price', $dto->getPrice());
+        $statement->bindParam(':image', $dto->getImage());
+        $statement->bindParam('description', $dto->getDescription());
+        $statement->bindParam('brief_description', $dto->getBriefDescription());
+
+        $statement->execute();
+
+        return (int) $this->connection->lastInsertId();
     }
 
     /**
@@ -28,7 +42,16 @@ class DAOProductsImpl implements DAOProducts {
      */
     #[\Override]
     public function findByName(string $name) : ?DTOProductDetails {
-        return null;
+        $dto = null;
+        $statement = $this->connection->prepare("SELECT p.id, p.name, p.description, p.price, c.name AS category, p.slug, p.image FROM products p LEFT JOIN categories c ON c.id = p.id_category WHERE p.name = :name;");
+        $statement->bindParam(':name', $name);
+        $statement->execute();
+
+        if ($result = $statement->fetch()) {
+            $dto = $this->getDTOProductDetails($result);
+        }
+
+        return $dto;
     }
 
     /**
@@ -37,15 +60,16 @@ class DAOProductsImpl implements DAOProducts {
      */
     #[\Override]
     public function findBySlug(string $slug) : ?DTOProductDetails {
-        return null;
-    }
+        $dto = null;
+        $statement = $this->connection->prepare("SELECT p.id, p.name, p.description, p.price, c.name AS category, p.slug, p.image FROM products p LEFT JOIN categories c ON c.id = p.id_category WHERE p.slug = :slug;");
+        $statement->bindParam(':slug', $slug);
+        $statement->execute();
 
-    /**
-     * @return list<DTOProductMenu>
-     */
-    #[\Override]
-    public function findByAllMenu() : array {
-        return [];
+        if ($result = $statement->fetch()) {
+            $dto = $this->getDTOProductDetails($result);
+        }
+
+        return $dto;
     }
 
     /**
@@ -54,7 +78,16 @@ class DAOProductsImpl implements DAOProducts {
      */
     #[\Override]
     public function findById(int $id) : ?DTOProductDetails {
-        return null;
+        $dto = null;
+        $statement = $this->connection->prepare("SELECT p.id, p.name, p.description, p.price, c.name AS category, p.slug, p.image FROM products p LEFT JOIN categories c ON c.id = p.id_category WHERE p.id = :id;");
+        $statement->bindParam(':id', $id);
+        $statement->execute();
+
+        if ($result = $statement->fetch()) {
+            $dto = $this->getDTOProductDetails($result);
+        }
+
+        return $dto;
     }
 
     /**
@@ -62,7 +95,54 @@ class DAOProductsImpl implements DAOProducts {
      */
     #[\Override]
     public function findByAll() : array {
-        return [];
+        $list = [];
+        $statement = $this->connection->prepare("SELECT p.id, p.name, p.description, p.price, c.name AS category, p.slug, p.image FROM products p LEFT JOIN categories c ON c.id = p.id_category;");
+        $statement->execute();
+
+        while ($result = $statement->fetch()) {
+            $dto = $this->getDTOProductDetails($result);
+            $list[] = $dto;
+        }
+
+        return $list;
+    }
+
+    private function getDTOProductDetails(mixed $result) : DTOProductDetails {
+        return new DTOProductDetailsBuilder()
+            ->id((int) $result['id'])
+            ->name((string) $result['name'])
+            ->description((string) $result['description'])
+            ->price(new Decimal($result['price']))
+            ->category((string) $result['category'])
+            ->slug((string) $result['slug'])
+            ->image((string) $result['image'])
+            ->build();
+    }
+
+    /**
+     * @return list<DTOProductMenu>
+     */
+    #[\Override]
+    public function findByAllMenu() : array {
+        $list = [];
+        $statement = $this->connection->prepare("SELECT p.id, p.name, p.brief_description, p.price, c.name AS category, p.slug, p.image FROM products p LEFT JOIN categories c ON c.id = p.id_category;");
+        $statement->execute();
+
+        while ($result = $statement->fetch()) {
+            $dto = new DTOProductMenuBuilder()
+                ->id((int) $result['id'])
+                ->name((string) $result['name'])
+                ->slug((string) $result['slug'])
+                ->briefDescription((string) $result['brief_description'])
+                ->price(new Decimal($result['price']))
+                ->category((string) $result['category'])
+                ->image((string) $result['image'])
+                ->build();
+
+            $list[] = $dto;
+        }
+
+        return $list;
     }
 
     /**
@@ -71,7 +151,9 @@ class DAOProductsImpl implements DAOProducts {
      */
     #[\Override]
     public function delete(int $id) : void {
-
+        $statement = $this->connection->prepare("DELETE FROM products WHERE id = :id;");
+        $statement->bindParam(':id', $id);
+        $statement->execute();
     }
 
 }

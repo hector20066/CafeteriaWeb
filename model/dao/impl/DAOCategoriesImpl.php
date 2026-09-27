@@ -17,7 +17,9 @@ class DAOCategoriesImpl implements DAOCategories {
      */
     #[\Override]
     public function add(DTOCategory $dto) : void {
-
+        $statement = $this->connection->prepare("INSERT INTO categories(name) VALUES (:name);");
+        $statement->bindParam(':name', $dto->getName());
+        $statement->execute();
     }
 
     /**
@@ -26,7 +28,16 @@ class DAOCategoriesImpl implements DAOCategories {
      */
     #[\Override]
     public function findById(int $id) : ?DTOCategory {
-        return null;
+        $dto = null;
+        $statement = $this->connection->prepare("SELECT id, name FROM categories WHERE id = :id;");
+        $statement->bindParam(':id', $id);
+        $statement->execute();
+
+        if ($result = $statement->fetch()) {
+            $dto = $this->getDTOCategory($result);
+        }
+
+        return $dto;
     }
 
     /**
@@ -34,7 +45,24 @@ class DAOCategoriesImpl implements DAOCategories {
      */
     #[\Override]
     public function findByAll() : array {
-        return [];
+        $list = [];
+        $statement = $this->connection->prepare("SELECT id, name FROM categories;");
+        $statement->execute();
+
+        while ($result = $statement->fetch()) {
+            $dto = $this->getDTOCategory($result);
+            $list[] = $dto;
+        }
+
+        return $list;
+    }
+
+    private function getDTOCategory(mixed $result) : DTOCategory {
+        $dto = new DTOCategory();
+        $dto->setId((int) $result['id']);
+        $dto->setName((string) $result['name']);
+
+        return $dto;
     }
 
 }
