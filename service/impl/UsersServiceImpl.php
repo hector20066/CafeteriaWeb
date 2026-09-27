@@ -22,6 +22,7 @@ class UsersServiceImpl implements UsersService {
      * @param string $plainPasswd
      * @param Roles $role
      * @return void
+     * @throws Exception
      */
     #[\Override]
     public function add(string $name, string $email, string $plainPasswd, Roles $role) : void {
@@ -39,23 +40,38 @@ class UsersServiceImpl implements UsersService {
     /**
      * @param string $email
      * @return DTOUsersDetails | null
+     * @throws Exception
      */
     #[\Override]
     public function findByEmail(string $email) : ?DTOUsersDetails {
-        return $this->daoUsers->findByEmail($email);
+        $dto = $this->daoUsers->findByEmail($email);
+
+        if ($dto === null) {
+            throw new Exception("No se ha encontrado el usuario con correo: " . $email);
+        }
+
+        return $dto;
     }
 
     /**
      * @param int $id
      * @return DTOUsersDetails | null
+     * @throws Exception
      */
     #[\Override]
     public function findById(int $id) : ?DTOUsersDetails {
-        return $this->daoUsers->findById($id);
+        $dto = $this->daoUsers->findById($id);
+
+        if ($dto === null) {
+            throw new Exception("No se ha encontrado el usuario con id: " . $id);
+        }
+
+        return $dto;
     }
 
     /**
      * @return list<DTOUsersDetails>
+     * @throws Exception
      */
     #[\Override]
     public function findByAll() : array {
@@ -65,6 +81,7 @@ class UsersServiceImpl implements UsersService {
     /**
      * @param string $email
      * @return DTOUsersLogin | null
+     * @throws Exception
      */
     #[\Override]
     public function findByLogin(string $email) : ?DTOUsersLogin {
@@ -74,6 +91,7 @@ class UsersServiceImpl implements UsersService {
     /**
      * @param int $id
      * @return void
+     * @throws Exception
      */
     #[\Override]
     public function delete(int $id) : void {

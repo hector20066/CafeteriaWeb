@@ -15,6 +15,7 @@ class CategoriesServiceImpl implements CategoriesService {
     /**
      * @param string $name
      * @return void
+     * @throws Exception
      */
     #[\Override]
     public function add(string $name) : void {
@@ -27,14 +28,22 @@ class CategoriesServiceImpl implements CategoriesService {
     /**
      * @param int $id
      * @return DTOCategory | null
+     * @throws Exception
      */
     #[\Override]
     public function findById(int $id) : ?DTOCategory {
-        return $this->daoCategories->findById($id);
+        $dto = $this->daoCategories->findById($id);
+
+        if ($dto === null) {
+            throw new Exception("No se ha encontrado el usuario con id: " . $id);
+        }
+
+        return $dto;
     }
 
     /**
      * @return list<DTOCategory>
+     * @throws Exception
      */
     #[\Override]
     public function findByAll() : array {

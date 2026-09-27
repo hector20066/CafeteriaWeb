@@ -33,14 +33,15 @@ class ProductsServiceImpl implements ProductsService {
      * @throws Exception
      */
     #[\Override]
-    public function add(string $name, string $slug, int $categoryId, Decimal $price, string $image, string $description, string $briefDescription, array $features) : void {
+    public function add(string $name, string $slug, int $categoryId, Decimal $price, string $image, string $description,
+                        string $briefDescription, array $features) : void {
         $connection = null;
 
         try {
             $connection = $this->provider->getConnection();
             $connection->beginTransaction();
 
-            if ($this->daoProducts->findBySlugTransaction($connection, $slug) != null) {
+            if ($this->daoProducts->findBySlugTransaction($connection, $slug) !== null) {
                 throw new Exception("Este producto ya se encuentra registrado");
             }
 
@@ -70,7 +71,8 @@ class ProductsServiceImpl implements ProductsService {
         }
     }
 
-    private function getDTOProductCreate(string $name, string $slug, int $categoryId, Decimal $price, string $image, string $description, string $briefDescription) : DTOProductCreate {
+    private function getDTOProductCreate(string $name, string $slug, int $categoryId, Decimal $price, string $image,
+                                         string $description, string $briefDescription) : DTOProductCreate {
         return new DTOProductCreateBuilder()
             ->name($name)
             ->slug($slug)
@@ -85,32 +87,54 @@ class ProductsServiceImpl implements ProductsService {
     /**
      * @param string $name
      * @return DTOProductDetails | null
+     * @throws Exception
      */
     #[\Override]
     public function findByName(string $name) : ?DTOProductDetails {
-        return $this->daoProducts->findByName($name);
+        $dto = $this->daoProducts->findByName($name);
+
+        if ($dto === null) {
+            throw new Exception("No se ha encontrado el producto con nombre: " . $name);
+        }
+
+        return $dto;
     }
 
     /**
      * @param string $slug
      * @return DTOProductDetails | null
+     * @throws Exception
      */
     #[\Override]
     public function findBySlug(string $slug) : ?DTOProductDetails {
-        return $this->daoProducts->findBySlug($slug);
+        $dto = $this->daoProducts->findBySlug($slug);
+
+        if ($dto === null) {
+            throw new Exception("No se ha encontrado el producto con slug: " . $slug);
+        }
+
+        return $dto;
     }
 
     /**
      * @param int $id
      * @return DTOProductDetails | null
+     * @throws Exception
      */
     #[\Override]
     public function findById(int $id) : ?DTOProductDetails {
-        return $this->daoProducts->findById($id);
+        $dto = $this->daoProducts->findById($id);
+
+        if ($dto === null) {
+            throw new Exception("No se ha encontrado el producto con id: " . $id);
+        }
+
+        return $dto;
     }
 
     /**
      * @return list<DTOProductDetails>
+     * @throws Exception
      */
     #[\Override]
     public function findByAll() : array {
@@ -119,6 +143,7 @@ class ProductsServiceImpl implements ProductsService {
 
     /**
      * @return list<DTOProductMenu>
+     * @throws Exception
      */
     #[\Override]
     public function findByAllMenu() : array {
@@ -128,6 +153,7 @@ class ProductsServiceImpl implements ProductsService {
     /**
      * @param int $id
      * @return void
+     * @throws Exception
      */
     #[\Override]
     public function delete(int $id) : void {

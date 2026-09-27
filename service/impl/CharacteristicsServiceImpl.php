@@ -17,6 +17,7 @@ class CharacteristicsServiceImpl implements CharacteristicsService {
      * @param int $productId
      * @param string $feature
      * @return void
+     * @throws Exception
      */
     #[\Override]
     public function add(PDO $connection, int $productId, string $feature) : void {
@@ -30,14 +31,22 @@ class CharacteristicsServiceImpl implements CharacteristicsService {
     /**
      * @param int $id
      * @return DTOCharacteristics | null
+     * @throws Exception
      */
     #[\Override]
     public function findById(int $id) : ?DTOCharacteristics {
-        return $this->daoCharacteristics->findById($id);
+        $dto = $this->daoCharacteristics->findById($id);
+
+        if ($dto === null) {
+            throw new Exception("No se ha encontrado la característica con id: " . $id);
+        }
+
+        return $dto;
     }
 
     /**
      * @return list<DTOCharacteristics>
+     * @throws Exception
      */
     #[\Override]
     public function findByAll() : array {
@@ -47,6 +56,7 @@ class CharacteristicsServiceImpl implements CharacteristicsService {
     /**
      * @param string $name
      * @return list<DTOCharacteristics>
+     * @throws Exception
      */
     #[\Override]
     public function findByProduct(string $name) : array {
