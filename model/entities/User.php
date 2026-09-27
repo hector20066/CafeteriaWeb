@@ -1,5 +1,7 @@
 <?php
 
+    require_once __DIR__ . '/../enums/Roles.php';
+
     class User {
 
         private int $id;
@@ -7,7 +9,7 @@
         private string $email;
         private string $user;
         private string $passwd;
-        private Status $status;
+        private Roles $role;
 
         public function __construct() {
 
@@ -53,12 +55,12 @@
             $this->passwd = $passwd;
         }
 
-        public function getStatus() : Status {
-            return $this->status;
+        public function getRole() : Roles {
+            return $this->role;
         }
 
-        public function setStatus(Status $status) : void {
-            $this->status = $status;
+        public function setRole(Roles $role) : void {
+            $this->role = $role;
         }
 
     }

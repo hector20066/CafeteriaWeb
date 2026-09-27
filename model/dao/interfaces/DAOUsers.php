@@ -3,6 +3,8 @@
 require_once __DIR__ . '/../../dto/DTOUsersCreate.php';
 require_once __DIR__ . '/../../dto/DTOUsersDetails.php';
 require_once __DIR__ . '/../../dto/DTOUsersLogin.php';
+require_once __DIR__ . '/IListable.php';
+require_once __DIR__ . '/IRemovable.php';
 
 /**
  * @extends IListable<DTOUsersDetails>

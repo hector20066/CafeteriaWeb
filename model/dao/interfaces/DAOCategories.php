@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../../dto/DTOCategory.php';
+require_once __DIR__ . '/IListable.php';
 
 /**
  * @extends IListable<DTOCategory>

@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/DataBase.php';
+
 class ConnectionProviderImpl {
 
     private DataBase $db;

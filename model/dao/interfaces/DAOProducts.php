@@ -3,6 +3,8 @@
 require_once __DIR__ . '/../../dto/DTOProductCreate.php';
 require_once __DIR__ . '/../../dto/DTOProductDetails.php';
 require_once __DIR__ . '/../../dto/DTOProductMenu.php';
+require_once __DIR__ . '/IListable.php';
+require_once __DIR__ . '/IRemovable.php';
 
 /**
  * @extends IListable<DTOProductDetails>

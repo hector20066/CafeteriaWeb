@@ -2,6 +2,8 @@
 
     use Decimal\Decimal;
 
+    require_once __DIR__ . '/../../dto/DTOProductMenu.php';
+
     class DTOProductMenuBuilder {
 
         private int $id;

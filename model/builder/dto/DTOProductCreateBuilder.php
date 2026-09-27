@@ -2,6 +2,8 @@
 
 use Decimal\Decimal;
 
+require_once __DIR__ . '/../../dto/DTOProductCreate.php';
+
 class DTOProductCreateBuilder {
 
     private string $name;

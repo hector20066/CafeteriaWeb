@@ -4,6 +4,8 @@ require_once __DIR__ . '/../interfaces/UsersService.php';
 require_once __DIR__ . '/../../model/dao/interfaces/DAOUsers.php';
 require_once __DIR__ . '/../../model/dto/DTOUsersDetails.php';
 require_once __DIR__ . '/../../model/dto/DTOUsersLogin.php';
+require_once __DIR__ . '/../../model/dto/DTOUsersCreate.php';
+require_once __DIR__ . '/../../model/enums/Roles.php';
 require_once __DIR__ . '/../../security/BCryptEncryption.php';
 
 class UsersServiceImpl implements UsersService {

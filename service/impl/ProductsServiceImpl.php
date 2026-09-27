@@ -8,6 +8,7 @@ require_once __DIR__ . '/../interfaces/CharacteristicsService.php';
 require_once __DIR__ . '/../../model/dao/interfaces/DAOProducts.php';
 require_once __DIR__ . '/../../model/dto/DTOProductDetails.php';
 require_once __DIR__ . '/../../model/dto/DTOProductMenu.php';
+require_once __DIR__ . '/../../model/builder/dto/DTOProductCreateBuilder.php';
 
 class ProductsServiceImpl implements ProductsService {
 

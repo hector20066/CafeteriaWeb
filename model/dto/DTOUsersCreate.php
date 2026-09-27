@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/../enums/Roles.php';
+
 class DTOUsersCreate {
 
     private string $name;

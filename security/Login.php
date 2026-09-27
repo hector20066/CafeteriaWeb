@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../model/dao/interfaces/DAOUsers.php';
+require_once __DIR__ . '/BCryptEncryption.php';
 
 class Login {
 

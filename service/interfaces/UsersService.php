@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../../model/dto/DTOUsersDetails.php';
 require_once __DIR__ . '/../../model/dto/DTOUsersLogin.php';
+require_once __DIR__ . '/../../model/enums/Roles.php';
 
 interface UsersService {
 
