@@ -11,9 +11,9 @@ class UsersServiceImpl implements UsersService {
     private DAOUsers $daoUsers;
     private BCryptEncryption $encrypt;
 
-    public function __construct(DAOUsers $daoUsers) {
+    public function __construct(DAOUsers $daoUsers, BCryptEncryption $encrypt) {
         $this->daoUsers = $daoUsers;
-        $this->encrypt = new BCryptEncryption();
+        $this->encrypt = $encrypt;
     }
 
     /**
