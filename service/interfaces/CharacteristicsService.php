@@ -4,7 +4,7 @@ require_once __DIR__ . '/../../model/dto/DTOCharacteristics.php';
 
 interface CharacteristicsService {
 
-    public function add(int $productId, string $feature) : void;
+    public function add(PDO $connection, int $productId, string $feature) : void;
 
     /**
      * @param int $id

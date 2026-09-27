@@ -16,9 +16,8 @@ interface ProductsService {
      * @param string $description
      * @param string $briefDescription
      * @param list<string> $features
-     * @return int
      */
-    public function add(string $name, string $slug, int $categoryId, Decimal $price, string $image, string $description, string $briefDescription, array $features) : int;
+    public function add(string $name, string $slug, int $categoryId, Decimal $price, string $image, string $description, string $briefDescription, array $features) : void;
 
     /**
      * @param string $name

@@ -2,6 +2,7 @@
 
 use Decimal\Decimal;
 
+require_once __DIR__ . '/../../database/ConnectionProvider.php';
 require_once __DIR__ . '/../interfaces/ProductsService.php';
 require_once __DIR__ . '/../../model/dao/interfaces/DAOProducts.php';
 require_once __DIR__ . '/../../model/dto/DTOProductDetails.php';
@@ -10,9 +11,11 @@ require_once __DIR__ . '/../../model/dto/DTOProductMenu.php';
 class ProductsServiceImpl implements ProductsService {
 
     private DAOProducts $daoProducts;
+    private ConnectionProvider $provider;
 
-    public function __construct(DAOProducts $daoProducts) {
+    public function __construct(DAOProducts $daoProducts, ConnectionProvider $provider) {
         $this->daoProducts = $daoProducts;
+        $this->provider = $provider;
     }
 
     /**
@@ -24,11 +27,20 @@ class ProductsServiceImpl implements ProductsService {
      * @param string $description
      * @param string $briefDescription
      * @param array $features
-     * @return int
      */
     #[\Override]
-    public function add(string $name, string $slug, int $categoryId, Decimal $price, string $image, string $description, string $briefDescription, array $features) : int {
-        return 0;
+    public function add(string $name, string $slug, int $categoryId, Decimal $price, string $image, string $description, string $briefDescription, array $features) : void {
+        $connection = null;
+
+        try {
+            $connection = $this->provider->getConnection();
+
+            $connection->commit();
+        } catch (Exception $e) {
+            if ($connection != null) {
+                $connection->rollBack();
+            }
+        }
     }
 
     /**

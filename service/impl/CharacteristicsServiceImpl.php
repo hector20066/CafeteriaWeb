@@ -13,12 +13,13 @@ class CharacteristicsServiceImpl implements CharacteristicsService {
     }
 
     /**
+     * @param PDO $connection
      * @param int $productId
      * @param string $feature
      * @return void
      */
     #[\Override]
-    public function add(int $productId, string $feature) : void {
+    public function add(PDO $connection, int $productId, string $feature) : void {
 
     }
 
