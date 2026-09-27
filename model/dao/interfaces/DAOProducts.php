@@ -9,7 +9,7 @@ require_once __DIR__ . '/../../dto/DTOProductMenu.php';
  */
 interface DAOProducts extends IListable, IRemovable {
 
-    public function add(DTOProductCreate $dto) : int;
+    public function add(PDO $connection, DTOProductCreate $dto) : int;
 
     /**
      * @param string $name
@@ -22,6 +22,13 @@ interface DAOProducts extends IListable, IRemovable {
      * @return DTOProductDetails | null
      */
     public function findBySlug(string $slug) : ?DTOProductDetails;
+
+    /**
+     * @param PDO $connection
+     * @param string $slug
+     * @return DTOProductDetails | null
+     */
+    public function findBySlugTransaction(PDO $connection, string $slug) : ?DTOProductDetails;
 
     /**
      * @return list<DTOProductMenu>
