@@ -17,76 +17,101 @@ class DAOUsersImpl implements DAOUsers {
     /**
      * @param DTOUsersCreate $dto
      * @return void
+     * @throws Exception
      */
     #[\Override]
     public function add(DTOUsersCreate $dto) : void {
-        $statement = $this->provider->getConnection()->prepare("INSERT INTO users(name, email, passwd, role) VALUES (:name, :email, :passwd, :role)");
+        try {
+            $statement = $this->provider->getConnection()->prepare("INSERT INTO users(name, email, passwd, role) VALUES (:name, :email, :passwd, :role)");
 
-        $name = $dto->getName();
-        $email = $dto->getEmail();
-        $passwd = $dto->getPasswd();
-        $role = $dto->getRole()->value;
+            $name = $dto->getName();
+            $email = $dto->getEmail();
+            $passwd = $dto->getPasswd();
+            $role = $dto->getRole()->value;
 
-        $statement->bindParam(':name', $name);
-        $statement->bindParam(':email', $email);
-        $statement->bindParam(':passwd', $passwd);
-        $statement->bindParam(':role', $role);
-        $statement->execute(); 
+            $statement->bindParam(':name', $name);
+            $statement->bindParam(':email', $email);
+            $statement->bindParam(':passwd', $passwd);
+            $statement->bindParam(':role', $role);
+            $statement->execute();
+        } catch (Exception $e) {
+            throw new Exception("Ha ocurrido un error al registrar el usuario", 0, $e);
+        }
     }
 
     /**
      * @param string $email
      * @return DTOUsersDetails | null
+     * @throws Exception
      */
     #[\Override]
     public function findByEmail(string $email) : ?DTOUsersDetails {
-        $dto = null;
-        $statement = $this->provider->getConnection()->prepare("SELECT id, name, email, role FROM users WHERE email = :email;");
-        $statement->bindParam(':email', $email);
-        $statement->execute();
+        try {
+            $dto = null;
+            $statement = $this->provider->getConnection()->prepare("SELECT id, name, email, role FROM users WHERE email = :email;");
+            $statement->bindParam(':email', $email);
+            $statement->execute();
 
-        if ($result = $statement->fetch()) {
-            $dto = $this->getDTOUserDetails($result);
+            if ($result = $statement->fetch()) {
+                $dto = $this->getDTOUserDetails($result);
+            }
+
+            return $dto;
+        } catch (Exception $e) {
+            throw new Exception("Ha ocurrido un error al buscar el usuario con correo: " . $email, 0, $e);
         }
-
-        return $dto;
     }
 
     /**
      * @param int $id
      * @return object | null
+     * @throws Exception
      */
     #[\Override]
     public function findById(int $id) : ?DTOUsersDetails {
-        $dto = null;
-        $statement = $this->provider->getConnection()->prepare("SELECT id, name, email, role FROM users WHERE id = :id;");
-        $statement->bindParam(':id', $id);
-        $statement->execute();
+        try {
+            $dto = null;
+            $statement = $this->provider->getConnection()->prepare("SELECT id, name, email, role FROM users WHERE id = :id;");
+            $statement->bindParam(':id', $id);
+            $statement->execute();
 
-        if ($result = $statement->fetch()) {
-            $dto = $this->getDTOUserDetails($result);
+            if ($result = $statement->fetch()) {
+                $dto = $this->getDTOUserDetails($result);
+            }
+
+            return $dto;
+        } catch (Exception $e) {
+            throw new Exception("Ha ocurrido un error al buscar el usuario con id: " . $id, 0, $e);
         }
-
-        return $dto;
     }
 
     /**
      * @return list<DTOUsersDetails>
+     * @throws Exception
      */
     #[\Override]
     public function findByAll() : array {
-        $list = [];
-        $statement = $this->provider->getConnection()->prepare("SELECT id, name, email, role FROM users;");
-        $statement->execute();
+        try {
+            $list = [];
+            $statement = $this->provider->getConnection()->prepare("SELECT id, name, email, role FROM users;");
+            $statement->execute();
 
-        while ($result = $statement->fetch()) {
-            $dto = $this->getDTOUserDetails($result);
-            $list[] = $dto;
+            while ($result = $statement->fetch()) {
+                $dto = $this->getDTOUserDetails($result);
+                $list[] = $dto;
+            }
+
+            return $list;
+        } catch (Exception $e) {
+            throw new Exception("Ha ocurrido un error al listar los usuarios", 0, $e);
         }
-
-        return $list;
     }
 
+    /**
+     * @param mixed $result
+     * @return DTOUsersDetails
+     * @throws Exception
+     */
     private function getDTOUserDetails(mixed $result) : DTOUsersDetails {
         $dto = new DTOUsersDetails();
         $dto->setId((int) $result['id']);
@@ -100,35 +125,45 @@ class DAOUsersImpl implements DAOUsers {
     /**
      * @param string $email
      * @return DTOUsersLogin | null
+     * @throws Exception
      */
     #[\Override]
     public function findByLogin(string $email) : ?DTOUsersLogin {
-        $dto = null;
-        $statement = $this->provider->getConnection()->prepare("SELECT id, name, email, role, passwd FROM users WHERE email = :email;");
-        $statement->bindParam(':email', $email);
-        $statement->execute();
+        try {
+            $dto = null;
+            $statement = $this->provider->getConnection()->prepare("SELECT id, name, email, role, passwd FROM users WHERE email = :email;");
+            $statement->bindParam(':email', $email);
+            $statement->execute();
 
-        if ($result = $statement->fetch()) {
-            $dto = new DTOUsersLogin();
-            $dto->setId((int) $result['id']);
-            $dto->setName((string) $result['name']);
-            $dto->setEmail((string) $result['email']);
-            $dto->setRole(Roles::from($result['role']));
-            $dto->setPasswd((string) $result['passwd']);
+            if ($result = $statement->fetch()) {
+                $dto = new DTOUsersLogin();
+                $dto->setId((int)$result['id']);
+                $dto->setName((string)$result['name']);
+                $dto->setEmail((string)$result['email']);
+                $dto->setRole(Roles::from($result['role']));
+                $dto->setPasswd((string)$result['passwd']);
+            }
+
+            return $dto;
+        } catch (Exception $e) {
+            throw new Exception("Ha ocurrido un error al buscar el usuario con correo: " . $email, 0, $e);
         }
-
-        return $dto;
     }
 
     /**
      * @param int $id
      * @return void
+     * @throws Exception
      */
     #[\Override]
     public function delete(int $id) : void {
-        $statement = $this->provider->getConnection()->prepare("DELETE FROM users WHERE id = :id;");
-        $statement->bindParam(':id', $id);
-        $statement->execute();
+        try {
+            $statement = $this->provider->getConnection()->prepare("DELETE FROM users WHERE id = :id;");
+            $statement->bindParam(':id', $id);
+            $statement->execute();
+        } catch (Exception $e) {
+            throw new Exception("Ha ocurrido un error al eliminar el usuario con id: " . $id, 0, $e);
+        }
     }
 
 }

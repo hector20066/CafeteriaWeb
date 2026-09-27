@@ -16,69 +16,89 @@ class DAOCharacteristicsImpl implements DAOCharacteristics {
      * @param PDO $connection
      * @param DTOCharacteristics $dto
      * @return void
+     * @throws Exception
      */
     #[\Override]
     public function add(PDO $connection, DTOCharacteristics $dto) : void {
-        $statement = $connection->prepare("INSERT INTO characteristics(id_product, feature) VALUES (:id_product, :feature);");
+        try {
+            $statement = $connection->prepare("INSERT INTO characteristics(id_product, feature) VALUES (:id_product, :feature);");
 
-        $productId = $dto->getProductId();
-        $feature = $dto->getFeature();
+            $productId = $dto->getProductId();
+            $feature = $dto->getFeature();
 
-        $statement->bindParam(':id_product', $productId);
-        $statement->bindParam(':feature', $feature);
-        $statement->execute();
+            $statement->bindParam(':id_product', $productId);
+            $statement->bindParam(':feature', $feature);
+            $statement->execute();
+        } catch (Exception $e) {
+            throw new Exception("Ha ocurrido un error al registrar la característica", 0, $e);
+        }
     }
 
     /**
      * @param int $id
      * @return object | null
+     * @throws Exception
      */
     #[\Override]
     public function findById(int $id) : ?DTOCharacteristics {
-        $dto = null;
-        $statement = $this->provider->getConnection()->prepare("SELECT * FROM characteristics WHERE id = :id;");
-        $statement->bindParam(':id', $id);
-        $statement->execute();
+        try {
+            $dto = null;
+            $statement = $this->provider->getConnection()->prepare("SELECT * FROM characteristics WHERE id = :id;");
+            $statement->bindParam(':id', $id);
+            $statement->execute();
 
-        if ($result = $statement->fetch()) {
-            $dto = $this->getDTOCharacteristics($result);
+            if ($result = $statement->fetch()) {
+                $dto = $this->getDTOCharacteristics($result);
+            }
+
+            return $dto;
+        } catch (Exception $e) {
+            throw new Exception("Ha ocurrido un error al buscar la característica por el id: " . $id, 0, $e);
         }
-
-        return $dto;
     }
 
     /**
      * @return list<DTOCharacteristics>
+     * @throws Exception
      */
     #[\Override]
     public function findByAll() : array {
-        $list = [];
-        $statement = $this->provider->getConnection()->prepare("SELECT * FROM characteristics;");
-        $statement->execute();
+        try {
+            $list = [];
+            $statement = $this->provider->getConnection()->prepare("SELECT * FROM characteristics;");
+            $statement->execute();
 
-        while ($result = $statement->fetch()) {
-            $dto = $this->getDTOCharacteristics($result);
-            $list[] = $dto;
+            while ($result = $statement->fetch()) {
+                $dto = $this->getDTOCharacteristics($result);
+                $list[] = $dto;
+            }
+
+            return $list;
+        } catch (Exception $e) {
+            throw new Exception("Ha ocurrido un error al listar las características", 0, $e);
         }
-
-        return $list;
     }
 
     /**
      * @param int $productId
      * @return list<DTOCharacteristics>
+     * @throws Exception
      */
     public function findByProduct(int $productId) : array {
-        $list = [];
-        $statement = $this->provider->getConnection()->prepare("SELECT * FROM characteristics WHERE id_product = :id_product;");
-        $statement->execute();
+        try {
+            $list = [];
+            $statement = $this->provider->getConnection()->prepare("SELECT * FROM characteristics WHERE id_product = :id_product;");
+            $statement->execute();
 
-        while ($result = $statement->fetch()) {
-            $dto = $this->getDTOCharacteristics($result);
-            $list[] = $dto;
+            while ($result = $statement->fetch()) {
+                $dto = $this->getDTOCharacteristics($result);
+                $list[] = $dto;
+            }
+
+            return $list;
+        } catch (Exception $e) {
+            throw new Exception("Ha ocurrido un error al listas las características del producto con id: " . $productId, 0, $e);
         }
-
-        return $list;
     }
 
     private function getDTOCharacteristics(mixed $result) : DTOCharacteristics {

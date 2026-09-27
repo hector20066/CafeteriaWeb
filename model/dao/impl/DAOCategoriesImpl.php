@@ -15,50 +15,65 @@ class DAOCategoriesImpl implements DAOCategories {
     /**
      * @param DTOCategory $dto
      * @return void
+     * @throws Exception
      */
     #[\Override]
     public function add(DTOCategory $dto) : void {
-        $statement = $this->provider->getConnection()->prepare("INSERT INTO categories(name) VALUES (:name);");
+        try {
+            $statement = $this->provider->getConnection()->prepare("INSERT INTO categories(name) VALUES (:name);");
 
-        $name = $dto->getName();
+            $name = $dto->getName();
 
-        $statement->bindParam(':name', $name);
-        $statement->execute();
+            $statement->bindParam(':name', $name);
+            $statement->execute();
+        } catch (Exception $e) {
+            throw new Exception("Ha ocurrido un error al registrar la categoría", 0, $e);
+        }
     }
 
     /**
      * @param int $id
      * @return object | null
+     * @throws Exception
      */
     #[\Override]
     public function findById(int $id) : ?DTOCategory {
-        $dto = null;
-        $statement = $this->provider->getConnection()->prepare("SELECT id, name FROM categories WHERE id = :id;");
-        $statement->bindParam(':id', $id);
-        $statement->execute();
+        try {
+            $dto = null;
+            $statement = $this->provider->getConnection()->prepare("SELECT id, name FROM categories WHERE id = :id;");
+            $statement->bindParam(':id', $id);
+            $statement->execute();
 
-        if ($result = $statement->fetch()) {
-            $dto = $this->getDTOCategory($result);
+            if ($result = $statement->fetch()) {
+                $dto = $this->getDTOCategory($result);
+            }
+
+            return $dto;
+        } catch (Exception $e) {
+            throw new Exception("Ha ocurrido un error al buscar la categoría por el id: " . $id, 0, $e);
         }
-
-        return $dto;
     }
 
     /**
      * @return list<DTOCategory>
+     * @throws Exception
      */
     #[\Override]
     public function findByAll() : array {
-        $list = [];
-        $statement = $this->provider->getConnection()->prepare("SELECT id, name FROM categories;");
-        $statement->execute();
+        try {
+            $list = [];
+            $statement = $this->provider->getConnection()->prepare("SELECT id, name FROM categories;");
+            $statement->execute();
 
-        while ($result = $statement->fetch()) {
-            $dto = $this->getDTOCategory($result);
-            $list[] = $dto;
+            while ($result = $statement->fetch()) {
+                $dto = $this->getDTOCategory($result);
+                $list[] = $dto;
+            }
+
+            return $list;
+        } catch (Exception $e) {
+            throw new Exception("Ha ocurrido un error al listar las categorías", 0, $e);
         }
-
-        return $list;
     }
 
     private function getDTOCategory(mixed $result) : DTOCategory {
