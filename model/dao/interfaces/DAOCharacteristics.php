@@ -9,4 +9,10 @@ interface DAOCharacteristics extends IListable {
 
     public function add(DTOCharacteristics $dto) : void;
 
+    /**
+     * @param int $productId
+     * @return list<DTOCharacteristics>
+     */
+    public function findByProduct(int $productId) : array;
+
 }
