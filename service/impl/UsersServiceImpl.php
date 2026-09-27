@@ -8,9 +8,11 @@ require_once __DIR__ . '/../../model/dto/DTOUsersLogin.php';
 class UsersServiceImpl implements UsersService {
 
     private DAOUsers $daoUsers;
+    private BCryptEncryption $encrypt;
 
     public function __construct(DAOUsers $daoUsers) {
         $this->daoUsers = $daoUsers;
+        $this->encrypt = new BCryptEncryption();
     }
 
     /**
@@ -22,10 +24,12 @@ class UsersServiceImpl implements UsersService {
      */
     #[\Override]
     public function add(string $name, string $email, string $plainPasswd, Roles $role) : void {
+        $hashPassword = $this->encrypt->hashPassword($plainPasswd);
+
         $dto = new DTOUsersCreate();
         $dto->setName($name);
         $dto->setEmail($email);
-        $dto->setPasswd($plainPasswd);
+        $dto->setPasswd($hashPassword);
         $dto->setRole($role);
 
         $this->daoUsers->add($dto);
