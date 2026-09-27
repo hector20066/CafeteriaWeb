@@ -1,23 +1,25 @@
 <?php
 
+require_once __DIR__ . '/../../../database/ConnectionProvider.php';
 require_once __DIR__ . '/../interfaces/DAOCharacteristics.php';
 require_once __DIR__ . '/../../dto/DTOCharacteristics.php';
 
 class DAOCharacteristicsImpl implements DAOCharacteristics {
 
-    private PDO $connection;
+    private ConnectionProvider $provider;
 
-    public function __construct(PDO $connection) {
-        $this->connection = $connection;
+    public function __construct(ConnectionProvider $provider) {
+        $this->provider = $provider;
     }
 
     /**
+     * @param PDO $connection
      * @param DTOCharacteristics $dto
      * @return void
      */
     #[\Override]
-    public function add(DTOCharacteristics $dto) : void {
-        $statement = $this->connection->prepare("INSERT INTO characteristics(id_product, feature) VALUES (:id_product, :feature);");
+    public function add(PDO $connection, DTOCharacteristics $dto) : void {
+        $statement = $connection->prepare("INSERT INTO characteristics(id_product, feature) VALUES (:id_product, :feature);");
 
         $productId = $dto->getProductId();
         $feature = $dto->getFeature();
@@ -34,7 +36,7 @@ class DAOCharacteristicsImpl implements DAOCharacteristics {
     #[\Override]
     public function findById(int $id) : ?DTOCharacteristics {
         $dto = null;
-        $statement = $this->connection->prepare("SELECT * FROM characteristics WHERE id = :id;");
+        $statement = $this->provider->getConnection()->prepare("SELECT * FROM characteristics WHERE id = :id;");
         $statement->bindParam(':id', $id);
         $statement->execute();
 
@@ -51,7 +53,7 @@ class DAOCharacteristicsImpl implements DAOCharacteristics {
     #[\Override]
     public function findByAll() : array {
         $list = [];
-        $statement = $this->connection->prepare("SELECT * FROM characteristics;");
+        $statement = $this->provider->getConnection()->prepare("SELECT * FROM characteristics;");
         $statement->execute();
 
         while ($result = $statement->fetch()) {
@@ -68,7 +70,7 @@ class DAOCharacteristicsImpl implements DAOCharacteristics {
      */
     public function findByProduct(int $productId) : array {
         $list = [];
-        $statement = $this->connection->prepare("SELECT * FROM characteristics WHERE id_product = :id_product;");
+        $statement = $this->provider->getConnection()->prepare("SELECT * FROM characteristics WHERE id_product = :id_product;");
         $statement->execute();
 
         while ($result = $statement->fetch()) {

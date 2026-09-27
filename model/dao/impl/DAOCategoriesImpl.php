@@ -1,14 +1,15 @@
 <?php
 
+require_once __DIR__ . '/../../../database/ConnectionProvider.php';
 require_once __DIR__ . '/../interfaces/DAOCategories.php';
 require_once __DIR__ . '/../../dto/DTOCategory.php';
 
 class DAOCategoriesImpl implements DAOCategories {
 
-    private PDO $connection;
+    private ConnectionProvider $provider;
 
-    public function __construct(PDO $connection) {
-        $this->connection = $connection;
+    public function __construct(ConnectionProvider $provider) {
+        $this->provider = $provider;
     } 
 
     /**
@@ -17,7 +18,7 @@ class DAOCategoriesImpl implements DAOCategories {
      */
     #[\Override]
     public function add(DTOCategory $dto) : void {
-        $statement = $this->connection->prepare("INSERT INTO categories(name) VALUES (:name);");
+        $statement = $this->provider->getConnection()->prepare("INSERT INTO categories(name) VALUES (:name);");
 
         $name = $dto->getName();
 
@@ -32,7 +33,7 @@ class DAOCategoriesImpl implements DAOCategories {
     #[\Override]
     public function findById(int $id) : ?DTOCategory {
         $dto = null;
-        $statement = $this->connection->prepare("SELECT id, name FROM categories WHERE id = :id;");
+        $statement = $this->provider->getConnection()->prepare("SELECT id, name FROM categories WHERE id = :id;");
         $statement->bindParam(':id', $id);
         $statement->execute();
 
@@ -49,7 +50,7 @@ class DAOCategoriesImpl implements DAOCategories {
     #[\Override]
     public function findByAll() : array {
         $list = [];
-        $statement = $this->connection->prepare("SELECT id, name FROM categories;");
+        $statement = $this->provider->getConnection()->prepare("SELECT id, name FROM categories;");
         $statement->execute();
 
         while ($result = $statement->fetch()) {

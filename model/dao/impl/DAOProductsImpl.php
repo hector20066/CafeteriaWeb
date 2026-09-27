@@ -2,6 +2,7 @@
 
 use Decimal\Decimal;
 
+require_once __DIR__ . '/../../../database/ConnectionProvider.php';
 require_once __DIR__ . '/../interfaces/DAOProducts.php';
 require_once __DIR__ . '/../../dto/DTOProductCreate.php';
 require_once __DIR__ . '/../../dto/DTOProductDetails.php';
@@ -11,19 +12,20 @@ require_once __DIR__ . '/../../builder/dto/DTOProductMenuBuilder.php';
 
 class DAOProductsImpl implements DAOProducts {
 
-    private PDO $connection;
+    private ConnectionProvider $provider;
 
-    public function __construct(PDO $connection) {
-        $this->connection = $connection;
+    public function __construct(ConnectionProvider $provider) {
+        $this->provider = $provider;
     }
 
     /**
+     * @param PDO $connection
      * @param DTOProductCreate $dto
      * @return int
      */
     #[\Override]
-    public function add(DTOProductCreate $dto) : int {
-        $statement = $this->connection->prepare("INSERT INTO products(name, slug, id_category, price, image, description, brief_description) VALUES (:name, :slug, :id_category, :price, :image, :description, :brief_description);");
+    public function add(PDO $connection, DTOProductCreate $dto) : int {
+        $statement = $connection->prepare("INSERT INTO products(name, slug, id_category, price, image, description, brief_description) VALUES (:name, :slug, :id_category, :price, :image, :description, :brief_description);");
 
         $name = $dto->getName();
         $slug = $dto->getSlug();
@@ -43,7 +45,7 @@ class DAOProductsImpl implements DAOProducts {
 
         $statement->execute();
 
-        return (int) $this->connection->lastInsertId();
+        return (int) $connection->lastInsertId();
     }
 
     /**
@@ -53,7 +55,7 @@ class DAOProductsImpl implements DAOProducts {
     #[\Override]
     public function findByName(string $name) : ?DTOProductDetails {
         $dto = null;
-        $statement = $this->connection->prepare("SELECT p.id, p.name, p.description, p.price, c.name AS category, p.slug, p.image FROM products p LEFT JOIN categories c ON c.id = p.id_category WHERE p.name = :name;");
+        $statement = $this->provider->getConnection()->prepare("SELECT p.id, p.name, p.description, p.price, c.name AS category, p.slug, p.image FROM products p LEFT JOIN categories c ON c.id = p.id_category WHERE p.name = :name;");
         $statement->bindParam(':name', $name);
         $statement->execute();
 
@@ -71,7 +73,26 @@ class DAOProductsImpl implements DAOProducts {
     #[\Override]
     public function findBySlug(string $slug) : ?DTOProductDetails {
         $dto = null;
-        $statement = $this->connection->prepare("SELECT p.id, p.name, p.description, p.price, c.name AS category, p.slug, p.image FROM products p LEFT JOIN categories c ON c.id = p.id_category WHERE p.slug = :slug;");
+        $statement = $this->provider->getConnection()->prepare("SELECT p.id, p.name, p.description, p.price, c.name AS category, p.slug, p.image FROM products p LEFT JOIN categories c ON c.id = p.id_category WHERE p.slug = :slug;");
+        $statement->bindParam(':slug', $slug);
+        $statement->execute();
+
+        if ($result = $statement->fetch()) {
+            $dto = $this->getDTOProductDetails($result);
+        }
+
+        return $dto;
+    }
+
+    /**
+     * @param PDO $connection
+     * @param string $slug
+     * @return DTOProductDetails | null
+     */
+    #[\Override]
+    public function findBySlugTransaction(PDO $connection, string $slug) : ?DTOProductDetails {
+        $dto = null;
+        $statement = $connection->prepare("SELECT p.id, p.name, p.description, p.price, c.name AS category, p.slug, p.image FROM products p LEFT JOIN categories c ON c.id = p.id_category WHERE p.slug = :slug;");
         $statement->bindParam(':slug', $slug);
         $statement->execute();
 
@@ -89,7 +110,7 @@ class DAOProductsImpl implements DAOProducts {
     #[\Override]
     public function findById(int $id) : ?DTOProductDetails {
         $dto = null;
-        $statement = $this->connection->prepare("SELECT p.id, p.name, p.description, p.price, c.name AS category, p.slug, p.image FROM products p LEFT JOIN categories c ON c.id = p.id_category WHERE p.id = :id;");
+        $statement = $this->provider->getConnection()->prepare("SELECT p.id, p.name, p.description, p.price, c.name AS category, p.slug, p.image FROM products p LEFT JOIN categories c ON c.id = p.id_category WHERE p.id = :id;");
         $statement->bindParam(':id', $id);
         $statement->execute();
 
@@ -106,7 +127,7 @@ class DAOProductsImpl implements DAOProducts {
     #[\Override]
     public function findByAll() : array {
         $list = [];
-        $statement = $this->connection->prepare("SELECT p.id, p.name, p.description, p.price, c.name AS category, p.slug, p.image FROM products p LEFT JOIN categories c ON c.id = p.id_category;");
+        $statement = $this->provider->getConnection()->prepare("SELECT p.id, p.name, p.description, p.price, c.name AS category, p.slug, p.image FROM products p LEFT JOIN categories c ON c.id = p.id_category;");
         $statement->execute();
 
         while ($result = $statement->fetch()) {
@@ -135,7 +156,7 @@ class DAOProductsImpl implements DAOProducts {
     #[\Override]
     public function findByAllMenu() : array {
         $list = [];
-        $statement = $this->connection->prepare("SELECT p.id, p.name, p.brief_description, p.price, c.name AS category, p.slug, p.image FROM products p LEFT JOIN categories c ON c.id = p.id_category;");
+        $statement = $this->provider->getConnection()->prepare("SELECT p.id, p.name, p.brief_description, p.price, c.name AS category, p.slug, p.image FROM products p LEFT JOIN categories c ON c.id = p.id_category;");
         $statement->execute();
 
         while ($result = $statement->fetch()) {
@@ -161,7 +182,7 @@ class DAOProductsImpl implements DAOProducts {
      */
     #[\Override]
     public function delete(int $id) : void {
-        $statement = $this->connection->prepare("DELETE FROM products WHERE id = :id;");
+        $statement = $this->provider->getConnection()->prepare("DELETE FROM products WHERE id = :id;");
         $statement->bindParam(':id', $id);
         $statement->execute();
     }
