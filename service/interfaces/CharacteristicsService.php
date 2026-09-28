@@ -27,10 +27,10 @@ interface CharacteristicsService {
     public function findByAll() : array;
 
     /**
-     * @param string $name
+     * @param int $productId
      * @return list<DTOCharacteristics>
      * @throws Exception
      */
-    public function findByProduct(string $name) : array;
+    public function findByProduct(int $productId) : array;
     
 }

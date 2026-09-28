@@ -34,5 +34,5 @@ class DTOCharacteristics {
         $this->feature = $feature;
     }
 
-
 }
+

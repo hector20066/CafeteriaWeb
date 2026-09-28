@@ -1,7 +1,5 @@
 <?php
 
-use Decimal\Decimal;
-
 require_once __DIR__ . '/../builder/dto/DTOProductCreateBuilder.php';
 
 class DTOProductCreate {
@@ -9,7 +7,7 @@ class DTOProductCreate {
     private string $name;
     private string $slug;
     private int $categoryId;
-    private Decimal $price;
+    private string $price;
     private string $image;
     private string $description;
     private string $briefDescription;
@@ -38,7 +36,7 @@ class DTOProductCreate {
         return $this->categoryId;
     }
 
-    public function getPrice() : Decimal {
+    public function getPrice() : string {
         return $this->price;
     }
 

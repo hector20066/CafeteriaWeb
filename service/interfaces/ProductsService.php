@@ -1,7 +1,5 @@
 <?php
 
-use Decimal\Decimal;
-
 require_once __DIR__ . '/../../model/dto/DTOProductDetails.php';
 require_once __DIR__ . '/../../model/dto/DTOProductMenu.php';
 
@@ -11,14 +9,14 @@ interface ProductsService {
      * @param string $name
      * @param string $slug
      * @param int $categoryId
-     * @param Decimal $price
+     * @param string $price
      * @param string $image
      * @param string $description
      * @param string $briefDescription
      * @param list<string> $features
      * @throws Exception
      */
-    public function add(string $name, string $slug, int $categoryId, Decimal $price, string $image, string $description,
+    public function add(string $name, string $slug, int $categoryId, string $price, string $image, string $description,
                         string $briefDescription, array $features) : void;
 
     /**

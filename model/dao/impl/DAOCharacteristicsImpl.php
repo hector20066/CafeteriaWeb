@@ -88,6 +88,7 @@ class DAOCharacteristicsImpl implements DAOCharacteristics {
         try {
             $list = [];
             $statement = $this->provider->getConnection()->prepare("SELECT * FROM characteristics WHERE id_product = :id_product;");
+            $statement->bindParam(':id_product', $productId);
             $statement->execute();
 
             while ($result = $statement->fetch()) {

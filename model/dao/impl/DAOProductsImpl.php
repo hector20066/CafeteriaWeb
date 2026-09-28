@@ -1,7 +1,5 @@
 <?php
 
-use Decimal\Decimal;
-
 require_once __DIR__ . '/../../../database/ConnectionProvider.php';
 require_once __DIR__ . '/../interfaces/DAOProducts.php';
 require_once __DIR__ . '/../../dto/DTOProductCreate.php';
@@ -178,7 +176,7 @@ class DAOProductsImpl implements DAOProducts {
             ->id((int) $result['id'])
             ->name((string) $result['name'])
             ->description((string) $result['description'])
-            ->price(new Decimal($result['price']))
+            ->price((string) $result['price'])
             ->category((string) $result['category'])
             ->slug((string) $result['slug'])
             ->image((string) $result['image'])
@@ -202,7 +200,7 @@ class DAOProductsImpl implements DAOProducts {
                     ->name((string)$result['name'])
                     ->slug((string)$result['slug'])
                     ->briefDescription((string)$result['brief_description'])
-                    ->price(new Decimal($result['price']))
+                    ->price((string) $result['price'])
                     ->category((string)$result['category'])
                     ->image((string)$result['image'])
                     ->build();

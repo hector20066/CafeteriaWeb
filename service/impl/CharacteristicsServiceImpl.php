@@ -54,13 +54,13 @@ class CharacteristicsServiceImpl implements CharacteristicsService {
     }
 
     /**
-     * @param string $name
+     * @param int $productId
      * @return list<DTOCharacteristics>
      * @throws Exception
      */
     #[\Override]
-    public function findByProduct(string $name) : array {
-        return $this->daoCharacteristics->findByProduct($name);
+    public function findByProduct(int $productId) : array {
+        return $this->daoCharacteristics->findByProduct($productId);
     }
 
 }

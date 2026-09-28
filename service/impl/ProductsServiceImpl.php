@@ -1,7 +1,5 @@
 <?php
 
-use Decimal\Decimal;
-
 require_once __DIR__ . '/../../database/ConnectionProvider.php';
 require_once __DIR__ . '/../interfaces/ProductsService.php';
 require_once __DIR__ . '/../interfaces/CharacteristicsService.php';
@@ -26,7 +24,7 @@ class ProductsServiceImpl implements ProductsService {
      * @param string $name
      * @param string $slug
      * @param int $categoryId
-     * @param Decimal $price
+     * @param string $price
      * @param string $image
      * @param string $description
      * @param string $briefDescription
@@ -34,7 +32,7 @@ class ProductsServiceImpl implements ProductsService {
      * @throws Exception
      */
     #[\Override]
-    public function add(string $name, string $slug, int $categoryId, Decimal $price, string $image, string $description,
+    public function add(string $name, string $slug, int $categoryId, string $price, string $image, string $description,
                         string $briefDescription, array $features) : void {
         $connection = null;
 
@@ -72,7 +70,7 @@ class ProductsServiceImpl implements ProductsService {
         }
     }
 
-    private function getDTOProductCreate(string $name, string $slug, int $categoryId, Decimal $price, string $image,
+    private function getDTOProductCreate(string $name, string $slug, int $categoryId, string $price, string $image,
                                          string $description, string $briefDescription) : DTOProductCreate {
         return new DTOProductCreateBuilder()
             ->name($name)
