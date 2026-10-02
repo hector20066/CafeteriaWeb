@@ -11,7 +11,6 @@ class DTOProductCreateBuilder {
     private string $image;
     private string $description;
     private string $briefDescription;
-    private DateTime $creationDate;
 
     public function name(string $name) : self {
         $this->name = $name;
@@ -48,11 +47,6 @@ class DTOProductCreateBuilder {
         return $this;
     }
 
-    public function creationDate(DateTime $creationDate) : self {
-        $this->creationDate = $creationDate;
-        return $this;
-    }
-
     public function build() : DTOProductCreate {
         return new DTOProductCreate($this);
     }
@@ -83,10 +77,6 @@ class DTOProductCreateBuilder {
 
     public function getBriefDescription() : string {
         return $this->briefDescription;
-    }
-
-    public function getCreationDate() : DateTime {
-        return $this->creationDate;
     }
 
 }

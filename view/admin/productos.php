@@ -131,7 +131,7 @@
 
                         <div class="input input-width">
                             <label for="characteristics">Caracteristicas (Una por línea)</label>
-                            <textarea id="characteristics" name="characteristics" placeholder="Ej.&#10;Espresso doble de base&#10;Disponible en 8oz y 12oz"></textarea>
+                            <textarea id="characteristics" name="characteristics" placeholder="Ej.&#10;Espresso doble de base&#10;Disponible en 8oz y 12oz" required></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Guardar producto</button>

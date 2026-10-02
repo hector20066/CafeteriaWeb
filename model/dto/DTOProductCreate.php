@@ -11,7 +11,6 @@ class DTOProductCreate {
     private string $image;
     private string $description;
     private string $briefDescription;
-    private DateTime $creationDate;
 
     public function __construct(DTOProductCreateBuilder $builder) {
         $this->name = $builder->getName();
@@ -21,7 +20,6 @@ class DTOProductCreate {
         $this->image = $builder->getImage();
         $this->description = $builder->getDescription();
         $this->briefDescription = $builder->getBriefDescription();
-        $this->creationDate = $builder->getCreationDate();
     }
 
     public function getName() : string {
@@ -50,10 +48,6 @@ class DTOProductCreate {
 
     public function getBriefDescription() : string {
         return $this->briefDescription;
-    }
-
-    public function getCreationDate() : DateTime {
-        return $this->creationDate;
     }
 
 }

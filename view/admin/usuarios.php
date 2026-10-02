@@ -102,10 +102,10 @@
 
                             <select id="role" name="role" required>
                                 <option value="">-- Seleccione un rol --</option>
-                                <option value="administrador">Administrador</option>
-                                <option value="barista">Barista</option>
-                                <option value="mesero">Mesero</option>
-                                <option value="cajero">Cajero</option>
+                                <option value="Administrador">Administrador</option>
+                                <option value="Barista">Barista</option>
+                                <option value="Mesero">Mesero</option>
+                                <option value="Cajero">Cajero</option>
                             </select>
                         </div>
 
