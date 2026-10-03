@@ -47,6 +47,13 @@ interface ProductsService {
     public function findByAll() : array;
 
     /**
+     * @param string $category
+     * @return list<DTOProductMenu>
+     * @throws Exception
+     */
+    public function findByCategory(string $category) : array;
+
+    /**
      * @return list<DTOProductMenu>
      * @throws Exception
      */

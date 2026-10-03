@@ -141,6 +141,16 @@ class ProductsServiceImpl implements ProductsService {
     }
 
     /**
+     * @param string $category
+     * @return list<DTOProductMenu>
+     * @throws Exception
+     */
+    #[\Override]
+    public function findByCategory(string $category) : array {
+        return $this->daoProducts->findByCategory($category);
+    }
+
+    /**
      * @return list<DTOProductMenu>
      * @throws Exception
      */
