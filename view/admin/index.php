@@ -1,3 +1,45 @@
+<?php
+
+require_once __DIR__ . "/../../database/DataBase.php";
+require_once __DIR__ . "/../../database/ConnectionProviderImpl.php";
+require_once __DIR__ . "/../../security/BCryptEncryption.php";
+require_once __DIR__ . "/../../model/dao/impl/DAOUsersImpl.php";
+require_once __DIR__ . "/../../model/dao/impl/DAOCategoriesImpl.php";
+require_once __DIR__ . "/../../model/dao/impl/DAOProductsImpl.php";
+require_once __DIR__ . "/../../model/dao/impl/DAOCharacteristicsImpl.php";
+require_once __DIR__ . "/../../service/impl/UsersServiceImpl.php";
+require_once __DIR__ . "/../../service/impl/CategoriesServiceImpl.php";
+require_once __DIR__ . "/../../service/impl/ProductsServiceImpl.php";
+require_once __DIR__ . "/../../service/impl/CharacteristicsServiceImpl.php";
+
+$dataBase = DataBase::getInstance();
+$connectionProvider = new ConnectionProviderImpl($dataBase);
+
+$bcrypt = new BCryptEncryption();
+
+$daoUsers = new DAOUsersImpl($connectionProvider);
+$daoCategories = new DAOCategoriesImpl($connectionProvider);
+$daoProducts = new DAOProductsImpl($connectionProvider);
+$daoCharacteristics = new DAOCharacteristicsImpl($connectionProvider);
+
+$userService = new UsersServiceImpl($daoUsers, $bcrypt);
+$categoriesService = new CategoriesServiceImpl($daoCategories);
+$characteristicsService = new CharacteristicsServiceImpl($daoCharacteristics);
+$productService = new ProductsServiceImpl($daoProducts, $characteristicsService, $connectionProvider);
+
+$products = 0;
+$users = 0;
+$categories = 0;
+
+try {
+    $products = $productService->countRecords();
+    $users = $userService->countRecords();
+    $categories = $categoriesService->countRecords();
+} catch (Exception $e) {
+    error_log($e->getMessage());
+}
+
+?>
 <!doctype html>
 <html lang="es">
     <head>
@@ -87,7 +129,7 @@
                         <div class="admin-stat-card-icon">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
                         </div>
-                        <div class="admin-stat-card-value">16</div>
+                        <div class="admin-stat-card-value"><?= $products ?></div>
                         <div class="admin-stat-card-label">Productos activos</div>
                     </div>
 
@@ -95,7 +137,7 @@
                         <div class="admin-stat-card-icon">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.5 3.6-7 8-7s8 2.5 8 7"/></svg>
                         </div>
-                        <div class="admin-stat-card-value">4</div>
+                        <div class="admin-stat-card-value"><?= $users ?></div>
                         <div class="admin-stat-card-label">Empleados registrados</div>
                     </div>
 
@@ -103,13 +145,13 @@
                         <div class="admin-stat-card-icon">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M4 15l4-4 4 3 5-6 3 3"/></svg>
                         </div>
-                        <div class="admin-stat-card-value">4</div>
-                        <div class="admin-stat-card-label">Categorias del menú</div>
+                        <div class="admin-stat-card-value"><?= $categories ?></div>
+                        <div class="admin-stat-card-label">Categorías del menú</div>
                     </div>
                 </div>
 
                 <div class="admin-card">
-                    <h2>Accesos rapidos</h2>
+                    <h2>Accesos rápidos</h2>
 
                     <div style="display: flex; gap: 14px; flex-wrap: wrap;">
                         <a href="productos.php" class="btn btn-primary">+ Agregar productos</a>
