@@ -1,3 +1,28 @@
+<?php
+
+require_once __DIR__ . '/../../database/DataBase.php';
+require_once __DIR__ . '/../../database/ConnectionProviderImpl.php';
+require_once __DIR__ . '/../../security/BCryptEncryption.php';
+require_once __DIR__ . '/../../model/dao/impl/DAOUsersImpl.php';
+require_once __DIR__ . '/../../service/impl/UsersServiceImpl.php';
+
+$dataBase = DataBase::getInstance();
+$connectionProvider = new ConnectionProviderImpl($dataBase);
+
+$bcrypt = new BCryptEncryption();
+
+$daoUsers = new DAOUsersImpl($connectionProvider);
+$usersService = new UsersServiceImpl($daoUsers, $bcrypt);
+
+$usersList = [];
+
+try {
+    $usersList = $usersService->findByAll();
+} catch (Exception $e) {
+    $usersList = [];
+}
+
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -86,7 +111,7 @@
                 <div class="admin-card">
                     <h2>Agregar nuevo usuario</h2>
 
-                    <form class="admin-form" action="#" method="post">
+                    <form class="admin-form" action="../../controller/admin/ControllerRegisterUsers.php" method="post">
                         <div class="input">
                             <label for="name">Nombre completo</label>
                             <input type="text" id="name" name="name" placeholder="Ej. Hector Acevedo" required>
@@ -130,16 +155,15 @@
                                     <th>Nombre</th>
                                     <th>Correo</th>
                                     <th>Rol</th>
-                                    <th>Estado</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php foreach ($usersList as $user) { ?>
                                 <tr>
-                                    <td data-etiqueta="Nombre"></td>
-                                    <td data-etiqueta="Correo"></td>
-                                    <td data-etiqueta="Rol"></td>
-                                    <td data-etiqueta="Estado"></td>
+                                    <td data-etiqueta="Nombre"><?= $user->getName() ?></td>
+                                    <td data-etiqueta="Correo"><?= $user->getEmail() ?></td>
+                                    <td data-etiqueta="Rol"><?= $user->getRole()->value ?></td>
                                     <td data-etiqueta="Acciones">
                                         <div class="admin-table-actions">
                                             <button type="button">Editar</button>
@@ -147,6 +171,7 @@
                                         </div>
                                     </td>
                                 </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>
