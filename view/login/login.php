@@ -19,7 +19,7 @@
                 </div>
                 <p class="admin-login-subtitle">Panel administrativo - acceso exclusivo para empleados</p>
 
-                <form class="form" action="#" method="post">
+                <form class="form" action="../../controller/login/ControllerLogin.php" method="post">
                     <div class="input">
                         <label for="email">Correo</label>
                         <input type="email" id="email" name="email" placeholder="correo@gmail.com" required>
