@@ -5,11 +5,12 @@ require_once __DIR__ . '/../../dto/DTOUsersDetails.php';
 require_once __DIR__ . '/../../dto/DTOUsersLogin.php';
 require_once __DIR__ . '/IListable.php';
 require_once __DIR__ . '/IRemovable.php';
+require_once __DIR__ . '/ICountable.php';
 
 /**
  * @extends IListable<DTOUsersDetails>
  */
-interface DAOUsers extends IListable, IRemovable {
+interface DAOUsers extends IListable, IRemovable, ICountable {
 
     /**
      * @param DTOUsersCreate $dto

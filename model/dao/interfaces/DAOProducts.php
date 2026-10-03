@@ -5,11 +5,12 @@ require_once __DIR__ . '/../../dto/DTOProductDetails.php';
 require_once __DIR__ . '/../../dto/DTOProductMenu.php';
 require_once __DIR__ . '/IListable.php';
 require_once __DIR__ . '/IRemovable.php';
+require_once __DIR__ . '/ICountable.php';
 
 /**
  * @extends IListable<DTOProductDetails>
  */
-interface DAOProducts extends IListable, IRemovable {
+interface DAOProducts extends IListable, IRemovable, ICountable {
 
     /**
      * @param PDO $connection

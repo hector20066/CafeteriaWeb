@@ -2,11 +2,12 @@
 
 require_once __DIR__ . '/../../dto/DTOCategory.php';
 require_once __DIR__ . '/IListable.php';
+require_once __DIR__ . '/ICountable.php';
 
 /**
  * @extends IListable<DTOCategory>
  */
-interface DAOCategories extends IListable {
+interface DAOCategories extends IListable, ICountable {
 
     /**
      * @param DTOCategory $dto

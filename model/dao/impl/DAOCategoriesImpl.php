@@ -84,4 +84,12 @@ class DAOCategoriesImpl implements DAOCategories {
         return $dto;
     }
 
+    /**
+     * @return int
+     */
+    #[\Override]
+    public function countRecords() : int {
+        return 0;
+    }
+
 }

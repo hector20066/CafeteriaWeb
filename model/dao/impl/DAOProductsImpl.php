@@ -257,4 +257,12 @@ class DAOProductsImpl implements DAOProducts {
         }
     }
 
+    /**
+     * @return int
+     */
+    #[\Override]
+    public function countRecords() : int {
+        return 0;
+    }
+
 }
