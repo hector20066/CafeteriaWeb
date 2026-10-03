@@ -1,5 +1,42 @@
 <?php
 
+require_once __DIR__ . "/../../database/DataBase.php";
+require_once __DIR__ . "/../../database/ConnectionProviderImpl.php";
+require_once __DIR__ . "/../../model/dao/impl/DAOProductsImpl.php";
+require_once __DIR__ . "/../../model/dao/impl/DAOCharacteristicsImpl.php";
+require_once __DIR__ . "/../../service/impl/CharacteristicsServiceImpl.php";
+require_once __DIR__ . "/../../service/impl/ProductsServiceImpl.php";
+
+$dataBase = DataBase::getInstance();
+$connectionProvider = new ConnectionProviderImpl($dataBase);
+
+$daoProduct = new DAOProductsImpl($connectionProvider);
+$daoCharacteristics = new DAOCharacteristicsImpl($connectionProvider);
+$characteristicsService = new CharacteristicsServiceImpl($daoCharacteristics);
+$productService = new ProductsServiceImpl($daoProduct, $characteristicsService, $connectionProvider);
+
+$productSlug = $_GET['producto'];
+
+$product = null;
+$productListCategory = [];
+$characteristicsList = [];
+
+try {
+    $product = $daoProduct->findBySlug($productSlug);
+
+    if ($product === null) {
+        header("Location: menu.php");
+        exit();
+    }
+
+    $productListCategory = $daoProduct->findByCategory($product->getCategory());
+    $characteristicsList = $daoCharacteristics->findByProduct($product->getId());
+} catch (Exception $e) {
+    $product = null;
+    $productListCategory = [];
+    $characteristicsList = [];
+}
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -53,7 +90,7 @@
 
         <div id="principal-detail">
             <div class="container breadcrumb">
-                <a href="../../index.html">Inicio</a> / <a href="menu.php">Menú</a> / <span id="detail-breadcrumb-name"></span>
+                <a href="../../index.html">Inicio</a> / <a href="menu.php">Menú</a> / <span id="detail-breadcrumb-name"> <?= $product->getSlug() ?></span>
             </div>
 
             <!-- Principal section -->
@@ -62,16 +99,22 @@
                     <div class="cover-image" id="image-detail" style="min-height: 420px;"></div>
 
                     <div>
-                        <span class="eyebrow" id="category-detail">$categoria</span>
-                        <h1 id="detail-name" style="font-size: 36px;">$Nombre del producto</h1>
-                        <p id="detail-price" style="font-size: 24px; font-weight: 700; color: var(--primary-color); margin: 12px 0 18px 0">$precio</p>
-                        <p class="text-secondary" id="detail-description">$descripcion</p>
+                        <span class="eyebrow" id="category-detail"><?= $product->getCategory() ?></span>
+                        <h1 id="detail-name" style="font-size: 36px;"><?= $product->getName() ?></h1>
+                        <p id="detail-price" style="font-size: 24px; font-weight: 700; color: var(--primary-color); margin: 12px 0 18px 0"><?= $product->getPrice() ?></p>
+                        <p class="text-secondary" id="detail-description"><?= $product->getDescription() ?></p>
 
                         <h3 style="margin-top: 28px; font-size: 16px;">Características</h3>
                         <ul id="detail-characteristics" style="margin-top: 12px; display: flex; flex-direction: column; gap: 8px">
-                            <li>$caracteristica 1</li>
-                            <li>$caracteristica 2</li>
-                            <li>$caracteristica 3</li>
+                            <?php if ($characteristicsList === []) { ?>
+                                <li>No hay características que mostrar</li>
+                            <?php
+                            } else {
+                                foreach ($characteristicsList as $characteristic) { ?>
+                                <li><?= $characteristic ?></li>
+                                <?php
+                                }
+                            } ?>
                         </ul>
 
                         <a href="contacto.html" class="btn btn-primary" style="margin-top: 32px;">Consultar disponibilidad</a>
@@ -87,20 +130,21 @@
                     </div>
 
                     <div class="products-grid grid-3" id="detail-related">
-
+                        <?php for ($i = 0; $i < 3; $i++) {
+                            $productCategory = $productListCategory[$i]; ?>
                         <div class="product-card">
-                            <div class="product-card-image"></div>
+                            <div class="product-card-image" style="background-image: url('../../img/<?= $productCategory->getImage() ?>');"></div>
                             <div class="product-card-body">
-                                <h3 class="product-card-name">$Nombre del producto</h3>
-                                <p class="text-secondary">$Descripción del producto</p>
+                                <h3 class="product-card-name"><?= $productCategory->getName() ?></h3>
+                                <p class="text-secondary"><?= $productCategory->getBriefDescription() ?></p>
 
                                 <div class="product-card-footer">
-                                    <span class="product-card-price">$Precio</span>
-                                    <a href="detalle.php" class="btn btn-secondary">Ver detalle</a>
+                                    <span class="product-card-price"><?= $productCategory->getPrice() ?></span>
+                                    <a href="detalle.php?producto=<?= $productCategory->getSlug() ?>" class="btn btn-secondary">Ver detalle</a>
                                 </div>
                             </div>
                         </div>
-
+                        <?php } ?>
                     </div>
                 </div>
             </section>
