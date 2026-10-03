@@ -1,3 +1,6 @@
+CREATE DATABASE db_cafeteria;
+USE db_cafeteria;
+
 CREATE TABLE categories (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     name VARCHAR(40) NOT NULL
