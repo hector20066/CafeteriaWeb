@@ -138,11 +138,11 @@ class DAOUsersImpl implements DAOUsers {
 
             if ($result = $statement->fetch()) {
                 $dto = new DTOUsersLogin();
-                $dto->setId((int)$result['id']);
-                $dto->setName((string)$result['name']);
-                $dto->setEmail((string)$result['email']);
+                $dto->setId((int) $result['id']);
+                $dto->setName((string) $result['name']);
+                $dto->setEmail((string) $result['email']);
                 $dto->setRole(Roles::from($result['role']));
-                $dto->setPasswd((string)$result['passwd']);
+                $dto->setPasswd((string) $result['passwd']);
             }
 
             return $dto;
@@ -172,7 +172,15 @@ class DAOUsersImpl implements DAOUsers {
      */
     #[\Override]
     public function countRecords() : int {
+        $sql = "SELECT COUNT(id) AS total_records FROM users;";
+        $statement = $this->provider->getConnection()->prepare($sql);
+        $statement->execute();
+
+        if ($result = $statement->fetch()) {
+            return (int) $result['total_records'];
+        }
+
         return 0;
     }
-    
+
 }

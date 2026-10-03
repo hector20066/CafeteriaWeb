@@ -89,6 +89,14 @@ class DAOCategoriesImpl implements DAOCategories {
      */
     #[\Override]
     public function countRecords() : int {
+        $sql = "SELECT COUNT(id) AS total_records FROM categories;";
+        $statement = $this->provider->getConnection()->prepare($sql);
+        $statement->execute();
+
+        if ($result = $statement->fetch()) {
+            return (int) $result['total_records'];
+        }
+
         return 0;
     }
 
