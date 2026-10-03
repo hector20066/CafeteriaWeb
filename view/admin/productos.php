@@ -1,3 +1,37 @@
+<?php
+
+require_once __DIR__ . '/../../database/DataBase.php';
+require_once __DIR__ . '/../../database/ConnectionProviderImpl.php';
+require_once __DIR__ . '/../../model/dao/impl/DAOProductsImpl.php';
+require_once __DIR__ . '/../../model/dao/impl/DAOCharacteristicsImpl.php';
+require_once __DIR__ . '/../../model/dao/impl/DAOCategoriesImpl.php';
+require_once __DIR__ . '/../../service/impl/CharacteristicsServiceImpl.php';
+require_once __DIR__ . '/../../service/impl/ProductsServiceImpl.php';
+require_once __DIR__ . '/../../service/impl/CategoriesServiceImpl.php';
+
+$dataBase = DataBase::getInstance();
+$connectionProvider = new ConnectionProviderImpl($dataBase);
+
+$daoCharacteristics = new DAOCharacteristicsImpl($connectionProvider);
+$daoProducts = new DAOProductsImpl($connectionProvider);
+$daoCategory = new DAOCategoriesImpl($connectionProvider);
+
+$characteristicService = new CharacteristicsServiceImpl($daoCharacteristics);
+$productService = new ProductsServiceImpl($daoProducts, $characteristicService, $connectionProvider);
+$categoryService = new CategoriesServiceImpl($daoCategory);
+
+$productList = [];
+$categoriesList = [];
+
+try {
+    $productList = $productService->findByAll();
+    $categoriesList = $categoryService->findByAll();
+} catch (Exception $e) {
+    $productList = [];
+    $categoriesList = [];
+}
+
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -86,7 +120,7 @@
                 <div class="admin-card">
                     <h2>Agregar nuevo producto</h2>
 
-                    <form class="admin-form" action="#" method="post" enctype="multipart/form-data">
+                    <form class="admin-form" action="../../controller/admin/ControllerRegisterProducts.php" method="post" enctype="multipart/form-data">
                         <div class="input">
                             <label for="product_name">Nombre</label>
                             <input type="text" id="product_name" name="product_name" placeholder="Ej. Mocha helado" required>
@@ -102,10 +136,9 @@
 
                             <select id="category" name="category" required>
                                 <option value="">-- Selecciona una categoría --</option>
-                                <option value="1">Cafés calientes</option>
-                                <option value="2">Bebidas frías</option>
-                                <option value="3">Postres</option>
-                                <option value="4">Desayunos</option>
+                                <?php foreach ($categoriesList as $category) { ?>
+                                <option value="<?= $category->getId() ?>"><?= $category->getName() ?></option>
+                                <?php } ?>
                             </select>
                         </div>
 
@@ -155,11 +188,12 @@
                                 </tr>
                             </thead>
                             <tbody id="productsTable">
+                                <?php foreach ($productList as $product) { ?>
                                 <tr>
-                                    <td data-etiqueta="Imagen" class="col-image"><div class="admin-table-miniature" style="background-image: url('../../img/');"></div></td>
-                                    <td data-etiqueta="Nombre"></td>
-                                    <td data-etiqueta="Categoría"><span class="admin-badge"></span></td>
-                                    <td data-etiqueta="Precio" class="col-price"></td>
+                                    <td data-etiqueta="Imagen" class="col-image"><div class="admin-table-miniature" style="background-image: url('../../img/<?= $product->getImage() ?>');"></div></td>
+                                    <td data-etiqueta="Nombre"><?= $product->getName() ?></td>
+                                    <td data-etiqueta="Categoría"><span class="admin-badge"><?= $product->getCategory() ?></span></td>
+                                    <td data-etiqueta="Precio" class="col-price"><?= $product->getPrice() ?></td>
                                     <td data-etiqueta="Acciones">
                                         <div class="admin-table-actions">
                                             <button type="button">Editar</button>
@@ -167,6 +201,7 @@
                                         </div>
                                     </td>
                                 </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>
