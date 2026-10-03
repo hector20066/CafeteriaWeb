@@ -50,4 +50,13 @@ class CategoriesServiceImpl implements CategoriesService {
         return $this->daoCategories->findByAll();
     }
 
+    /**
+     * @return int
+     * @throws Exception
+     */
+    #[\Override]
+    public function countRecords() : int {
+        return $this->daoCategories->countRecords();
+    }
+
 }

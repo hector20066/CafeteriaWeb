@@ -169,4 +169,13 @@ class ProductsServiceImpl implements ProductsService {
         $this->daoProducts->delete($id);
     }
 
+    /**
+     * @return int
+     * @throws Exception
+     */
+    #[\Override]
+    public function countRecords() : int {
+        return $this->daoProducts->countRecords();
+    }
+
 }

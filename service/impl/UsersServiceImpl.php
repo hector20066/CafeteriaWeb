@@ -100,4 +100,13 @@ class UsersServiceImpl implements UsersService {
         $this->daoUsers->delete($id);
     }
 
+    /**
+     * @return int
+     * @throws Exception
+     */
+    #[\Override]
+    public function countRecords() : int {
+        return $this->daoUsers->countRecords();
+    }
+
 }

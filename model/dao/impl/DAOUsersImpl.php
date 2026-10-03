@@ -169,6 +169,7 @@ class DAOUsersImpl implements DAOUsers {
 
     /**
      * @return int
+     * @throws Exception
      */
     #[\Override]
     public function countRecords() : int {

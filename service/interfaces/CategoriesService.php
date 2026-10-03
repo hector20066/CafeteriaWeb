@@ -24,4 +24,10 @@ interface CategoriesService {
      */
     public function findByAll() : array;
 
+    /**
+     * @return int
+     * @throws Exception
+     */
+    public function countRecords() : int;
+
 }

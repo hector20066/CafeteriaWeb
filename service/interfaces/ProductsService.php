@@ -66,4 +66,10 @@ interface ProductsService {
      */
     public function delete(int $id) : void;
 
+    /**
+     * @return int
+     * @throws Exception
+     */
+    public function countRecords() : int;
+
 }

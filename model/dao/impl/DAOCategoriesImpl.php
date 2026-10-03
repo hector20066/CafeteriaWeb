@@ -86,6 +86,7 @@ class DAOCategoriesImpl implements DAOCategories {
 
     /**
      * @return int
+     * @throws Exception
      */
     #[\Override]
     public function countRecords() : int {
