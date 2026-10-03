@@ -42,6 +42,12 @@ interface DAOProducts extends IListable, IRemovable {
     public function findBySlugTransaction(PDO $connection, string $slug) : ?DTOProductDetails;
 
     /**
+     * @param string $category
+     * @return list<DTOProductMenu>
+     */
+    public function findByCategory(string $category) : array;
+
+    /**
      * @return list<DTOProductMenu>
      * @throws Exception
      */

@@ -184,6 +184,30 @@ class DAOProductsImpl implements DAOProducts {
     }
 
     /**
+     * @param string $category
+     * @return list<DTOProductMenu>
+     * @throws Exception
+     */
+    #[\Override]
+    public function findByCategory(string $category) : array {
+        try {
+            $list = [];
+            $statement = $this->provider->getConnection()->prepare("SELECT p.id, p.name, p.brief_description, p.price, c.name AS category, p.slug, p.image FROM products p LEFT JOIN categories c ON c.id = p.id_category WHERE c.name = :category;");
+            $statement->bindParam(':category', $category);
+            $statement->execute();
+
+            while ($result = $statement->fetch()) {
+                $dto = $this->getDTOProductMenu($result);
+                $list[] = $dto;
+            }
+
+            return $list;
+        } catch (Exception $e) {
+            throw new Exception("Ha ocurrido un error al listar los productos para el menú", 0, $e);
+        }
+    }
+
+    /**
      * @return list<DTOProductMenu>
      * @throws Exception
      */
@@ -195,16 +219,7 @@ class DAOProductsImpl implements DAOProducts {
             $statement->execute();
 
             while ($result = $statement->fetch()) {
-                $dto = new DTOProductMenuBuilder()
-                    ->id((int)$result['id'])
-                    ->name((string)$result['name'])
-                    ->slug((string)$result['slug'])
-                    ->briefDescription((string)$result['brief_description'])
-                    ->price((string) $result['price'])
-                    ->category((string)$result['category'])
-                    ->image((string)$result['image'])
-                    ->build();
-
+                $dto = $this->getDTOProductMenu($result);
                 $list[] = $dto;
             }
 
@@ -212,6 +227,18 @@ class DAOProductsImpl implements DAOProducts {
         } catch (Exception $e) {
             throw new Exception("Ha ocurrido un error al listar los productos para el menú", 0, $e);
         }
+    }
+
+    private function getDTOProductMenu(mixed $result) : DTOProductMenu {
+        return new DTOProductMenuBuilder()
+            ->id((int)$result['id'])
+            ->name((string)$result['name'])
+            ->slug((string)$result['slug'])
+            ->briefDescription((string)$result['brief_description'])
+            ->price((string) $result['price'])
+            ->category((string)$result['category'])
+            ->image((string)$result['image'])
+            ->build();
     }
 
     /**
