@@ -22,15 +22,15 @@ $productListCategory = [];
 $characteristicsList = [];
 
 try {
-    $product = $daoProduct->findBySlug($productSlug);
+    $product = $productService->findBySlug($productSlug);
 
     if ($product === null) {
         header("Location: menu.php");
         exit();
     }
 
-    $productListCategory = $daoProduct->findByCategory($product->getCategory());
-    $characteristicsList = $daoCharacteristics->findByProduct($product->getId());
+    $productListCategory = $productService->findByCategory($product->getCategory());
+    $characteristicsList = $characteristicsService->findByProduct($product->getId());
 } catch (Exception $e) {
     $product = null;
     $productListCategory = [];
