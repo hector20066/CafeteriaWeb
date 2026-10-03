@@ -21,7 +21,8 @@ class DAOCharacteristicsImpl implements DAOCharacteristics {
     #[\Override]
     public function add(PDO $connection, DTOCharacteristics $dto) : void {
         try {
-            $statement = $connection->prepare("INSERT INTO characteristics(id_product, feature) VALUES (:id_product, :feature);");
+            $sql = "INSERT INTO characteristics(id_product, feature) VALUES (:id_product, :feature);";
+            $statement = $connection->prepare($sql);
 
             $productId = $dto->getProductId();
             $feature = $dto->getFeature();
@@ -43,7 +44,8 @@ class DAOCharacteristicsImpl implements DAOCharacteristics {
     public function findById(int $id) : ?DTOCharacteristics {
         try {
             $dto = null;
-            $statement = $this->provider->getConnection()->prepare("SELECT * FROM characteristics WHERE id = :id;");
+            $sql = "SELECT * FROM characteristics WHERE id = :id;";
+            $statement = $this->provider->getConnection()->prepare($sql);
             $statement->bindParam(':id', $id);
             $statement->execute();
 
@@ -65,7 +67,8 @@ class DAOCharacteristicsImpl implements DAOCharacteristics {
     public function findByAll() : array {
         try {
             $list = [];
-            $statement = $this->provider->getConnection()->prepare("SELECT * FROM characteristics;");
+            $sql = "SELECT * FROM characteristics;";
+            $statement = $this->provider->getConnection()->prepare($sql);
             $statement->execute();
 
             while ($result = $statement->fetch()) {
@@ -87,7 +90,8 @@ class DAOCharacteristicsImpl implements DAOCharacteristics {
     public function findByProduct(int $productId) : array {
         try {
             $list = [];
-            $statement = $this->provider->getConnection()->prepare("SELECT * FROM characteristics WHERE id_product = :id_product;");
+            $sql = "SELECT * FROM characteristics WHERE id_product = :id_product;";
+            $statement = $this->provider->getConnection()->prepare($sql);
             $statement->bindParam(':id_product', $productId);
             $statement->execute();
 

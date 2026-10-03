@@ -20,7 +20,8 @@ class DAOCategoriesImpl implements DAOCategories {
     #[\Override]
     public function add(DTOCategory $dto) : void {
         try {
-            $statement = $this->provider->getConnection()->prepare("INSERT INTO categories(name) VALUES (:name);");
+            $sql = "INSERT INTO categories(name) VALUES (:name);";
+            $statement = $this->provider->getConnection()->prepare($sql);
 
             $name = $dto->getName();
 
@@ -40,7 +41,8 @@ class DAOCategoriesImpl implements DAOCategories {
     public function findById(int $id) : ?DTOCategory {
         try {
             $dto = null;
-            $statement = $this->provider->getConnection()->prepare("SELECT id, name FROM categories WHERE id = :id;");
+            $sql = "SELECT id, name FROM categories WHERE id = :id;";
+            $statement = $this->provider->getConnection()->prepare($sql);
             $statement->bindParam(':id', $id);
             $statement->execute();
 
@@ -62,7 +64,8 @@ class DAOCategoriesImpl implements DAOCategories {
     public function findByAll() : array {
         try {
             $list = [];
-            $statement = $this->provider->getConnection()->prepare("SELECT id, name FROM categories;");
+            $sql = "SELECT id, name FROM categories;";
+            $statement = $this->provider->getConnection()->prepare($sql);
             $statement->execute();
 
             while ($result = $statement->fetch()) {

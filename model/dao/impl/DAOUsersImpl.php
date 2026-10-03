@@ -23,7 +23,8 @@ class DAOUsersImpl implements DAOUsers {
     #[\Override]
     public function add(DTOUsersCreate $dto) : void {
         try {
-            $statement = $this->provider->getConnection()->prepare("INSERT INTO users(name, email, passwd, role) VALUES (:name, :email, :passwd, :role)");
+            $sql = "INSERT INTO users(name, email, passwd, role) VALUES (:name, :email, :passwd, :role)";
+            $statement = $this->provider->getConnection()->prepare($sql);
 
             $name = $dto->getName();
             $email = $dto->getEmail();
@@ -49,7 +50,8 @@ class DAOUsersImpl implements DAOUsers {
     public function findByEmail(string $email) : ?DTOUsersDetails {
         try {
             $dto = null;
-            $statement = $this->provider->getConnection()->prepare("SELECT id, name, email, role FROM users WHERE email = :email;");
+            $sql = "SELECT id, name, email, role FROM users WHERE email = :email;";
+            $statement = $this->provider->getConnection()->prepare($sql);
             $statement->bindParam(':email', $email);
             $statement->execute();
 
@@ -72,7 +74,8 @@ class DAOUsersImpl implements DAOUsers {
     public function findById(int $id) : ?DTOUsersDetails {
         try {
             $dto = null;
-            $statement = $this->provider->getConnection()->prepare("SELECT id, name, email, role FROM users WHERE id = :id;");
+            $sql = "SELECT id, name, email, role FROM users WHERE id = :id;";
+            $statement = $this->provider->getConnection()->prepare($sql);
             $statement->bindParam(':id', $id);
             $statement->execute();
 
@@ -94,7 +97,8 @@ class DAOUsersImpl implements DAOUsers {
     public function findByAll() : array {
         try {
             $list = [];
-            $statement = $this->provider->getConnection()->prepare("SELECT id, name, email, role FROM users;");
+            $sql = "SELECT id, name, email, role FROM users;";
+            $statement = $this->provider->getConnection()->prepare($sql);
             $statement->execute();
 
             while ($result = $statement->fetch()) {
@@ -132,7 +136,8 @@ class DAOUsersImpl implements DAOUsers {
     public function findByLogin(string $email) : ?DTOUsersLogin {
         try {
             $dto = null;
-            $statement = $this->provider->getConnection()->prepare("SELECT id, name, email, role, passwd FROM users WHERE email = :email;");
+            $sql = "SELECT id, name, email, role, passwd FROM users WHERE email = :email;";
+            $statement = $this->provider->getConnection()->prepare($sql);
             $statement->bindParam(':email', $email);
             $statement->execute();
 
@@ -159,7 +164,8 @@ class DAOUsersImpl implements DAOUsers {
     #[\Override]
     public function delete(int $id) : void {
         try {
-            $statement = $this->provider->getConnection()->prepare("DELETE FROM users WHERE id = :id;");
+            $sql = "DELETE FROM users WHERE id = :id;";
+            $statement = $this->provider->getConnection()->prepare($sql);
             $statement->bindParam(':id', $id);
             $statement->execute();
         } catch (Exception $e) {
