@@ -2,6 +2,10 @@
 
 class BCryptEncryption {
 
+    public function __construct() {
+
+    }
+    
     public function hashPassword(string $plainPassword) : string {
         return password_hash($plainPassword, PASSWORD_BCRYPT, ['cost' => 12]);
     }
