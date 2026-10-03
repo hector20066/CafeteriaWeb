@@ -1,8 +1,9 @@
 <?php
 
 require_once __DIR__ . '/DataBase.php';
+require_once __DIR__ . '/ConnectionProvider.php';
 
-class ConnectionProviderImpl {
+class ConnectionProviderImpl implements ConnectionProvider {
 
     private DataBase $db;
 
