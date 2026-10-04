@@ -38,7 +38,5 @@
                 </div>
             </div>
         </div>
-
-        <script src="../../js/login/auth.js"></script>
     </body>
 </html>
