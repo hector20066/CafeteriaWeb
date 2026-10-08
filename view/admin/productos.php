@@ -195,10 +195,12 @@ try {
                                     <td data-etiqueta="Categoría"><span class="admin-badge"><?= $product->getCategory() ?></span></td>
                                     <td data-etiqueta="Precio" class="col-price"><?= $product->getPrice() ?></td>
                                     <td data-etiqueta="Acciones">
-                                        <div class="admin-table-actions">
-                                            <button type="button">Editar</button>
-                                            <button type="button" class="delete">Eliminar</button>
-                                        </div>
+                                        <form action="" method="post">
+                                            <div class="admin-table-actions">
+                                                <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
+                                                <button type="submit" class="delete" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">Eliminar</button>
+                                            </div>
+                                        </form>
                                     </td>
                                 </tr>
                                 <?php } ?>

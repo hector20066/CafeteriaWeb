@@ -165,10 +165,12 @@ try {
                                     <td data-etiqueta="Correo"><?= $user->getEmail() ?></td>
                                     <td data-etiqueta="Rol"><?= $user->getRole()->value ?></td>
                                     <td data-etiqueta="Acciones">
-                                        <div class="admin-table-actions">
-                                            <button type="button">Editar</button>
-                                            <button type="button" class="delete">Eliminar</button>
-                                        </div>
+                                        <form action="" method="post">
+                                            <div class="admin-table-actions">
+                                                <input type="hidden" name="user_id" value="<?= $user->getId() ?>">
+                                                <button type="submit" class="delete" onclick="return confirm('¿Estás seguro de que quieres eliminar este usuario?')">Eliminar</button>
+                                            </div>
+                                        </form>
                                     </td>
                                 </tr>
                                 <?php } ?>
