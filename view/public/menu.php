@@ -265,6 +265,6 @@ try {
             </svg>
         </button>
 
-        <script src=""></script>
+        <script src="../../js/script.js"></script>
     </body>
 </html>
