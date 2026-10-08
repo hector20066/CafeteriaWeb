@@ -111,7 +111,7 @@ try {
                             <?php
                             } else {
                                 foreach ($characteristicsList as $characteristic) { ?>
-                                <li><?= $characteristic ?></li>
+                                <li><?= $characteristic->getFeature() ?></li>
                                 <?php
                                 }
                             } ?>
