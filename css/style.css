@@ -533,7 +533,6 @@ p {
     color: var(--secondary-text-color);
 }
 
-/* Contact form */
 .form {
     display: flex;
     flex-direction: column;
@@ -568,7 +567,130 @@ p {
     border-color: var(--primary-color);
 }
 
+@media (max-width: 1024px) {
+  :root {
+    --espaciado-seccion: 72px;
+  }
+
+  .grid-products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pie-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+@media (max-width: 768px) {
+  :root {
+    --espaciado-seccion: 56px;
+  }
+
+  h1 { font-size: 32px; }
+  h2 { font-size: 24px; }
+
+  .nav-principal,
+  .acciones-header .btn {
+    display: none;
+  }
+
+  .btn-menu-movil {
+    display: flex;
+  }
+
+  .grid-2,
+  .grid-2--invertido {
+    grid-template-columns: 1fr;
+    direction: ltr;
+    gap: 28px;
+  }
+
+  .hero-visual {
+    min-height: 320px;
+  }
+
+  .grid-products {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .grid-characteristics{
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .pie-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+
+  .nav-movil {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+    background-color: var(--color-fondo);
+    padding: 24px;
+    z-index: 200;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .nav-movil.abierto {
+    transform: translateX(0);
+  }
+
+  .nav-movil__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .nav-movil__cerrar {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--color-texto);
+  }
+
+  .nav-movil ul {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .nav-movil ul a {
+    font-family: var(--fuente-titulo);
+    font-size: 24px;
+  }
+
+  .nav-movil .btn {
+    margin-top: 32px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-products {
+    grid-template-columns: 1fr;
+  }
+}
+
 .input textarea {
     resize: vertical;
     min-height: 130px;
+  }
 }
