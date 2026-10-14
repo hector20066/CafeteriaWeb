@@ -37,6 +37,12 @@ try {
     $characteristicsList = [];
 }
 
+$message = "";
+
+if (isset($_GET['msg'])) {
+    $message = $_GET['msg'];
+}
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -50,6 +56,17 @@ try {
         <link rel="stylesheet" href="../../css/style.css">
     </head>
     <body>
+        <?php if (!empty($message)) {
+            $safeMsg = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
+            $type = $_GET['type'] ?? 'info';
+            $allowedTypes = ['success', 'error', 'warning', 'info'];
+            $safeType = in_array($type, $allowedTypes, true) ? $type : 'info';
+            ?>
+            <div id="toast" class="<?= $safeType ?>">
+                <?= $safeMsg ?>
+            </div>
+        <?php } ?>
+
         <header class="site-header">
             <div class="container">
                 <a href="../../index.html" class="logo"><img src="../../img/favicon.svg" alt="grano&alma-icon" class="logo_icon" width="30" height="30">Grano & Alma</a>
