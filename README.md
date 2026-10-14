@@ -234,5 +234,5 @@ El proyecto se encuentra en desarrollo. Los siguientes puntos están pendientes:
 ## Autor
 
 Desarrollado por: 
-- Andrés Cárdenas
 - Hector Acevedo
+- Andrés Cárdenas
