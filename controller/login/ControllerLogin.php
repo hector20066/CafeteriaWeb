@@ -15,29 +15,30 @@ $bcrypt = new BCryptEncryption();
 $daoUsers = new DAOUsersImpl($connectionProvider);
 $usersService = new UsersServiceImpl($daoUsers, $bcrypt);
 
-$email = $_POST['email'];
-$plainPasswd = $_POST['passwd'];
-$message = "";
-
-if (empty($email) || empty($plainPasswd)) {
-    header("Location: ../../view/login/login.php");
-    exit();
-}
-
-$email = trim($email);
-$plainPasswd = trim($plainPasswd);
-
-$accessLogin = new Login($usersService, $bcrypt);
-
 try {
-    $correctAccess = $accessLogin->login($email, $plainPasswd);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $email = $_POST['email'];
+        $plainPasswd = $_POST['passwd'];
+        $message = "";
 
-    if ($correctAccess) {
-        $message = "Bienvenido";
-        header("Location: ../../view/admin/index.php");
-    } else {
-        $message = "No se han encontrado estas credenciales en el sistema";
-        header("Location: ../../view/login/login.php");
+        if (empty($email) || empty($plainPasswd)) {
+            header("Location: ../../view/login/login.php");
+            exit();
+        }
+
+        $email = trim($email);
+        $plainPasswd = trim($plainPasswd);
+
+        $accessLogin = new Login($usersService, $bcrypt);
+        $correctAccess = $accessLogin->login($email, $plainPasswd);
+
+        if ($correctAccess) {
+            $message = "Bienvenido";
+            header("Location: ../../view/admin/index.php");
+        } else {
+            $message = "No se han encontrado estas credenciales en el sistema";
+            header("Location: ../../view/login/login.php");
+        }
     }
 } catch (Exception $e) {
     $message = "Ha ocurrido un error al iniciar sesión";
