@@ -161,10 +161,10 @@ try {
                             <tbody>
                                 <?php foreach ($usersList as $user) { ?>
                                 <tr>
-                                    <td data-etiqueta="Nombre"><?= $user->getName() ?></td>
-                                    <td data-etiqueta="Correo"><?= $user->getEmail() ?></td>
-                                    <td data-etiqueta="Rol"><?= $user->getRole()->value ?></td>
-                                    <td data-etiqueta="Acciones">
+                                    <td data-label="Nombre"><?= $user->getName() ?></td>
+                                    <td data-label="Correo"><?= $user->getEmail() ?></td>
+                                    <td data-label="Rol"><?= $user->getRole()->value ?></td>
+                                    <td data-label="Acciones">
                                         <form action="" method="post">
                                             <div class="admin-table-actions">
                                                 <input type="hidden" name="user_id" value="<?= $user->getId() ?>">

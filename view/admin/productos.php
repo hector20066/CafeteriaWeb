@@ -190,11 +190,11 @@ try {
                             <tbody id="productsTable">
                                 <?php foreach ($productList as $product) { ?>
                                 <tr>
-                                    <td data-etiqueta="Imagen" class="col-image"><div class="admin-table-miniature" style="background-image: url('../../img/<?= $product->getImage() ?>');"></div></td>
-                                    <td data-etiqueta="Nombre"><?= $product->getName() ?></td>
-                                    <td data-etiqueta="Categoría"><span class="admin-badge"><?= $product->getCategory() ?></span></td>
-                                    <td data-etiqueta="Precio" class="col-price"><?= $product->getPrice() ?></td>
-                                    <td data-etiqueta="Acciones">
+                                    <td data-label="Imagen" class="col-image"><div class="admin-table-miniature" style="background-image: url('../../img/<?= $product->getImage() ?>');"></div></td>
+                                    <td data-label="Nombre"><?= $product->getName() ?></td>
+                                    <td data-label="Categoría"><span class="admin-badge"><?= $product->getCategory() ?></span></td>
+                                    <td data-label="Precio" class="col-price"><?= $product->getPrice() ?></td>
+                                    <td data-label="Acciones">
                                         <form action="" method="post">
                                             <div class="admin-table-actions">
                                                 <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
