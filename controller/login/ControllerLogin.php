@@ -33,14 +33,14 @@ try {
         $correctAccess = $accessLogin->login($email, $plainPasswd);
 
         if ($correctAccess) {
-            $message = "Bienvenido";
-            header("Location: ../../view/admin/index.php");
+            $message = "Inicio de sesión correcto. Bienvenido";
+            header("Location: ../../view/admin/index.php?msg=" . $message . "&type=success");
         } else {
-            $message = "No se han encontrado estas credenciales en el sistema";
-            header("Location: ../../view/login/login.php");
+            $message = "No se han encontrado estas credenciales de acceso";
+            header("Location: ../../view/login/login.php?msg=" .$message  . "&type=warning");
         }
     }
 } catch (Exception $e) {
     $message = "Ha ocurrido un error al iniciar sesión";
-    header("Location: ../../view/login/login.php");
+    header("Location: ../../view/login/login.php?msg=" . $message . "&type=error");
 }
