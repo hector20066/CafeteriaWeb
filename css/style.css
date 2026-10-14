@@ -693,3 +693,67 @@ p {
     grid-template-columns: 1fr;
   }
 }
+
+/* Small phones */
+@media (max-width: 393px) {
+  html,
+  body {
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .container {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .section {
+    padding-top: 44px;
+    padding-bottom: 44px;
+  }
+
+  .hero-full {
+    min-height: auto;
+    padding-top: 44px;
+    padding-bottom: 44px;
+  }
+
+  .hero-visual {
+    min-height: 260px;
+  }
+
+  .hero-visual_shape {
+    width: 180px;
+    height: 180px;
+  }
+
+  .hero-visual_main {
+    width: 78%;
+    height: 82%;
+  }
+
+  .hero-visual_secondary {
+    width: 48%;
+    height: 48%;
+    border-width: 4px;
+  }
+
+  .btn {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .nav-mobile {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .cover-image {
+    background-attachment: scroll !important;
+  }
+
+  .floating-button {
+    right: 16px;
+  }
+}
