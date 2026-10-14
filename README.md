@@ -99,7 +99,7 @@ CafeteriaWeb/
 1. Clonar el repositorio:
 
    ```bash
-   git clone https://github.com/<usuario>/CafeteriaWeb.git
+   git clone https://github.com/hector20066/CafeteriaWeb.git
    cd CafeteriaWeb
    ```
 
