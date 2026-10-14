@@ -570,7 +570,64 @@ p {
 .input textarea {
     resize: vertical;
     min-height: 130px;
-  }
+}
+
+#toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 10000;
+    animation: fadeIn 0.4s ease-out, fadeOut 0.4s ease-in 4s forwards;
+    max-width: 400px;
+    font-size: 14px;
+}
+
+#toast.success {
+    background-color: #4CAF50 !important;
+}
+
+#toast.error {
+    background-color: #f44336 !important;
+}
+
+#toast.warning {
+    background-color: #ff9800 !important;
+}
+
+#toast.info {
+    background-color: #2196F3 !important;
+}
+
+#toast.hiding {
+    animation: slideOutRight 0.4s ease-out forwards !important;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
 
 /* Media Queries: Tablets */
 @media (max-width: 1024px) {
