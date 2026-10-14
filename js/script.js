@@ -31,3 +31,12 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     }
 });
+
+(function() {
+    setTimeout(function() {
+        const toast = document.getElementById('toast');
+        if (toast) {
+            toast.remove();
+        }
+    }, 4500);
+})();
