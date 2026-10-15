@@ -44,7 +44,7 @@ Aplicación web para una cafetería de especialidad que incluye un **menú públ
 
 | Capa | Tecnología |
 |------|------------|
-| Backend | PHP 8.1+ (enums, tipado, PDO) |
+| Backend | PHP 8.4+ (enums, tipado, PDO) |
 | Base de datos | MySQL / MariaDB |
 | Frontend | HTML5, CSS3, JavaScript |
 | Seguridad | `password_hash` / `password_verify` (BCrypt) |
@@ -87,7 +87,7 @@ CafeteriaWeb/
 
 ## Requisitos
 
-- PHP 8.1 o superior con la extensión `pdo_mysql` habilitada.
+- PHP 8.4 o superior con la extensión `pdo_mysql` habilitada.
 - MySQL 5.7+ o MariaDB 10.3+.
 - Servidor web (Apache o Nginx) o el servidor integrado de PHP.
 - Compatible con entornos locales como XAMPP, Laragon o WAMP.
@@ -224,10 +224,7 @@ Los roles disponibles están definidos en `model/enums/Roles.php`:
 
 El proyecto se encuentra en desarrollo. Los siguientes puntos están pendientes:
 
-- Implementar el manejo de sesiones y proteger las rutas del panel de administración.
 - Completar los controladores de contacto y de registro de productos.
-- Implementar el control de acceso según el rol del usuario.
-- Mostrar mensajes de error y confirmación en el formulario de inicio de sesión.
 
 ---
 
