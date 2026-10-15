@@ -5,6 +5,7 @@ require_once __DIR__ . '/../../database/ConnectionProviderImpl.php';
 require_once __DIR__ . '/../../security/BCryptEncryption.php';
 require_once __DIR__ . '/../../model/dao/impl/DAOUsersImpl.php';
 require_once __DIR__ . '/../../service/impl/UsersServiceImpl.php';
+require_once __DIR__ . '/../../model/enums/Roles.php';
 
 $dataBase = DataBase::getInstance();
 $connectionProvider = new ConnectionProviderImpl($dataBase);
@@ -144,10 +145,10 @@ if (isset($_GET['msg'])) {
 
                             <select id="role" name="role" required>
                                 <option value="">-- Seleccione un rol --</option>
-                                <option value="Administrador">Administrador</option>
-                                <option value="Barista">Barista</option>
-                                <option value="Mesero">Mesero</option>
-                                <option value="Cajero">Cajero</option>
+                                <option value="<?= Roles::ADMIN->value ?>">Administrador</option>
+                                <option value="<?= Roles::BARISTA->value ?>">Barista</option>
+                                <option value="<?= Roles::WAITER->value ?>">Mesero</option>
+                                <option value="<?= Roles::CHECKER->value ?>">Cajero</option>
                             </select>
                         </div>
 
