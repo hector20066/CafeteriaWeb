@@ -134,7 +134,9 @@ if (isset($_GET['msg'])) {
                             } ?>
                         </ul>
 
-                        <a href="contacto.html" class="btn btn-primary" style="margin-top: 32px;">Consultar disponibilidad</a>
+                        <a href="contacto.html?producto=<?= urlencode($product->getName()) ?>" class="btn btn-primary" style="margin-top: 32px;">
+                            Consultar disponibilidad
+                        </a>
                     </div>
                 </div>
             </section>
