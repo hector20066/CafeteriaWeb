@@ -30,9 +30,8 @@ try {
         $plainPasswd = trim($plainPasswd);
 
         $accessLogin = new Login($usersService, $bcrypt);
-        $correctAccess = $accessLogin->login($email, $plainPasswd);
 
-        if ($correctAccess) {
+        if ($accessLogin->login($email, $plainPasswd)) {
             $message = "Inicio de sesión correcto. Bienvenido";
             header("Location: ../../view/admin/index.php?msg=" . $message . "&type=success");
         } else {
