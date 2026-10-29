@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . '/../../config/Paths.php';
 require_once __DIR__ . '/../../service/interfaces/ProductsService.php';
 require_once __DIR__ . '/../../database/DataBase.php';
 require_once __DIR__ . '/../../database/ConnectionProviderImpl.php';
@@ -113,7 +114,7 @@ if (isset($_GET['msg'])) {
                        if ($product->getCategory() === "Cafes Calientes") {
                     ?>
                     <div class="product-card">
-                        <div class="product-card-image" style="background-image: url('../../img/<?= $product->getImage() ?>');"></div>
+                        <div class="product-card-image" style="background-image: url('<?= BASE_URL . htmlspecialchars($product->getImage(), ENT_QUOTES, 'UTF-8') ?>');"></div>
 
                         <div class="product-card-body">
                             <h3 class="product-card-name"><?= htmlspecialchars($product->getName()) ?></h3>
@@ -144,7 +145,7 @@ if (isset($_GET['msg'])) {
                         if ($product->getCategory() === "Bebidas Frias") {
                     ?>
                     <div class="product-card">
-                        <div class="product-card-image" style="background-image: url('../../img/<?= $product->getImage() ?>');"></div>
+                        <div class="product-card-image" style="background-image: url('<?= BASE_URL . htmlspecialchars($product->getImage(), ENT_QUOTES, 'UTF-8') ?>');"></div>
 
                         <div class="product-card-body">
                             <h3 class="product-card-name"><?= htmlspecialchars($product->getName()) ?>/h3>
@@ -175,7 +176,7 @@ if (isset($_GET['msg'])) {
                        if ($product->getCategory() === "Postres") {
                     ?>
                     <div class="product-card">
-                        <div class="product-card-image" style="background-image: url('../../img/<?= $product->getImage() ?>');"></div>
+                        <div class="product-card-image" style="background-image: url('<?= BASE_URL . htmlspecialchars($product->getImage(), ENT_QUOTES, 'UTF-8') ?>');"></div>
 
                         <div class="product-card-body">
                             <h3 class="product-card-name"><?= htmlspecialchars($product->getName()) ?></h3>
@@ -206,7 +207,7 @@ if (isset($_GET['msg'])) {
                        if ($product->getCategory() === "Desayunos") {
                     ?>
                     <div class="product-card">
-                        <div class="product-card-image" style="background-image: url('../../img/<?= $product->getImage() ?>');"></div>
+                        <div class="product-card-image" style="background-image: url('<?= BASE_URL . htmlspecialchars($product->getImage(), ENT_QUOTES, 'UTF-8') ?>');"></div>
 
                         <div class="product-card-body">
                             <h3 class="product-card-name"><?= htmlspecialchars($product->getName()) ?></h3>

@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . '/../../config/Paths.php';
 require_once __DIR__ . '/../../database/DataBase.php';
 require_once __DIR__ . '/../../database/ConnectionProviderImpl.php';
 require_once __DIR__ . '/../../model/dao/impl/DAOProductsImpl.php';
@@ -152,7 +153,7 @@ if (isset($_GET['msg'])) {
                             <label for="category">Categoría</label>
 
                             <select id="category" name="category" required>
-                                <option value="">-- Selecciona una categoría --</option>
+                                <option value="0">-- Selecciona una categoría --</option>
                                 <?php foreach ($categoriesList as $category) { ?>
                                 <option value="<?= $category->getId() ?>"><?= $category->getName() ?></option>
                                 <?php } ?>
@@ -180,7 +181,7 @@ if (isset($_GET['msg'])) {
                         </div>
 
                         <div class="input input-width">
-                            <label for="characteristics">Caracteristicas (Una por línea)</label>
+                            <label for="characteristics">Características (Una por línea)</label>
                             <textarea id="characteristics" name="characteristics" placeholder="Ej.&#10;Espresso doble de base&#10;Disponible en 8oz y 12oz" required></textarea>
                         </div>
 
@@ -207,7 +208,7 @@ if (isset($_GET['msg'])) {
                             <tbody id="productsTable">
                                 <?php foreach ($productList as $product) { ?>
                                 <tr>
-                                    <td data-label="Imagen" class="col-image"><div class="admin-table-miniature" style="background-image: url('../../img/<?= $product->getImage() ?>');"></div></td>
+                                    <td data-label="Imagen" class="col-image"><div class="admin-table-miniature" style="background-image: url('<?= BASE_URL . htmlspecialchars($product->getImage(), ENT_QUOTES, 'UTF-8') ?>');"></div></td>
                                     <td data-label="Nombre"><?= $product->getName() ?></td>
                                     <td data-label="Categoría"><span class="admin-badge"><?= $product->getCategory() ?></span></td>
                                     <td data-label="Precio" class="col-price"><?= $product->getPrice() ?></td>

@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . "/../../config/Paths.php";
 require_once __DIR__ . "/../../database/DataBase.php";
 require_once __DIR__ . "/../../database/ConnectionProviderImpl.php";
 require_once __DIR__ . "/../../model/dao/impl/DAOProductsImpl.php";
