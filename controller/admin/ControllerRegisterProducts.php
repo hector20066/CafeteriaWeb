@@ -5,6 +5,7 @@ require_once __DIR__ . '/../../database/ConnectionProviderImpl.php';
 require_once __DIR__ . '/../../model/dao/impl/DAOProductsImpl.php';
 require_once __DIR__ . '/../../model/dao/impl/DAOCharacteristicsImpl.php';
 require_once __DIR__ . '/../../service/impl/ProductsServiceImpl.php';
+require_once __DIR__ . '/../../service/impl/CharacteristicsServiceImpl.php';
 
 $dataBase = DataBase::getInstance();
 $connectionProvider = new ConnectionProviderImpl($dataBase);
@@ -78,7 +79,7 @@ try {
 
         $imagePath = 'img/products/' . $fileName;
 
-        $productService->add($name, $slug, $categoryId, $price, $imagePath, $destination, $briefDescription, $characteristics);
+        $productService->add($name, $slug, $categoryId, $price, $imagePath, $description, $briefDescription, $characteristics);
 
         $message = "Se ha registrado el producto";
         header("Location: ../../view/admin/productos.php?msg=" . $message . "&type=success");
