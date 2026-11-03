@@ -79,6 +79,7 @@ p {
 .text-secondary {
     color: var(--secondary-text-color);
     font-size: 15px;
+    overflow-wrap: anywhere;
 }
 
 /* Container */
@@ -450,6 +451,14 @@ p {
     background-color: var(--border-color);
 }
 
+.cover-image-square {
+    width: min(100%, 420px);
+    height: 420px;
+    min-height: 0;
+    aspect-ratio: 1 / 1;
+    justify-self: start;
+}
+
 /* --------- */
 .breadcrumb {
     font-size: 14px;
@@ -808,6 +817,12 @@ p {
 
   .cover-image {
     background-attachment: scroll !important;
+  }
+
+  .cover-image-square {
+    width: 100%;
+    height: auto;
+    min-height: 0;
   }
 
   .floating-button {
