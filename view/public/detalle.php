@@ -114,7 +114,7 @@ if (isset($_GET['msg'])) {
             <!-- Principal section -->
             <section class="section">
                 <div class="container grid-2">
-                    <div class="cover-image" id="image-detail" style="min-height: 420px;"></div>
+                    <div class="cover-image cover-image-square" id="image-detail" style="background-image: url('<?= BASE_URL . htmlspecialchars($product->getImage(), ENT_QUOTES, 'UTF-8') ?>');"></div>
 
                     <div>
                         <span class="eyebrow" id="category-detail"><?= $product->getCategory() ?></span>
@@ -129,7 +129,7 @@ if (isset($_GET['msg'])) {
                             <?php
                             } else {
                                 foreach ($characteristicsList as $characteristic) { ?>
-                                <li><?= $characteristic->getFeature() ?></li>
+                                <li> - <?= $characteristic->getFeature() ?></li>
                                 <?php
                                 }
                             } ?>
