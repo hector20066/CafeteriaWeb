@@ -111,25 +111,23 @@ if (isset($_GET['msg'])) {
                 <div class="products-grid">
                     <?php
                     foreach ($productsMenuList as $product) {
-                       if ($product->getCategory() === "Cafes Calientes") {
-                    ?>
-                    <div class="product-card">
-                        <div class="product-card-image" style="background-image: url('<?= BASE_URL . htmlspecialchars($product->getImage(), ENT_QUOTES, 'UTF-8') ?>');"></div>
+                        if ($product->getCategory() === "Cafes Calientes") { ?>
+                            <div class="product-card">
+                                <div class="product-card-image" style="background-image: url('<?= BASE_URL . htmlspecialchars($product->getImage(), ENT_QUOTES, 'UTF-8') ?>');"></div>
 
-                        <div class="product-card-body">
-                            <h3 class="product-card-name"><?= htmlspecialchars($product->getName()) ?></h3>
-                            <p class="text-secondary"><?= $product->getBriefDescription() ?></p>
+                                <div class="product-card-body">
+                                    <h3 class="product-card-name"><?= htmlspecialchars($product->getName()) ?></h3>
+                                    <p class="text-secondary"><?= $product->getBriefDescription() ?></p>
 
-                            <div class="product-card-footer">
-                                <span class="product-card-price"><?= $product->getPrice() ?></span>
-                                <a href="detalle.php?producto=<?= $product->getSlug() ?>" class="btn btn-secondary">Ver detalle</a>
+                                    <div class="product-card-footer">
+                                        <span class="product-card-price"><?= $product->getPrice() ?></span>
+                                        <a href="detalle.php?producto=<?= $product->getSlug() ?>" class="btn btn-secondary">Ver detalle</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <?php
+                        <?php
                         }
-                    }
-                    ?>
+                    } ?>
                 </div>
             </div>
         </section>
@@ -142,25 +140,23 @@ if (isset($_GET['msg'])) {
                 <div class="products-grid">
                     <?php
                     foreach ($productsMenuList as $product) {
-                        if ($product->getCategory() === "Bebidas Frias") {
-                    ?>
-                    <div class="product-card">
-                        <div class="product-card-image" style="background-image: url('<?= BASE_URL . htmlspecialchars($product->getImage(), ENT_QUOTES, 'UTF-8') ?>');"></div>
+                        if ($product->getCategory() === "Bebidas Frias") { ?>
+                            <div class="product-card">
+                                <div class="product-card-image" style="background-image: url('<?= BASE_URL . htmlspecialchars($product->getImage(), ENT_QUOTES, 'UTF-8') ?>');"></div>
 
-                        <div class="product-card-body">
-                            <h3 class="product-card-name"><?= htmlspecialchars($product->getName()) ?>/h3>
-                            <p class="text-secondary"><?= $product->getBriefDescription() ?></p>
+                                <div class="product-card-body">
+                                    <h3 class="product-card-name"><?= htmlspecialchars($product->getName()) ?>/h3>
+                                    <p class="text-secondary"><?= $product->getBriefDescription() ?></p>
 
-                            <div class="product-card-footer">
-                                <span class="product-card-price"><?= $product->getPrice() ?></span>
-                                <a href="detalle.php?producto=<?= $product->getSlug() ?>" class="btn btn-secondary">Ver detalle</a>
+                                    <div class="product-card-footer">
+                                        <span class="product-card-price"><?= $product->getPrice() ?></span>
+                                        <a href="detalle.php?producto=<?= $product->getSlug() ?>" class="btn btn-secondary">Ver detalle</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <?php
+                        <?php
                         }
-                    }
-                    ?>
+                    } ?>
                 </div>
             </div>
         </section>
@@ -173,25 +169,23 @@ if (isset($_GET['msg'])) {
                 <div class="products-grid">
                     <?php
                     foreach ($productsMenuList as $product) {
-                       if ($product->getCategory() === "Postres") {
-                    ?>
-                    <div class="product-card">
-                        <div class="product-card-image" style="background-image: url('<?= BASE_URL . htmlspecialchars($product->getImage(), ENT_QUOTES, 'UTF-8') ?>');"></div>
+                        if ($product->getCategory() === "Postres") { ?>
+                            <div class="product-card">
+                                <div class="product-card-image" style="background-image: url('<?= BASE_URL . htmlspecialchars($product->getImage(), ENT_QUOTES, 'UTF-8') ?>');"></div>
 
-                        <div class="product-card-body">
-                            <h3 class="product-card-name"><?= htmlspecialchars($product->getName()) ?></h3>
-                            <p class="text-secondary"><?= $product->getBriefDescription() ?></p>
+                                <div class="product-card-body">
+                                    <h3 class="product-card-name"><?= htmlspecialchars($product->getName()) ?></h3>
+                                    <p class="text-secondary"><?= $product->getBriefDescription() ?></p>
 
-                            <div class="product-card-footer">
-                                <span class="product-card-price"><?= $product->getPrice() ?></span>
-                                <a href="detalle.php?producto=<?= $product->getSlug() ?>" class="btn btn-secondary">Ver detalle</a>
+                                    <div class="product-card-footer">
+                                        <span class="product-card-price"><?= $product->getPrice() ?></span>
+                                        <a href="detalle.php?producto=<?= $product->getSlug() ?>" class="btn btn-secondary">Ver detalle</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <?php
+                        <?php
                         }
-                    }
-                    ?>
+                    } ?>
                 </div>
             </div>
         </section>
@@ -204,25 +198,23 @@ if (isset($_GET['msg'])) {
                 <div class="products-grid">
                     <?php
                     foreach ($productsMenuList as $product) {
-                       if ($product->getCategory() === "Desayunos") {
-                    ?>
-                    <div class="product-card">
-                        <div class="product-card-image" style="background-image: url('<?= BASE_URL . htmlspecialchars($product->getImage(), ENT_QUOTES, 'UTF-8') ?>');"></div>
+                        if ($product->getCategory() === "Desayunos") { ?>
+                            <div class="product-card">
+                                <div class="product-card-image" style="background-image: url('<?= BASE_URL . htmlspecialchars($product->getImage(), ENT_QUOTES, 'UTF-8') ?>');"></div>
 
-                        <div class="product-card-body">
-                            <h3 class="product-card-name"><?= htmlspecialchars($product->getName()) ?></h3>
-                            <p class="text-secondary"><?= $product->getBriefDescription() ?></p>
+                                <div class="product-card-body">
+                                    <h3 class="product-card-name"><?= htmlspecialchars($product->getName()) ?></h3>
+                                    <p class="text-secondary"><?= $product->getBriefDescription() ?></p>
 
-                            <div class="product-card-footer">
-                                <span class="product-card-price"><?= $product->getPrice() ?></span>
-                                <a href="detalle.php?producto=<?= $product->getSlug() ?>" class="btn btn-secondary">Ver detalle</a>
+                                    <div class="product-card-footer">
+                                        <span class="product-card-price"><?= $product->getPrice() ?></span>
+                                        <a href="detalle.php?producto=<?= $product->getSlug() ?>" class="btn btn-secondary">Ver detalle</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <?php
+                        <?php
                         }
-                    }
-                    ?>
+                    } ?>
                 </div>
             </div>
         </section>

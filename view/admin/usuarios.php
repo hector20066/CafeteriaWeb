@@ -178,19 +178,19 @@ if (isset($_GET['msg'])) {
                             </thead>
                             <tbody>
                                 <?php foreach ($usersList as $user) { ?>
-                                <tr>
-                                    <td data-label="Nombre"><?= $user->getName() ?></td>
-                                    <td data-label="Correo"><?= $user->getEmail() ?></td>
-                                    <td data-label="Rol"><?= $user->getRole()->value ?></td>
-                                    <td data-label="Acciones">
-                                        <form action="" method="post">
-                                            <div class="admin-table-actions">
-                                                <input type="hidden" name="user_id" value="<?= $user->getId() ?>">
-                                                <button type="submit" class="delete" onclick="return confirm('¿Estás seguro de que quieres eliminar este usuario?')">Eliminar</button>
-                                            </div>
-                                        </form>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td data-label="Nombre"><?= $user->getName() ?></td>
+                                        <td data-label="Correo"><?= $user->getEmail() ?></td>
+                                        <td data-label="Rol"><?= $user->getRole()->value ?></td>
+                                        <td data-label="Acciones">
+                                            <form action="" method="post">
+                                                <div class="admin-table-actions">
+                                                    <input type="hidden" name="user_id" value="<?= $user->getId() ?>">
+                                                    <button type="submit" class="delete" onclick="return confirm('¿Estás seguro de que quieres eliminar este usuario?')">Eliminar</button>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
                                 <?php } ?>
                             </tbody>
                         </table>

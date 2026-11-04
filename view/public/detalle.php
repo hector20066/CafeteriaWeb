@@ -129,7 +129,7 @@ if (isset($_GET['msg'])) {
                             <?php
                             } else {
                                 foreach ($characteristicsList as $characteristic) { ?>
-                                <li> - <?= $characteristic->getFeature() ?></li>
+                                    <li> - <?= $characteristic->getFeature() ?></li>
                                 <?php
                                 }
                             } ?>

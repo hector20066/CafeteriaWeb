@@ -155,7 +155,7 @@ if (isset($_GET['msg'])) {
                             <select id="category" name="category" required>
                                 <option value="0">-- Selecciona una categoría --</option>
                                 <?php foreach ($categoriesList as $category) { ?>
-                                <option value="<?= $category->getId() ?>"><?= $category->getName() ?></option>
+                                    <option value="<?= $category->getId() ?>"><?= $category->getName() ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -207,20 +207,20 @@ if (isset($_GET['msg'])) {
                             </thead>
                             <tbody id="productsTable">
                                 <?php foreach ($productList as $product) { ?>
-                                <tr>
-                                    <td data-label="Imagen" class="col-image"><div class="admin-table-miniature" style="background-image: url('<?= BASE_URL . htmlspecialchars($product->getImage(), ENT_QUOTES, 'UTF-8') ?>');"></div></td>
-                                    <td data-label="Nombre"><?= $product->getName() ?></td>
-                                    <td data-label="Categoría"><span class="admin-badge"><?= $product->getCategory() ?></span></td>
-                                    <td data-label="Precio" class="col-price"><?= $product->getPrice() ?></td>
-                                    <td data-label="Acciones">
-                                        <form action="" method="post">
-                                            <div class="admin-table-actions">
-                                                <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
-                                                <button type="submit" class="delete" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">Eliminar</button>
-                                            </div>
-                                        </form>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td data-label="Imagen" class="col-image"><div class="admin-table-miniature" style="background-image: url('<?= BASE_URL . htmlspecialchars($product->getImage(), ENT_QUOTES, 'UTF-8') ?>');"></div></td>
+                                        <td data-label="Nombre"><?= $product->getName() ?></td>
+                                        <td data-label="Categoría"><span class="admin-badge"><?= $product->getCategory() ?></span></td>
+                                        <td data-label="Precio" class="col-price"><?= $product->getPrice() ?></td>
+                                        <td data-label="Acciones">
+                                            <form action="" method="post">
+                                                <div class="admin-table-actions">
+                                                    <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
+                                                    <button type="submit" class="delete" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">Eliminar</button>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
                                 <?php } ?>
                             </tbody>
                         </table>
