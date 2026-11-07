@@ -213,7 +213,7 @@ if (isset($_GET['msg'])) {
                                         <td data-label="Categoría"><span class="admin-badge"><?= $product->getCategory() ?></span></td>
                                         <td data-label="Precio" class="col-price"><?= $product->getPrice() ?></td>
                                         <td data-label="Acciones">
-                                            <form action="" method="post">
+                                            <form action="../../controller/admin/ControllerDeleteProduct.php" method="get">
                                                 <div class="admin-table-actions">
                                                     <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
                                                     <button type="submit" class="delete" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">Eliminar</button>
