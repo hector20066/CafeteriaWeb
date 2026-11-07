@@ -26,15 +26,18 @@ try {
 
         $found = !($productService->findById($productId) === null);
         $message = "";
+        $type = "";
 
         if ($found) {
             $productService->delete($productId);
             $message = "Se ha eliminado el producto correctamente";
+            $type = "success";
         } else {
             $message = "No se ha encontrado este producto. Verifique la información";
+            $type = "warning";
         }
 
-        header("Location: ../../view/admin/productos.php?msg=" . $message . "&type=success");
+        header("Location: ../../view/admin/productos.php?msg=" . $message . "&type=" . $type);
     }
 } catch (Throwable $e) {
     $message = "Ha ocurrido un error al eliminar el producto.\nError: " . $e->getMessage();
