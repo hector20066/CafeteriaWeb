@@ -196,14 +196,14 @@ La aplicación estará disponible en `http://localhost:8000`.
 | Ruta | Descripción |
 |------|-------------|
 | `/index.html` | Inicio |
-| `/view/public/nosotros.html` | Nosotros |
+| `/view/public/about.html` | Nosotros |
 | `/view/public/menu.php` | Menú de productos |
-| `/view/public/detalle.php` | Detalle de un producto |
-| `/view/public/contacto.html` | Contacto |
+| `/view/public/details.php` | Detalle de un producto |
+| `/view/public/contact.html` | Contacto |
 | `/view/login/login.php` | Inicio de sesión |
 | `/view/admin/index.php` | Panel de administración |
-| `/view/admin/productos.php` | Gestión de productos |
-| `/view/admin/usuarios.php` | Gestión de usuarios |
+| `/view/admin/products.php` | Gestión de productos |
+| `/view/admin/users.php` | Gestión de usuarios |
 
 ---
 

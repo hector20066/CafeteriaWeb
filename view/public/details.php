@@ -74,9 +74,9 @@ if (isset($_GET['msg'])) {
 
                 <nav class="principal-nav">
                     <a href="../../index.html">Inicio</a>
-                    <a href="nosotros.html">Nosotros</a>
+                    <a href="about.html">Nosotros</a>
                     <a href="menu.php" class="active">Menú</a>
-                    <a href="contacto.html">Contacto</a>
+                    <a href="contact.html">Contacto</a>
                 </nav>
 
                 <div class="header-actions">
@@ -98,9 +98,9 @@ if (isset($_GET['msg'])) {
 
             <ul>
                 <li><a href="../../index.html">Inicio</a></li>
-                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="about.html">Nosotros</a></li>
                 <li><a href="menu.php">Menú</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="contact.html">Contacto</a></li>
             </ul>
 
             <a href="menu.php" class="btn btn-primary">Ver menú</a>
@@ -135,7 +135,7 @@ if (isset($_GET['msg'])) {
                             } ?>
                         </ul>
 
-                        <a href="contacto.html?producto=<?= urlencode($product->getName()) ?>" class="btn btn-primary" style="margin-top: 32px;">
+                        <a href="contact.html?producto=<?= urlencode($product->getName()) ?>" class="btn btn-primary" style="margin-top: 32px;">
                             Consultar disponibilidad
                         </a>
                     </div>
@@ -172,7 +172,7 @@ if (isset($_GET['msg'])) {
 
                                     <div class="product-card-footer">
                                         <span class="product-card-price"><?= $productCategory->getPrice() ?></span>
-                                        <a href="detalle.php?producto=<?= $productCategory->getSlug() ?>" class="btn btn-secondary">Ver detalle</a>
+                                        <a href="details.php?producto=<?= $productCategory->getSlug() ?>" class="btn btn-secondary">Ver detalle</a>
                                     </div>
                                 </div>
                             </div>
@@ -195,9 +195,9 @@ if (isset($_GET['msg'])) {
 
                     <ul>
                         <li><a href="../../index.html">Inicio</a></li>
-                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="about.html">Nosotros</a></li>
                         <li><a href="menu.php">Menú</a></li>
-                        <li><a href="contacto.html">Contacto</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
                     </ul>
                 </div>
 

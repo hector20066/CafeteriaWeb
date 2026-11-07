@@ -1,7 +1,7 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: ../../view/contacto.html');
+    header('Location: ../../view/contact.html');
     exit();
 }
 

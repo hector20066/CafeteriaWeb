@@ -25,15 +25,15 @@ try {
 
         if (empty($email) || empty($name) || empty($role) || empty($plainPassword)) {
             $message = "Por favor ingrese todos los campos";
-            header("Location: ../../view/admin/usuarios.php?msg=" . $message . "&type=warning");
+            header("Location: ../../view/admin/users.php?msg=" . $message . "&type=warning");
             exit();
         }
 
         $userService->add($name, $email, $plainPassword, Roles::from($role));
         $message = "Se ha registrado el usuario.";
-        header("Location: ../../view/admin/usuarios.php?msg=" . $message . "&type=success");
+        header("Location: ../../view/admin/users.php?msg=" . $message . "&type=success");
     }
 } catch (Throwable $e) {
     $message = "Ha ocurrido un error al registrar el usuario";
-    header("Location: ../../view/admin/usuarios.php?msg=" . $message . "&type=error");
+    header("Location: ../../view/admin/users.php?msg=" . $message . "&type=error");
 }
