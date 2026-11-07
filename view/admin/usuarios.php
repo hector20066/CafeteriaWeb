@@ -183,7 +183,7 @@ if (isset($_GET['msg'])) {
                                         <td data-label="Correo"><?= $user->getEmail() ?></td>
                                         <td data-label="Rol"><?= $user->getRole()->value ?></td>
                                         <td data-label="Acciones">
-                                            <form action="" method="post">
+                                            <form action="../../controller/admin/ControllerDeleteUser.php" method="get">
                                                 <div class="admin-table-actions">
                                                     <input type="hidden" name="user_id" value="<?= $user->getId() ?>">
                                                     <button type="submit" class="delete" onclick="return confirm('¿Estás seguro de que quieres eliminar este usuario?')">Eliminar</button>
