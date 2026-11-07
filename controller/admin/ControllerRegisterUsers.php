@@ -33,7 +33,7 @@ try {
         $message = "Se ha registrado el usuario.";
         header("Location: ../../view/admin/usuarios.php?msg=" . $message . "&type=success");
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     $message = "Ha ocurrido un error al registrar el usuario";
     header("Location: ../../view/admin/usuarios.php?msg=" . $message . "&type=error");
 }

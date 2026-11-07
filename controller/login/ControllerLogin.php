@@ -39,7 +39,7 @@ try {
             header("Location: ../../view/login/login.php?msg=" .$message  . "&type=warning");
         }
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     $message = "Ha ocurrido un error al iniciar sesión";
     header("Location: ../../view/login/login.php?msg=" . $message . "&type=error");
 }

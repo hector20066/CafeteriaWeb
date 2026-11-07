@@ -78,13 +78,12 @@ try {
         }
 
         $imagePath = 'img/products/' . $fileName;
-
         $productService->add($name, $slug, $categoryId, $price, $imagePath, $description, $briefDescription, $characteristics);
 
         $message = "Se ha registrado el producto";
         header("Location: ../../view/admin/productos.php?msg=" . $message . "&type=success");
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     $message = "Ha ocurrido un error al registrar el producto.\nError: " . $e->getMessage();
     header("Location: ../../view/admin/productos.php?msg=" . $message . "&type=error");
 }
