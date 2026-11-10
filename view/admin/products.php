@@ -83,7 +83,7 @@ if (isset($_GET['msg'])) {
                 <ul>
                     <li><a href="index.php">Inicio</a></li>
                     <li><a href="products.php">Productos</a></li>
-                    <li><a href="users.php">Usuarios</a></li>
+                    <li><a href="users.php?isEditMode=false">Usuarios</a></li>
                     <li><a href="../login/login.php">Cerrar sesión</a></li>
                 </ul>
             </nav>
