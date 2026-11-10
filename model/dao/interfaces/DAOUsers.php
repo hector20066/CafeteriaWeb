@@ -33,4 +33,11 @@ interface DAOUsers extends IListable, IRemovable, ICountable {
      */
     public function findByLogin(string $email) : ?DTOUsersLogin;
 
+    /**
+     * @param DTOUsersCreate $dto
+     * @return void
+     * @throws Exception
+     */
+    public function modify(DTOUsersCreate $dto) : void;
+
 }
