@@ -12,12 +12,23 @@ $connectionProvider = new ConnectionProviderImpl($dataBase);
 
 $bcrypt = new BCryptEncryption();
 
+$idEditMode = false;
+$userEdit = null;
+$idUserEdit = 0;
+
 $daoUsers = new DAOUsersImpl($connectionProvider);
 $usersService = new UsersServiceImpl($daoUsers, $bcrypt);
 
 $usersList = [];
 
 try {
+    if ($_GET['isEditMode']) {
+        $idEditMode = $_GET['isEditMode'];
+        $idUserEdit = $_GET['user_id'];
+
+        $userEdit = $usersService->findById($idUserEdit);
+    }
+
     $usersList = $usersService->findByAll();
 } catch (Exception $e) {
     $usersList = [];
@@ -74,7 +85,7 @@ if (isset($_GET['msg'])) {
                 <ul>
                     <li><a href="index.php">Inicio</a></li>
                     <li><a href="products.php">Productos</a></li>
-                    <li><a href="users.php">Usuarios</a></li>
+                    <li><a href="users.php?isEditMode=false">Usuarios</a></li>
                     <li><a href="../login/login.php">Cerrar sesión</a></li>
                 </ul>
             </nav>
@@ -132,12 +143,12 @@ if (isset($_GET['msg'])) {
                     <form class="admin-form" action="../../controller/admin/ControllerRegisterUsers.php" method="post">
                         <div class="input">
                             <label for="name">Nombre completo</label>
-                            <input type="text" id="name" name="name" placeholder="Ej. Hector Acevedo" required>
+                            <input type="text" id="name" name="name" placeholder="Ej. Hector Acevedo" required value="<?= $userEdit === null ? "" : $userEdit->getName() ?>">
                         </div>
 
                         <div class="input">
                             <label for="email">Correo</label>
-                            <input type="email" id="email" name="email" placeholder="correo@gmail.com" required>
+                            <input type="email" id="email" name="email" placeholder="correo@gmail.com" required value="<?= $userEdit === null ? "" : $userEdit->getEmail() ?>">
                         </div>
 
                         <div class="input">
@@ -145,19 +156,24 @@ if (isset($_GET['msg'])) {
 
                             <select id="role" name="role" required>
                                 <option value="">-- Seleccione un rol --</option>
-                                <option value="<?= Roles::ADMIN->value ?>">Administrador</option>
-                                <option value="<?= Roles::BARISTA->value ?>">Barista</option>
-                                <option value="<?= Roles::WAITER->value ?>">Mesero</option>
-                                <option value="<?= Roles::CHECKER->value ?>">Cajero</option>
+                                <option value="<?= Roles::ADMIN->value ?>" <?= $userEdit !== null && $userEdit->getRole() === Roles::ADMIN ? "selected" : ""?>>Administrador</option>
+                                <option value="<?= Roles::BARISTA->value ?>" <?= $userEdit !== null && $userEdit->getRole() === Roles::BARISTA ? "selected" : ""?>>Barista</option>
+                                <option value="<?= Roles::WAITER->value ?>" <?= $userEdit !== null && $userEdit->getRole() === Roles::WAITER ? "selected" : ""?>>Mesero</option>
+                                <option value="<?= Roles::CHECKER->value ?>" <?= $userEdit !== null && $userEdit->getRole() === Roles::CHECKER ? "selected" : ""?>>Cajero</option>
                             </select>
                         </div>
 
-                        <div class="input">
-                            <label for="password">Contraseña</label>
-                            <input type="password" id="password" name="password" placeholder="••••••••" required>
-                        </div>
+                        <?php if ($userEdit === null) { ?>
+                            <div class="input">
+                                <label for="password">Contraseña</label>
+                                <input type="password" id="password" name="password" placeholder="••••••••" required>
+                            </div>
+                        <?php } else { ?>
+                            <input type="hidden" name="is_edit_mode" value="true">
+                            <input type="hidden" name="user_id" value="<?= $userEdit->getId() ?>">
+                        <?php } ?>
 
-                        <button type="submit" class="btn btn-primary">Crear usuario</button>
+                        <button type="submit" class="btn btn-primary"><?= $userEdit === null ? "Crear" : "Editar" ?> usuario</button>
                     </form>
                 </div>
 
@@ -183,12 +199,10 @@ if (isset($_GET['msg'])) {
                                         <td data-label="Correo"><?= $user->getEmail() ?></td>
                                         <td data-label="Rol"><?= $user->getRole()->value ?></td>
                                         <td data-label="Acciones">
-                                            <form action="../../controller/admin/ControllerDeleteUser.php" method="get">
-                                                <div class="admin-table-actions">
-                                                    <input type="hidden" name="user_id" value="<?= $user->getId() ?>">
-                                                    <button type="submit" class="delete" onclick="return confirm('¿Estás seguro de que quieres eliminar este usuario?')">Eliminar</button>
-                                                </div>
-                                            </form>
+                                            <div class="admin-table-actions">
+                                                <a href="users.php?user_id=<?= rawurlencode((string) $user->getId()) ?>&isEditMode=true" class="edit">Modificar</a>
+                                                <a href="../../controller/admin/ControllerDeleteUser.php?user_id=<?= rawurlencode((string) $user->getId()) ?>" class="delete" onclick="return confirm('¿Estás seguro de que quieres eliminar este usuario?')">Eliminar</a>
+                                            </div>
                                         </td>
                                     </tr>
                                 <?php } ?>
