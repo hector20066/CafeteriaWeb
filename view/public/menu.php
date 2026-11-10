@@ -145,7 +145,7 @@ if (isset($_GET['msg'])) {
                                 <div class="product-card-image" style="background-image: url('<?= BASE_URL . htmlspecialchars($product->getImage(), ENT_QUOTES, 'UTF-8') ?>');"></div>
 
                                 <div class="product-card-body">
-                                    <h3 class="product-card-name"><?= htmlspecialchars($product->getName()) ?>/h3>
+                                    <h3 class="product-card-name"><?= htmlspecialchars($product->getName()) ?></h3>
                                     <p class="text-secondary"><?= $product->getBriefDescription() ?></p>
 
                                     <div class="product-card-footer">
