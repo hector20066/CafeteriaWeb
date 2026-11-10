@@ -157,6 +157,16 @@ class DAOUsersImpl implements DAOUsers {
     }
 
     /**
+     * @param DTOUsersCreate $dto
+     * @return void
+     * @throws Exception
+     */
+    #[\Override]
+    public function modify(DTOUsersCreate $dto) : void {
+        // TODO: Implement modify() method.
+    }
+
+    /**
      * @param int $id
      * @return void
      * @throws Exception

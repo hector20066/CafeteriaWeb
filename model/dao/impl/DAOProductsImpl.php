@@ -250,6 +250,15 @@ class DAOProductsImpl implements DAOProducts {
     }
 
     /**
+     * @param DTOProductCreate $dto
+     * @return void
+     */
+    #[\Override]
+    public function modify(DTOProductCreate $dto) : void {
+        // TODO: Implement modify() method.
+    }
+
+    /**
      * @param int $id
      * @return void
      * @throws Exception
