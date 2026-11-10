@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../../dto/DTOUsersCreate.php';
 require_once __DIR__ . '/../../dto/DTOUsersDetails.php';
 require_once __DIR__ . '/../../dto/DTOUsersLogin.php';
+require_once __DIR__ . '/../../dto/DTOUsersUpdate.php';
 require_once __DIR__ . '/IListable.php';
 require_once __DIR__ . '/IRemovable.php';
 require_once __DIR__ . '/ICountable.php';
@@ -34,10 +35,10 @@ interface DAOUsers extends IListable, IRemovable, ICountable {
     public function findByLogin(string $email) : ?DTOUsersLogin;
 
     /**
-     * @param DTOUsersCreate $dto
+     * @param DTOUsersUpdate $dto
      * @return void
      * @throws Exception
      */
-    public function modify(DTOUsersCreate $dto) : void;
+    public function modify(DTOUsersUpdate $dto) : void;
 
 }

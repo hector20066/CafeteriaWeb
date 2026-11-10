@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../../dto/DTOProductCreate.php';
 require_once __DIR__ . '/../../dto/DTOProductDetails.php';
 require_once __DIR__ . '/../../dto/DTOProductMenu.php';
+require_once __DIR__ . '/../../dto/DTOProductsUpdate.php';
 require_once __DIR__ . '/IListable.php';
 require_once __DIR__ . '/IRemovable.php';
 require_once __DIR__ . '/ICountable.php';
@@ -55,10 +56,10 @@ interface DAOProducts extends IListable, IRemovable, ICountable {
     public function findByAllMenu() : array;
 
     /**
-     * @param DTOProductCreate $dto
+     * @param DTOProductsUpdate $dto
      * @return void
      * @throws Exception
      */
-    public function modify(DTOProductCreate $dto) : void;
+    public function modify(DTOProductsUpdate $dto) : void;
 
 }

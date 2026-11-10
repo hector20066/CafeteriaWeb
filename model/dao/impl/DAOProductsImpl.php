@@ -5,6 +5,7 @@ require_once __DIR__ . '/../interfaces/DAOProducts.php';
 require_once __DIR__ . '/../../dto/DTOProductCreate.php';
 require_once __DIR__ . '/../../dto/DTOProductDetails.php';
 require_once __DIR__ . '/../../dto/DTOProductMenu.php';
+require_once __DIR__ . '/../../dto/DTOProductsUpdate.php';
 require_once __DIR__ . '/../../builder/dto/DTOProductDetailsBuilder.php';
 require_once __DIR__ . '/../../builder/dto/DTOProductMenuBuilder.php';
 
@@ -250,11 +251,12 @@ class DAOProductsImpl implements DAOProducts {
     }
 
     /**
-     * @param DTOProductCreate $dto
+     * @param DTOProductsUpdate $dto
      * @return void
+     * @throws Exception
      */
     #[\Override]
-    public function modify(DTOProductCreate $dto) : void {
+    public function modify(DTOProductsUpdate $dto) : void {
         // TODO: Implement modify() method.
     }
 
