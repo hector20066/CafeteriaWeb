@@ -37,9 +37,11 @@ try {
             $type = "warning";
         }
 
-        header("Location: ../../view/admin/products.php?msg=" . $message . "&type=" . $type);
+        header("Location: ../../view/admin/products.php?" . http_build_query(['msg' => $message, 'type' => $type]));
+        exit();
     }
 } catch (Throwable $e) {
     $message = "Ha ocurrido un error al eliminar el producto.\nError: " . $e->getMessage();
-    header("Location: ../../view/admin/products.php?msg=" . $message . "&type=error");
+    header("Location: ../../view/admin/products.php?" . http_build_query(['msg' => $message, 'type' => 'error']));
+    exit();
 }

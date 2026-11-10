@@ -19,27 +19,26 @@ try {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = $_POST['email'];
         $plainPasswd = $_POST['passwd'];
-        $message = "";
 
         if (empty($email) || empty($plainPasswd)) {
             header("Location: ../../view/login/login.php");
             exit();
         }
 
-        $email = trim($email);
-        $plainPasswd = trim($plainPasswd);
-
         $accessLogin = new Login($usersService, $bcrypt);
 
-        if ($accessLogin->login($email, $plainPasswd)) {
+        if ($accessLogin->login(trim($email), trim($plainPasswd))) {
             $message = "Inicio de sesión correcto. Bienvenido";
-            header("Location: ../../view/admin/index.php?msg=" . $message . "&type=success");
+            header("Location: ../../view/admin/index.php?" . http_build_query(['msg' => $message, 'type' => 'success']));
         } else {
             $message = "No se han encontrado estas credenciales de acceso";
-            header("Location: ../../view/login/login.php?msg=" .$message  . "&type=warning");
+            header("Location: ../../view/login/login.php?" . http_build_query(['msg' => $message, 'type' => 'warning']));
         }
+
+        exit();
     }
 } catch (Throwable $e) {
     $message = "Ha ocurrido un error al iniciar sesión";
-    header("Location: ../../view/login/login.php?msg=" . $message . "&type=error");
+    header("Location: ../../view/login/login.php?" . http_build_query(['msg' => $message, 'type' => 'error']));
+    exit();
 }
