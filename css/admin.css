@@ -317,7 +317,9 @@ body {
     gap: 8px;
 }
 
+.admin-table-actions a,
 .admin-table-actions button {
+    display: inline-block;
     border: none;
     background-color: var(--background-color-alt);
     color: var(--secondary-text-color);
@@ -325,16 +327,23 @@ body {
     padding: 7px 14px;
     font-size: 13px;
     font-family: var(--text-source);
+    text-decoration: none;
     cursor: pointer;
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.admin-table-actions button:hover {
+.admin-table-actions a:hover,
+.admin-table-actions a:focus-visible,
+.admin-table-actions button:hover,
+.admin-table-actions button:focus-visible {
     background-color: var(--primary-color);
     color: var(--white-color);
 }
 
-.admin-table-actions button.delete:hover {
+.admin-table-actions a.delete:hover,
+.admin-table-actions a.delete:focus-visible,
+.admin-table-actions button.delete:hover,
+.admin-table-actions button.delete:focus-visible {
     background-color: #c0392b;
     color: var(--white-color);
 }
