@@ -34,7 +34,7 @@ try {
             throw new RuntimeException('Por favor ingrese toda la información del producto.');
         }
 
-        if ($categoryId === 0) {
+        if ((int) $categoryId === 0) {
             throw new RuntimeException('Por favor seleccione la categoría.');
         }
 
@@ -81,9 +81,11 @@ try {
         $productService->add($name, $slug, $categoryId, $price, $imagePath, $description, $briefDescription, $characteristics);
 
         $message = "Se ha registrado el producto";
-        header("Location: ../../view/admin/products.php?msg=" . $message . "&type=success");
+        header('Location: ../../view/admin/products.php?' . http_build_query(['msg' => $message, 'type' => 'success']));
+        exit();
     }
 } catch (Throwable $e) {
     $message = "Ha ocurrido un error al registrar el producto.\nError: " . $e->getMessage();
-    header("Location: ../../view/admin/products.php?msg=" . $message . "&type=error");
+    header('Location: ../../view/admin/products.php?' . http_build_query(['msg' => $message, 'type' => 'error']));
+    exit();
 }
