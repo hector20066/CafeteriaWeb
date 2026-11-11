@@ -257,7 +257,31 @@ class DAOProductsImpl implements DAOProducts {
      */
     #[\Override]
     public function modify(DTOProductsUpdate $dto) : void {
-        // TODO: Implement modify() method.
+        try {
+            $sql = "UPDATE products SET name = :name, slug = :slug, id_category = :id_category, price = :price, image = :image, description = :description, brief_description = :brief_description WHERE id = :id;";
+            $statement = $this->provider->getConnection()->prepare($sql);
+
+            $name = $dto->getName();
+            $slug = $dto->getSlug();
+            $categoryId = $dto->getCategoryId();
+            $price = $dto->getPrice();
+            $image = $dto->getImage();
+            $description = $dto->getDescription();
+            $briefDescription = $dto->getBriefDescription();
+            $id = $dto->getId();
+
+            $statement->bindParam(':name', $name);
+            $statement->bindParam(':slug', $slug);
+            $statement->bindParam(':id_category', $categoryId);
+            $statement->bindParam(':price', $price);
+            $statement->bindParam(':image', $image);
+            $statement->bindParam(':description', $description);
+            $statement->bindParam(':brief_description', $briefDescription);
+            $statement->bindParam(':id', $id);
+            $statement->execute();
+        } catch (Exception $e) {
+            throw new Exception("Ha ocurrido un error al modificar el producto con id: " . $dto->getId(), 0, $e);
+        }
     }
 
     /**

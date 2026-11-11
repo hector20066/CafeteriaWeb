@@ -164,7 +164,23 @@ class DAOUsersImpl implements DAOUsers {
      */
     #[\Override]
     public function modify(DTOUsersUpdate $dto) : void {
-        // TODO: Implement modify() method.
+        try {
+            $sql = "UPDATE users SET name = :name, email = :email, role = :role WHERE id = :id;";
+            $statement = $this->provider->getConnection()->prepare($sql);
+
+            $name = $dto->getName();
+            $email = $dto->getEmail();
+            $role = $dto->getRole();
+            $id = $dto->getId();
+
+            $statement->bindParam(':name', $name);
+            $statement->bindParam(':email', $email);
+            $statement->bindParam(':role', $role);
+            $statement->bindParam(':id', $id);
+            $statement->execute();
+        } catch (Exception $e) {
+            throw new Exception("Ha ocurrido un error al modificar el usuario con id: " . $dto->getId(), 0, $e);
+        }
     }
 
     /**
