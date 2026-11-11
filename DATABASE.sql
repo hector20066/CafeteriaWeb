@@ -33,3 +33,27 @@ CREATE TABLE users (
     passwd VARCHAR(300) NOT NULL,
     role VARCHAR(40) NOT NULL
 );
+
+CREATE VIEW vw_products AS
+SELECT
+    p.id,
+    p.name,
+    p.slug,
+    p.price,
+    p.image,
+    p.description,
+    p.brief_description,
+    c.name AS category_name,
+    GROUP_CONCAT(ch.feature SEPARATOR ', ') AS features
+FROM products p
+JOIN categories c ON c.id = p.id_category
+LEFT JOIN characteristics ch on p.id = ch.id_product
+GROUP BY
+    p.id,
+    p.name,
+    p.slug,
+    p.price,
+    p.image,
+    p.description,
+    p.brief_description,
+    c.name;
