@@ -22,25 +22,35 @@ try {
         $email = $_POST['email'];
         $role = $_POST['role'];
 
+        $message = "";
+        $type = "";
+
+        if (empty($email) || empty($name) || empty($role)) {
+            $message = "Por favor ingrese todos los campos";
+            header("Location: ../../view/admin/users.php?" . http_build_query(['msg' => $message, 'type' => 'warning']));
+            exit();
+        }
+
         if ($isEditMode) {
             $idUser = $_POST['user_id'];
+
+            $userService->modify($name, $email, Roles::from($role), $idUser);
+            $message = "Se ha modificado el usuario";
         } else {
             $plainPassword = $_POST['password'];
 
-            $message = "";
-
-            if (empty($email) || empty($name) || empty($role) || empty($plainPassword)) {
-                $message = "Por favor ingrese todos los campos";
+            if (empty($plainPassword)) {
+                $message = "Por favor ingrese la contraseña";
                 header("Location: ../../view/admin/users.php?" . http_build_query(['msg' => $message, 'type' => 'warning']));
                 exit();
             }
 
             $userService->add($name, $email, $plainPassword, Roles::from($role));
-
             $message = "Se ha registrado el usuario.";
-            header("Location: ../../view/admin/users.php?" . http_build_query(['msg' => $message, 'type' => 'success']));
-            exit();
         }
+
+        header("Location: ../../view/admin/users.php?" . http_build_query(['msg' => $message, 'type' => 'success']));
+        exit();
     }
 } catch (Throwable $e) {
     $message = "Ha ocurrido un error al registrar el usuario";

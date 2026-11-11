@@ -12,7 +12,7 @@ $connectionProvider = new ConnectionProviderImpl($dataBase);
 
 $bcrypt = new BCryptEncryption();
 
-$idEditMode = false;
+$isEditMode = $_GET['isEditMode'] ?? false;
 $userEdit = null;
 $idUserEdit = 0;
 
@@ -22,7 +22,7 @@ $usersService = new UsersServiceImpl($daoUsers, $bcrypt);
 $usersList = [];
 
 try {
-    if ($_GET['isEditMode']) {
+    if ($isEditMode) {
         $idEditMode = $_GET['isEditMode'];
         $idUserEdit = $_GET['user_id'];
 
