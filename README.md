@@ -87,7 +87,7 @@ CafeteriaWeb/
 
 ## Requisitos
 
-- PHP 8.4 o superior con la extensión `pdo_mysql` habilitada.
+- PHP 8.5 o superior con la extensión `pdo_mysql` habilitada.
 - MySQL 5.7+ o MariaDB 10.3+.
 - Servidor web (Apache o Nginx) o el servidor integrado de PHP.
 - Compatible con entornos locales como XAMPP, Laragon o WAMP.
