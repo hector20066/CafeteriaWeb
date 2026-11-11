@@ -23,7 +23,6 @@ $usersList = [];
 
 try {
     if ($isEditMode) {
-        $idEditMode = $_GET['isEditMode'];
         $idUserEdit = $_GET['user_id'];
 
         $userEdit = $usersService->findById($idUserEdit);
