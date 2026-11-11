@@ -161,6 +161,16 @@ class ProductsServiceImpl implements ProductsService {
     }
 
     /**
+     * @param int $id
+     * @return DTOProductsUpdate | null
+     * @throws Exception
+     */
+    #[\Override]
+    public function findByProductUpdate(int $id) : ?DTOProductsUpdate {
+        return $this->daoProducts->findByProductUpdate($id);
+    }
+
+    /**
      * @param string $name
      * @param string $slug
      * @param int $categoryId
