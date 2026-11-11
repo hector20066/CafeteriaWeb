@@ -56,6 +56,13 @@ interface DAOProducts extends IListable, IRemovable, ICountable {
     public function findByAllMenu() : array;
 
     /**
+     * @param int $id
+     * @return DTOProductsUpdate | null
+     * @throws Exception
+     */
+    public function findByProductUpdate(int $id) : ?DTOProductsUpdate;
+
+    /**
      * @param DTOProductsUpdate $dto
      * @return void
      * @throws Exception

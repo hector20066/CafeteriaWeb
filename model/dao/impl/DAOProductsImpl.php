@@ -251,6 +251,39 @@ class DAOProductsImpl implements DAOProducts {
     }
 
     /**
+     * @param int $id
+     * @return DTOProductsUpdate | null
+     * @throws Exception
+     */
+    #[\Override]
+    public function findByProductUpdate(int $id) : ?DTOProductsUpdate {
+        try {
+            $dto = null;
+            $sql = "SELECT p.id, p.name, p.slug, c.id AS category_id, p.price, p.image, p.description, p.brief_description FROM products p LEFT JOIN categories c ON c.id = p.id_category WHERE p.id = :id;";
+            $statement = $this->provider->getConnection()->prepare($sql);
+            $statement->bindParam(':id', $id);
+            $statement->execute();
+
+            if ($result = $statement->fetch()) {
+                $dto = new DTOProductUpdateBuilder()
+                    ->id((int) $result['id'])
+                    ->name((string) $result['name'])
+                    ->slug((string) $result['slug'])
+                    ->categoryId((int) $result['category_id'])
+                    ->price((string) $result['price'])
+                    ->image((string) $result['image'])
+                    ->description((string) $result['description'])
+                    ->briefDescription((string) $result['brief_description'])
+                    ->build();
+            }
+
+            return $dto;
+        } catch (Exception $e) {
+            throw new Exception("Ha ocurrido un error al buscar el producto con id: " . $id, 0, $e);
+        }
+    }
+
+    /**
      * @param DTOProductsUpdate $dto
      * @return void
      * @throws Exception
