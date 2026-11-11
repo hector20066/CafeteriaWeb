@@ -60,6 +60,21 @@ interface ProductsService {
     public function findByAllMenu() : array;
 
     /**
+     * @param string $name
+     * @param string $slug
+     * @param int $categoryId
+     * @param string $price
+     * @param string $image
+     * @param string $description
+     * @param string $briefDescription
+     * @param int $id
+     * @return void
+     * @throws Exception
+     */
+    public function modify(string $name, string $slug, int $categoryId, string $price, string $image, string $description,
+                           string $briefDescription, int $id) : void;
+
+    /**
      * @param int $id
      * @return void
      * @throws Exception

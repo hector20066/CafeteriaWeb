@@ -44,6 +44,16 @@ interface UsersService {
     public function findByLogin(string $email) : ?DTOUsersLogin;
 
     /**
+     * @param string $name
+     * @param string $email
+     * @param Roles $role
+     * @param int $id
+     * @return void
+     * @throws Exception
+     */
+    public function modify(string $name, string $email, Roles $role, int $id) : void;
+
+    /**
      * @param int $id
      * @return void
      * @throws Exception
