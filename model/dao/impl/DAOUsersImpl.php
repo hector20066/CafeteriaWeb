@@ -170,7 +170,7 @@ class DAOUsersImpl implements DAOUsers {
 
             $name = $dto->getName();
             $email = $dto->getEmail();
-            $role = $dto->getRole();
+            $role = $dto->getRole()->value;
             $id = $dto->getId();
 
             $statement->bindParam(':name', $name);
