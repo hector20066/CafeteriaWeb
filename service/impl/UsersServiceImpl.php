@@ -5,6 +5,7 @@ require_once __DIR__ . '/../../model/dao/interfaces/DAOUsers.php';
 require_once __DIR__ . '/../../model/dto/DTOUsersDetails.php';
 require_once __DIR__ . '/../../model/dto/DTOUsersLogin.php';
 require_once __DIR__ . '/../../model/dto/DTOUsersCreate.php';
+require_once __DIR__ . '/../../model/dto/DTOUsersUpdate.php';
 require_once __DIR__ . '/../../model/enums/Roles.php';
 require_once __DIR__ . '/../../security/BCryptEncryption.php';
 
@@ -96,10 +97,17 @@ class UsersServiceImpl implements UsersService {
      * @param Roles $role
      * @param int $id
      * @return void
+     * @throws Exception
      */
     #[\Override]
     public function modify(string $name, string $email, Roles $role, int $id) : void {
-        
+        $dto = new DTOUsersUpdate();
+        $dto->setName($name);
+        $dto->setEmail($email);
+        $dto->setRole($role);
+        $dto->setId($id);
+
+        $this->daoUsers->modify($dto);
     }
 
     /**

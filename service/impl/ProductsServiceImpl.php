@@ -7,6 +7,7 @@ require_once __DIR__ . '/../../model/dao/interfaces/DAOProducts.php';
 require_once __DIR__ . '/../../model/dto/DTOProductDetails.php';
 require_once __DIR__ . '/../../model/dto/DTOProductMenu.php';
 require_once __DIR__ . '/../../model/builder/dto/DTOProductCreateBuilder.php';
+require_once __DIR__ . '/../../model/builder/dto/DTOProductUpdateBuilder.php';
 
 class ProductsServiceImpl implements ProductsService {
 
@@ -174,7 +175,18 @@ class ProductsServiceImpl implements ProductsService {
     #[\Override]
     public function modify(string $name, string $slug, int $categoryId, string $price, string $image, string $description,
                            string $briefDescription, int $id) : void {
-
+        $dto = new DTOProductUpdateBuilder()
+            ->name($name)
+            ->slug($slug)
+            ->categoryId($categoryId)
+            ->price($price)
+            ->image($image)
+            ->description($description)
+            ->briefDescription($briefDescription)
+            ->id($id)
+            ->build();
+        
+        $this->daoProducts->modify($dto);
     }
 
     /**
