@@ -12,19 +12,17 @@ $connectionProvider = new ConnectionProviderImpl($dataBase);
 
 $bcrypt = new BCryptEncryption();
 
-$isEditMode = $_GET['isEditMode'] ?? false;
-$userEdit = null;
-$idUserEdit = 0;
-
 $daoUsers = new DAOUsersImpl($connectionProvider);
 $usersService = new UsersServiceImpl($daoUsers, $bcrypt);
 
+$isEditMode = $_GET['isEditMode'] ?? false;
+$userEdit = null;
+$idUserEdit = 0;
 $usersList = [];
 
 try {
     if ($isEditMode) {
         $idUserEdit = $_GET['user_id'];
-
         $userEdit = $usersService->findById($idUserEdit);
     }
 
@@ -199,7 +197,7 @@ if (isset($_GET['msg'])) {
                                         <td data-label="Rol"><?= $user->getRole()->value ?></td>
                                         <td data-label="Acciones">
                                             <div class="admin-table-actions">
-                                                <a href="users.php?user_id=<?= rawurlencode((string) $user->getId()) ?>&isEditMode=true" class="edit">Modificar</a>
+                                                <a href="users.php?user_id=<?= rawurlencode((string) $user->getId()) ?>&isEditMode=true" class="edit">Editar</a>
                                                 <a href="../../controller/admin/ControllerDeleteUser.php?user_id=<?= rawurlencode((string) $user->getId()) ?>" class="delete" onclick="return confirm('¿Estás seguro de que quieres eliminar este usuario?')">Eliminar</a>
                                             </div>
                                         </td>

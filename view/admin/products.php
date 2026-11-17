@@ -21,16 +21,29 @@ $characteristicService = new CharacteristicsServiceImpl($daoCharacteristics);
 $productService = new ProductsServiceImpl($daoProducts, $characteristicService, $connectionProvider);
 $categoryService = new CategoriesServiceImpl($daoCategory);
 
+$isEditMode = $_GET['isEditMode'] ?? false;
+$productEdit = null;
+$productId = 0;
+$characteristics = [];
 $productList = [];
 $categoriesList = [];
 
 try {
+    if ($isEditMode) {
+        $productId = $_GET['product_id'];
+        $productEdit = $productService->findByProductUpdate($productId);
+        $characteristics = $characteristicService->findByProduct($productId);
+    }
+
     $productList = $productService->findByAll();
     $categoriesList = $categoryService->findByAll();
 } catch (Exception $e) {
     $productList = [];
     $categoriesList = [];
 }
+
+$characteristicLines = array_map(fn($characteristic) => $characteristic->getFeature(), $characteristics);
+$characteristicsText = implode("\n", $characteristicLines);
 
 $message = "";
 
@@ -139,14 +152,19 @@ if (isset($_GET['msg'])) {
                     <h2>Agregar nuevo producto</h2>
 
                     <form class="admin-form" action="../../controller/admin/ControllerRegisterProducts.php" method="post" enctype="multipart/form-data">
+                        <?php if ($productEdit !== null) { ?>
+                            <input type="hidden" name="product_id" value="<?= $productEdit->getId() ?>">
+                            <input type="hidden" name="is_edit_mode" value="true">
+                        <?php } ?>
+
                         <div class="input">
                             <label for="product_name">Nombre</label>
-                            <input type="text" id="product_name" name="product_name" placeholder="Ej. Mocha helado" required>
+                            <input type="text" id="product_name" name="product_name" placeholder="Ej. Mocha helado" required value="<?= $productEdit === null ? "" : $productEdit->getName() ?>">
                         </div>
 
                         <div class="input">
                             <label for="slug">Slug (generado automáticamente)</label>
-                            <input type="text" id="slug" name="slug" readonly required>
+                            <input type="text" id="slug" name="slug" readonly required value="<?= $productEdit === null ? "" : $productEdit->getSlug() ?>">
                         </div>
 
                         <div class="input">
@@ -155,37 +173,39 @@ if (isset($_GET['msg'])) {
                             <select id="category" name="category" required>
                                 <option value="0">-- Selecciona una categoría --</option>
                                 <?php foreach ($categoriesList as $category) { ?>
-                                    <option value="<?= $category->getId() ?>"><?= $category->getName() ?></option>
+                                    <option value="<?= $category->getId() ?>" <?= $productEdit !== null && $category->getId() === $productEdit->getCategoryId() ? "selected" : "" ?>><?= $category->getName() ?></option>
                                 <?php } ?>
                             </select>
                         </div>
 
                         <div class="input">
                             <label for="price">Precio</label>
-                            <input type="number" id="price" name="price" placeholder="Ej. 9500" min="0" step="500" required>
+                            <input type="number" id="price" name="price" placeholder="Ej. 9500" min="0" step="500" required value="<?= $productEdit === null ? "" : $productEdit->getPrice() ?>">
                         </div>
 
-                        <div class="input">
-                            <label for="image">Imagen</label>
-                            <input type="file" id="image" name="image" accept="image/*" required>
-                        </div>
+                        <?php if ($productEdit === null) { ?>
+                            <div class="input">
+                                <label for="image">Imagen</label>
+                                <input type="file" id="image" name="image" accept="image/*" required>
+                            </div>
+                        <?php } ?>
 
                         <div class="input input-width">
                             <label for="brief_description">Descripción corta</label>
-                            <textarea id="brief_description" name="brief_description" maxlength="150" placeholder="Descripción corta que aparecerá en las tarjetas" required></textarea>
+                            <textarea id="brief_description" name="brief_description" maxlength="150" placeholder="Descripción corta que aparecerá en las tarjetas" required><?= $productEdit === null ? "" : $productEdit->getBriefDescription() ?></textarea>
                         </div>
 
                         <div class="input input-width">
                             <label for="description">Descripción completa</label>
-                            <textarea id="description" name="description" placeholder="Descripción completa del producto" required></textarea>
+                            <textarea id="description" name="description" placeholder="Descripción completa del producto" required><?= $productEdit === null ? "" : $productEdit->getDescription() ?></textarea>
                         </div>
 
                         <div class="input input-width">
                             <label for="characteristics">Características (Una por línea)</label>
-                            <textarea id="characteristics" name="characteristics" placeholder="Ej.&#10;Espresso doble de base&#10;Disponible en 8oz y 12oz" required></textarea>
+                            <textarea id="characteristics" name="characteristics" placeholder="Ej.&#10;Espresso doble de base&#10;Disponible en 8oz y 12oz" required><?= htmlspecialchars($characteristicsText, ENT_QUOTES, 'UTF-8') ?></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Guardar producto</button>
+                        <button type="submit" class="btn btn-primary"><?= $productEdit === null ? "Guardar" : "Modificar" ?> producto</button>
                     </form>
                 </div>
 
@@ -213,12 +233,10 @@ if (isset($_GET['msg'])) {
                                         <td data-label="Categoría"><span class="admin-badge"><?= $product->getCategory() ?></span></td>
                                         <td data-label="Precio" class="col-price"><?= $product->getPrice() ?></td>
                                         <td data-label="Acciones">
-                                            <form action="../../controller/admin/ControllerDeleteProduct.php" method="get">
-                                                <div class="admin-table-actions">
-                                                    <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
-                                                    <button type="submit" class="delete" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">Eliminar</button>
-                                                </div>
-                                            </form>
+                                            <div class="admin-table-actions">
+                                                <a href="products.php?product_id=<?= rawurlencode((string) $product->getId()) ?>&isEditMode=true" class="edit">Editar</a>
+                                                <a href="../../controller/admin/ControllerDeleteProduct.php?product_id=<?= rawurlencode((string) $product->getId()) ?>" class="delete" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">Eliminar</a>
+                                            </div>
                                         </td>
                                     </tr>
                                 <?php } ?>
