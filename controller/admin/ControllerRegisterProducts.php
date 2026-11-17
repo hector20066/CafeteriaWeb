@@ -18,6 +18,8 @@ $productService = new ProductsServiceImpl($daoProduct, $characteristicService, $
 
 try {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $isEditMode = filter_var($_POST['is_edit_mode'] ?? false, FILTER_VALIDATE_BOOLEAN);
+
         $name = $_POST['product_name'];
         $slug = $_POST['slug'];
         $categoryId = $_POST['category'];
@@ -38,49 +40,58 @@ try {
             throw new RuntimeException('Por favor seleccione la categoría.');
         }
 
-        if (!isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) {
-            throw new RuntimeException('No se pudo recibir la imagen');
-        }
+        $message = "";
 
-        $imageFile = $_FILES['image'];
-        $maxSize = 5 * 1024 * 1024;
-
-        if ($imageFile['size'] > $maxSize) {
-            throw new RuntimeException('La imagen no puede superar los 5MB');
-        }
-
-        $finfo = new finfo(FILEINFO_MIME_TYPE);
-        $mimeType = $finfo->file($imageFile['tmp_name']);
-
-        $allowedTypes = [
-            'image/jpeg' => 'jpg',
-            'image/png' => 'png',
-            'image/webp' => 'webp'
-        ];
-
-        if (!isset($allowedTypes[$mimeType])) {
-            throw new RuntimeException('Formato no permitido. Usa JPG, PNG o WEBP');
-        }
-
-        $uploadDirectory = __DIR__ . '/../../img/products/';
-
-        if (!is_dir($uploadDirectory)) {
-            if (!mkdir($uploadDirectory, 0755, true)) {
-                throw new RuntimeException('No se pudo crear la carpeta de imágenes');
+        if ($isEditMode) {
+            $productId = $_POST['product_id'];
+            $productService->modify($name, $slug, $categoryId, $price, $description, $briefDescription, $productId, $characteristics);
+            $message = "Se ha modificado el producto";
+        } else {
+            if (!isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) {
+                throw new RuntimeException('No se pudo recibir la imagen');
             }
+
+            $imageFile = $_FILES['image'];
+            $maxSize = 5 * 1024 * 1024;
+
+            if ($imageFile['size'] > $maxSize) {
+                throw new RuntimeException('La imagen no puede superar los 5MB');
+            }
+
+            $finfo = new finfo(FILEINFO_MIME_TYPE);
+            $mimeType = $finfo->file($imageFile['tmp_name']);
+
+            $allowedTypes = [
+                'image/jpeg' => 'jpg',
+                'image/png' => 'png',
+                'image/webp' => 'webp'
+            ];
+
+            if (!isset($allowedTypes[$mimeType])) {
+                throw new RuntimeException('Formato no permitido. Usa JPG, PNG o WEBP');
+            }
+
+            $uploadDirectory = __DIR__ . '/../../img/products/';
+
+            if (!is_dir($uploadDirectory)) {
+                if (!mkdir($uploadDirectory, 0755, true)) {
+                    throw new RuntimeException('No se pudo crear la carpeta de imágenes');
+                }
+            }
+
+            $fileName = bin2hex(random_bytes(16)) . '.' . $allowedTypes[$mimeType]; // Generate a random name
+            $destination = $uploadDirectory . $fileName;
+
+            if (!move_uploaded_file($imageFile['tmp_name'], $destination)) {
+                throw new RuntimeException('No se pudo guardar la imagen en el servidor');
+            }
+
+            $imagePath = 'img/products/' . $fileName;
+            $productService->add($name, $slug, $categoryId, $price, $imagePath, $description, $briefDescription, $characteristics);
+
+            $message = "Se ha registrado el producto";
         }
 
-        $fileName = bin2hex(random_bytes(16)) . '.' . $allowedTypes[$mimeType]; // Generate a random name
-        $destination = $uploadDirectory . $fileName;
-
-        if (!move_uploaded_file($imageFile['tmp_name'], $destination)) {
-            throw new RuntimeException('No se pudo guardar la imagen en el servidor');
-        }
-
-        $imagePath = 'img/products/' . $fileName;
-        $productService->add($name, $slug, $categoryId, $price, $imagePath, $description, $briefDescription, $characteristics);
-
-        $message = "Se ha registrado el producto";
         header('Location: ../../view/admin/products.php?' . http_build_query(['msg' => $message, 'type' => 'success']));
         exit();
     }
