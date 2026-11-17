@@ -97,7 +97,7 @@
                 <div>
                     <h3 style="margin-bottom: 20px;">Envíanos un mensaje</h3>
 
-                    <form class="form" action="../../controller/public/ControllerContact.php" method="POST">
+                    <form class="form" action="../../controller/public/ControllerContact.php" method="POST" target="_blank">
                         <div class="input">
                             <label for="name">Nombre completo</label>
                             <input type="text" id="name" name="name" required>
@@ -192,7 +192,7 @@
             const mensaje = document.getElementById('message');
 
             if (producto) {
-                mensaje.value = `Buenos días, me gustaría ordenar un ${producto}. ¿Me podrían confirmar su disponibilidad?`;
+                mensaje.value = ` Me gustaría ordenar un ${producto}. ¿Me podrían confirmar su disponibilidad?`;
             }
         </script>
     </body>
