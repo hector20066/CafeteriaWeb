@@ -63,4 +63,15 @@ class CharacteristicsServiceImpl implements CharacteristicsService {
         return $this->daoCharacteristics->findByProduct($productId);
     }
 
+    /**
+     * @param PDO $connection
+     * @param int $productId
+     * @return void
+     * @throws Exception
+     */
+    #[\Override]
+    public function deleteByProduct(PDO $connection, int $productId) : void {
+        $this->daoCharacteristics->deleteByProduct($connection, $productId);
+    }
+
 }
