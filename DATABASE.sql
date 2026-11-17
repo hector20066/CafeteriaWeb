@@ -57,3 +57,9 @@ GROUP BY
     p.description,
     p.brief_description,
     c.name;
+
+-- Llenar la tabla de categorías
+INSERT INTO categories (name) VALUES ('Cafes Calientes');
+INSERT INTO categories (name) VALUES ('Bebidas Frias');
+INSERT INTO categories (name) VALUES ('Postres');
+INSERT INTO categories (name) VALUES ('Desayunos');
