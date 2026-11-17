@@ -72,15 +72,15 @@ interface ProductsService {
      * @param string $slug
      * @param int $categoryId
      * @param string $price
-     * @param string $image
      * @param string $description
      * @param string $briefDescription
      * @param int $id
+     * @param array $features
      * @return void
      * @throws Exception
      */
-    public function modify(string $name, string $slug, int $categoryId, string $price, string $image, string $description,
-                           string $briefDescription, int $id) : void;
+    public function modify(string $name, string $slug, int $categoryId, string $price, string $description,
+                           string $briefDescription, int $id, array $features) : void;
 
     /**
      * @param int $id

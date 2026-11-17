@@ -175,28 +175,55 @@ class ProductsServiceImpl implements ProductsService {
      * @param string $slug
      * @param int $categoryId
      * @param string $price
-     * @param string $image
      * @param string $description
      * @param string $briefDescription
      * @param int $id
+     * @param array $features
      * @return void
      * @throws Exception
      */
     #[\Override]
-    public function modify(string $name, string $slug, int $categoryId, string $price, string $image, string $description,
-                           string $briefDescription, int $id) : void {
-        $dto = new DTOProductUpdateBuilder()
-            ->name($name)
-            ->slug($slug)
-            ->categoryId($categoryId)
-            ->price($price)
-            ->image($image)
-            ->description($description)
-            ->briefDescription($briefDescription)
-            ->id($id)
-            ->build();
-        
-        $this->daoProducts->modify($dto);
+    public function modify(string $name, string $slug, int $categoryId, string $price, string $description,
+                           string $briefDescription, int $id, array $features) : void {
+        $connection = null;
+
+        try {
+            $connection = $this->provider->getConnection();
+            $connection->beginTransaction();
+
+            if ($this->daoProducts->findByIdModify($connection, $id) === null) {
+                throw new Exception("No se ha encontrado el producto con el id: " . $id);
+            }
+
+            if ($features === []) {
+                throw new Exception("Debe ingresar las características del producto");
+            }
+
+            $dto = new DTOProductUpdateBuilder()
+                ->name($name)
+                ->slug($slug)
+                ->categoryId($categoryId)
+                ->price($price)
+                ->description($description)
+                ->briefDescription($briefDescription)
+                ->id($id)
+                ->build();
+
+            $this->daoProducts->modify($connection, $dto);
+            $this->characteristicsService->deleteByProduct($connection, $id);
+
+            foreach ($features as $feature) {
+                $this->characteristicsService->add($connection, $id, $feature);
+            }
+
+            $connection->commit();
+        } catch (Exception $e) {
+            if ($connection !== null && $connection->inTransaction()) {
+                $connection->rollBack();
+            }
+
+            throw $e;
+        }
     }
 
     /**
