@@ -188,11 +188,11 @@
         <script src="../../js/script.js"></script>
         <script>
             const params = new URLSearchParams(window.location.search);
-            const producto = params.get('producto');
-            const mensaje = document.getElementById('message');
+            const product = params.get('producto');
+            const message = document.getElementById('message');
 
-            if (producto) {
-                mensaje.value = ` Me gustaría ordenar un ${producto}. ¿Me podrían confirmar su disponibilidad?`;
+            if (product) {
+                message.value = ` Me gustaría ordenar un ${product}. ¿Me podrían confirmar su disponibilidad?`;
             }
         </script>
     </body>
