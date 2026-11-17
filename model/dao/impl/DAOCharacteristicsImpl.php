@@ -115,4 +115,22 @@ class DAOCharacteristicsImpl implements DAOCharacteristics {
         return $dto;
     }
 
+    /**
+     * @param PDO $connection
+     * @param int $productId
+     * @return void
+     * @throws Exception
+     */
+    #[\Override]
+    public function deleteByProduct(PDO $connection, int $productId) : void {
+        try {
+            $sql = "DELETE FROM characteristics WHERE id_product = :id_product";
+            $statement = $connection->prepare($sql);
+            $statement->bindParam(':id_product', $productId);
+            $statement->execute();
+        } catch (Exception $e) {
+            throw new Exception("No se han podido eliminar las características del producto con id: " . $productId, 0, $e);
+        }
+    }
+
 }

@@ -23,4 +23,12 @@ interface DAOCharacteristics extends IListable {
      */
     public function findByProduct(int $productId) : array;
 
+    /**
+     * @param PDO $connection
+     * @param int $productId
+     * @return void
+     * @throws Exception
+     */
+    public function deleteByProduct(PDO $connection, int $productId) : void;
+
 }
