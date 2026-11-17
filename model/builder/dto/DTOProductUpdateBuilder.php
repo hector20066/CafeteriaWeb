@@ -9,7 +9,6 @@ class DTOProductUpdateBuilder {
     private string $slug;
     private int $categoryId;
     private string $price;
-    private string $image;
     private string $description;
     private string $briefDescription;
 
@@ -35,11 +34,6 @@ class DTOProductUpdateBuilder {
 
     public function price(string $price) : self {
         $this->price = $price;
-        return $this;
-    }
-
-    public function image(string $image) : self {
-        $this->image = $image;
         return $this;
     }
 
@@ -75,10 +69,6 @@ class DTOProductUpdateBuilder {
 
     public function getPrice() : string {
         return $this->price;
-    }
-
-    public function getImage() : string {
-        return $this->image;
     }
 
     public function getDescription() : string {

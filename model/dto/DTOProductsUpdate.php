@@ -9,7 +9,6 @@ class DTOProductsUpdate {
     private string $slug;
     private int $categoryId;
     private string $price;
-    private string $image;
     private string $description;
     private string $briefDescription;
 
@@ -19,7 +18,6 @@ class DTOProductsUpdate {
         $this->slug = $builder->getSlug();
         $this->categoryId = $builder->getCategoryId();
         $this->price = $builder->getPrice();
-        $this->image = $builder->getImage();
         $this->description = $builder->getDescription();
         $this->briefDescription = $builder->getBriefDescription();
     }
@@ -42,10 +40,6 @@ class DTOProductsUpdate {
 
     public function getPrice() : string {
         return $this->price;
-    }
-
-    public function getImage() : string {
-        return $this->image;
     }
 
     public function getDescription() : string {
