@@ -22,6 +22,14 @@ interface DAOProducts extends IListable, IRemovable, ICountable {
     public function add(PDO $connection, DTOProductCreate $dto) : int;
 
     /**
+     * @param PDO $connection
+     * @param int $id
+     * @return DTOProductDetails | null
+     * @throws Exception
+     */
+    public function findByIdModify(PDO $connection, int $id) : ?DTOProductDetails;
+
+    /**
      * @param string $name
      * @return DTOProductDetails | null
      * @throws Exception
@@ -63,10 +71,11 @@ interface DAOProducts extends IListable, IRemovable, ICountable {
     public function findByProductUpdate(int $id) : ?DTOProductsUpdate;
 
     /**
+     * @param PDO $connection
      * @param DTOProductsUpdate $dto
      * @return void
      * @throws Exception
      */
-    public function modify(DTOProductsUpdate $dto) : void;
+    public function modify(PDO $connection, DTOProductsUpdate $dto) : void;
 
 }

@@ -8,6 +8,7 @@ require_once __DIR__ . '/../../dto/DTOProductMenu.php';
 require_once __DIR__ . '/../../dto/DTOProductsUpdate.php';
 require_once __DIR__ . '/../../builder/dto/DTOProductDetailsBuilder.php';
 require_once __DIR__ . '/../../builder/dto/DTOProductMenuBuilder.php';
+require_once __DIR__ . '/../../builder/dto/DTOProductUpdateBuilder.php';
 
 class DAOProductsImpl implements DAOProducts {
 
@@ -134,20 +135,50 @@ class DAOProductsImpl implements DAOProducts {
     #[\Override]
     public function findById(int $id) : ?DTOProductDetails {
         try {
-            $dto = null;
             $sql = "SELECT p.id, p.name, p.description, p.price, c.name AS category, p.slug, p.image FROM products p LEFT JOIN categories c ON c.id = p.id_category WHERE p.id = :id;";
-            $statement = $this->provider->getConnection()->prepare($sql);
-            $statement->bindParam(':id', $id);
-            $statement->execute();
+            $connection = $this->provider->getConnection();
 
-            if ($result = $statement->fetch()) {
-                $dto = $this->getDTOProductDetails($result);
-            }
-
-            return $dto;
+            return $this->findByIdGeneric($sql, $connection, $id);
         } catch (Exception $e) {
             throw new Exception("Ha ocurrido un error al buscar el producto con id: " . $id, 0, $e);
         }
+    }
+
+    /**
+     * @param PDO $connection
+     * @param int $id
+     * @return DTOProductDetails | null
+     * @throws Exception
+     */
+    #[\Override]
+    public function findByIdModify(PDO $connection, int $id) : ?DTOProductDetails {
+        try {
+            $sql = "SELECT p.id, p.name, p.description, p.price, c.name AS category, p.slug, p.image FROM products p LEFT JOIN categories c ON c.id = p.id_category WHERE p.id = :id;";
+
+            return $this->findByIdGeneric($sql, $connection, $id);
+        } catch (Exception $e) {
+            throw new Exception("Ha ocurrido un error al buscar el producto con id: " . $id, 0, $e);
+        }
+    }
+
+    /**
+     * @param string $sql
+     * @param PDO $connection
+     * @param int $productId
+     * @return DTOProductDetails|null
+     * @throws Exception
+     */
+    private function findByIdGeneric(string $sql, PDO $connection, int $productId) : ?DTOProductDetails {
+        $dto = null;
+        $statement = $connection->prepare($sql);
+        $statement->bindParam(':id', $productId);
+        $statement->execute();
+
+        if ($result = $statement->fetch()) {
+            $dto = $this->getDTOProductDetails($result);
+        }
+
+        return $dto;
     }
 
     /**
@@ -259,7 +290,7 @@ class DAOProductsImpl implements DAOProducts {
     public function findByProductUpdate(int $id) : ?DTOProductsUpdate {
         try {
             $dto = null;
-            $sql = "SELECT p.id, p.name, p.slug, c.id AS category_id, p.price, p.image, p.description, p.brief_description FROM products p LEFT JOIN categories c ON c.id = p.id_category WHERE p.id = :id;";
+            $sql = "SELECT p.id, p.name, p.slug, c.id AS category_id, p.price, p.description, p.brief_description FROM products p LEFT JOIN categories c ON c.id = p.id_category WHERE p.id = :id;";
             $statement = $this->provider->getConnection()->prepare($sql);
             $statement->bindParam(':id', $id);
             $statement->execute();
@@ -271,7 +302,6 @@ class DAOProductsImpl implements DAOProducts {
                     ->slug((string) $result['slug'])
                     ->categoryId((int) $result['category_id'])
                     ->price((string) $result['price'])
-                    ->image((string) $result['image'])
                     ->description((string) $result['description'])
                     ->briefDescription((string) $result['brief_description'])
                     ->build();
@@ -284,21 +314,21 @@ class DAOProductsImpl implements DAOProducts {
     }
 
     /**
+     * @param PDO $connection
      * @param DTOProductsUpdate $dto
      * @return void
      * @throws Exception
      */
     #[\Override]
-    public function modify(DTOProductsUpdate $dto) : void {
+    public function modify(PDO $connection, DTOProductsUpdate $dto) : void {
         try {
-            $sql = "UPDATE products SET name = :name, slug = :slug, id_category = :id_category, price = :price, image = :image, description = :description, brief_description = :brief_description WHERE id = :id;";
-            $statement = $this->provider->getConnection()->prepare($sql);
+            $sql = "UPDATE products SET name = :name, slug = :slug, id_category = :id_category, price = :price, description = :description, brief_description = :brief_description WHERE id = :id;";
+            $statement = $connection->prepare($sql);
 
             $name = $dto->getName();
             $slug = $dto->getSlug();
             $categoryId = $dto->getCategoryId();
             $price = $dto->getPrice();
-            $image = $dto->getImage();
             $description = $dto->getDescription();
             $briefDescription = $dto->getBriefDescription();
             $id = $dto->getId();
@@ -307,7 +337,6 @@ class DAOProductsImpl implements DAOProducts {
             $statement->bindParam(':slug', $slug);
             $statement->bindParam(':id_category', $categoryId);
             $statement->bindParam(':price', $price);
-            $statement->bindParam(':image', $image);
             $statement->bindParam(':description', $description);
             $statement->bindParam(':brief_description', $briefDescription);
             $statement->bindParam(':id', $id);
