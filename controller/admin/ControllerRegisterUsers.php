@@ -16,7 +16,7 @@ $userService = new UsersServiceImpl($daoUsers, $bcrypt);
 
 try {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $isEditMode = $_POST['is_edit_mode'] ?? false;
+        $isEditMode = filter_var($_POST['is_edit_mode'] ?? false, FILTER_VALIDATE_BOOLEAN);
 
         $name = $_POST['name'];
         $email = $_POST['email'];
