@@ -15,15 +15,15 @@ $bcrypt = new BCryptEncryption();
 $daoUsers = new DAOUsersImpl($connectionProvider);
 $usersService = new UsersServiceImpl($daoUsers, $bcrypt);
 
-$isEditMode = $_GET['isEditMode'] ?? false;
+$isEditMode = filter_var($_POST['isEditMode'] ?? false, FILTER_VALIDATE_BOOLEAN);;
 $userEdit = null;
-$idUserEdit = 0;
+$isUserEdit = 0;
 $usersList = [];
 
 try {
     if ($isEditMode) {
-        $idUserEdit = $_GET['user_id'];
-        $userEdit = $usersService->findById($idUserEdit);
+        $isUserEdit = $_GET['user_id'];
+        $userEdit = $usersService->findById($isUserEdit);
     }
 
     $usersList = $usersService->findByAll();
