@@ -12,9 +12,6 @@ class DTOProductDetailsBuilder {
     private string $slug;
     private string $image;
 
-    /** @var Characteristics[] */
-    private array $characteristics = [];
-
     public function id(int $id) : self {
         $this->id = $id;
         return $this;
@@ -50,11 +47,6 @@ class DTOProductDetailsBuilder {
         return $this;
     }
 
-    public function characteristics(array $characteristics) : self {
-        $this->characteristics = $characteristics;
-        return $this;
-    }
-
     public function build() : DTOProductDetails {
         return new DTOProductDetails($this);
     }
@@ -85,10 +77,6 @@ class DTOProductDetailsBuilder {
 
     public function getImage() : string {
         return $this->image;
-    }
-
-    public function getCharacteristics() : array {
-        return $this->characteristics;
     }
 
 }
