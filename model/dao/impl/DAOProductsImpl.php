@@ -86,17 +86,10 @@ class DAOProductsImpl implements DAOProducts {
     #[\Override]
     public function findBySlug(string $slug) : ?DTOProductDetails {
         try {
-            $dto = null;
             $sql = "SELECT p.id, p.name, p.description, p.price, c.name AS category, p.slug, p.image FROM products p LEFT JOIN categories c ON c.id = p.id_category WHERE p.slug = :slug;";
-            $statement = $this->provider->getConnection()->prepare($sql);
-            $statement->bindParam(':slug', $slug);
-            $statement->execute();
+            $connection = $this->provider->getConnection();
 
-            if ($result = $statement->fetch()) {
-                $dto = $this->getDTOProductDetails($result);
-            }
-
-            return $dto;
+            return $this->findBySlugGeneric($sql, $connection, $slug);
         } catch (Exception $e) {
             throw new Exception("Ha ocurrido un error al buscar el producto con slug: " . $slug, 0, $e);
         }
@@ -111,20 +104,32 @@ class DAOProductsImpl implements DAOProducts {
     #[\Override]
     public function findBySlugTransaction(PDO $connection, string $slug) : ?DTOProductDetails {
         try {
-            $dto = null;
             $sql = "SELECT p.id, p.name, p.description, p.price, c.name AS category, p.slug, p.image FROM products p LEFT JOIN categories c ON c.id = p.id_category WHERE p.slug = :slug;";
-            $statement = $connection->prepare($sql);
-            $statement->bindParam(':slug', $slug);
-            $statement->execute();
 
-            if ($result = $statement->fetch()) {
-                $dto = $this->getDTOProductDetails($result);
-            }
-
-            return $dto;
+            return $this->findBySlugGeneric($sql, $connection, $slug);
         } catch (Exception $e) {
             throw new Exception("Ha ocurrido un error al buscar el producto con slug: " . $slug, 0, $e);
         }
+    }
+
+    /**
+     * @param string $sql
+     * @param PDO $connection
+     * @param string $slug
+     * @return DTOProductDetails
+     * @throws Exception
+     */
+    private function findBySlugGeneric(string $sql, PDO $connection, string $slug) : DTOProductDetails {
+        $dto = null;
+        $statement = $connection->prepare($sql);
+        $statement->bindParam(':slug', $slug);
+        $statement->execute();
+
+        if ($result = $statement->fetch()) {
+            $dto = $this->getDTOProductDetails($result);
+        }
+
+        return $dto;
     }
 
     /**
