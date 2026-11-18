@@ -121,7 +121,7 @@ if (isset($_GET['msg'])) {
 
                                     <div class="product-card-footer">
                                         <span class="product-card-price"><?= $product->getPrice() ?></span>
-                                        <a href="details.php?producto=<?= $product->getSlug() ?>" class="btn btn-secondary">Ver detalle</a>
+                                        <a href="details.php?product=<?= $product->getSlug() ?>" class="btn btn-secondary">Ver detalle</a>
                                     </div>
                                 </div>
                             </div>
@@ -150,7 +150,7 @@ if (isset($_GET['msg'])) {
 
                                     <div class="product-card-footer">
                                         <span class="product-card-price"><?= $product->getPrice() ?></span>
-                                        <a href="details.php?producto=<?= $product->getSlug() ?>" class="btn btn-secondary">Ver detalle</a>
+                                        <a href="details.php?product=<?= $product->getSlug() ?>" class="btn btn-secondary">Ver detalle</a>
                                     </div>
                                 </div>
                             </div>
@@ -179,7 +179,7 @@ if (isset($_GET['msg'])) {
 
                                     <div class="product-card-footer">
                                         <span class="product-card-price"><?= $product->getPrice() ?></span>
-                                        <a href="details.php?producto=<?= $product->getSlug() ?>" class="btn btn-secondary">Ver detalle</a>
+                                        <a href="details.php?product=<?= $product->getSlug() ?>" class="btn btn-secondary">Ver detalle</a>
                                     </div>
                                 </div>
                             </div>
@@ -208,7 +208,7 @@ if (isset($_GET['msg'])) {
 
                                     <div class="product-card-footer">
                                         <span class="product-card-price"><?= $product->getPrice() ?></span>
-                                        <a href="details.php?producto=<?= $product->getSlug() ?>" class="btn btn-secondary">Ver detalle</a>
+                                        <a href="details.php?product=<?= $product->getSlug() ?>" class="btn btn-secondary">Ver detalle</a>
                                     </div>
                                 </div>
                             </div>

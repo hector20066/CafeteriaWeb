@@ -16,7 +16,7 @@ $daoCharacteristics = new DAOCharacteristicsImpl($connectionProvider);
 $characteristicsService = new CharacteristicsServiceImpl($daoCharacteristics);
 $productService = new ProductsServiceImpl($daoProduct, $characteristicsService, $connectionProvider);
 
-$productSlug = $_GET['producto'];
+$productSlug = $_GET['product'];
 
 $product = null;
 $productListCategory = [];
