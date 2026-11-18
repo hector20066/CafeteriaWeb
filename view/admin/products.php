@@ -180,7 +180,7 @@ if (isset($_GET['msg'])) {
 
                         <div class="input">
                             <label for="price">Precio</label>
-                            <input type="number" id="price" name="price" placeholder="Ej. 9500" min="0" step="500" required value="<?= $productEdit === null ? "" : $productEdit->getPrice() ?>">
+                            <input type="number" id="price" name="price" placeholder="Ej. 9500" min="0" step="any" required value="<?= $productEdit === null ? "" : $productEdit->getPrice() ?>">
                         </div>
 
                         <?php if ($productEdit === null) { ?>
