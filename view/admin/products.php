@@ -21,7 +21,7 @@ $characteristicService = new CharacteristicsServiceImpl($daoCharacteristics);
 $productService = new ProductsServiceImpl($daoProducts, $characteristicService, $connectionProvider);
 $categoryService = new CategoriesServiceImpl($daoCategory);
 
-$isEditMode = $_GET['isEditMode'] ?? false;
+$isEditMode = filter_var($_GET['isEditMode'] ?? false, FILTER_VALIDATE_BOOLEAN);
 $productEdit = null;
 $productId = 0;
 $characteristics = [];
