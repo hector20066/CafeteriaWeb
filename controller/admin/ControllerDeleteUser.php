@@ -13,32 +13,36 @@ $BCrypt = new BCryptEncryption();
 $daoUsers = new DAOUsersImpl($connectionProvider);
 $userService = new UsersServiceImpl($daoUsers, $BCrypt);
 
+$msg = "";
+$typeValidation = "";
+
 try {
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $user_id = $_GET['user_id'];
 
         if ($user_id === null || $user_id === 0) {
-            throw new RuntimeException("Por favor seleccione un usuario válido");
+            throw new InvalidArgumentException("Por favor seleccione un usuario válido");
         }
 
         $found = !($userService->findById($user_id) === null);
-        $message = "";
-        $type = "";
 
         if ($found) {
             $userService->delete($user_id);
             $message = "Se ha eliminado el usuario correctamente";
-            $type = "success";
-        } else {
-            $message = "No se ha encontrado el usuario con el id: " . $user_id;
-            $type = "warning";
-        }
 
-        header("Location: ../../view/admin/users.php?" . http_build_query(['msg' => $message, 'type' => $type]));
-        exit();
+            header("Location: ../../view/admin/users.php?" . http_build_query(['msg' => $message, 'type' => "success"]));
+            exit();
+        } else {
+            throw new InvalidArgumentException("No se ha encontrado el usuario con el id: " . $user_id);
+        }
     }
+} catch (InvalidArgumentException $e) {
+    $msg = $e->getMessage();
+    $typeValidation = "warning";
 } catch (Throwable $e) {
-    $message = "Ha ocurrido un error al eliminar el usuario.\nError: " . $e->getMessage();
-    header("Location: ../../view/admin/users.php?" . http_build_query(['msg' => $message, 'type' => 'error']));
-    exit();
+    $msg = "Ha ocurrido un error al eliminar el usuario.\nError: " . $e->getMessage();
+    $typeValidation = "error";
 }
+
+header("Location: ../../view/admin/users.php?" . http_build_query(['msg' => $msg, 'type' => $typeValidation]));
+exit();

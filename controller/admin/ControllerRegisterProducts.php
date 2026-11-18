@@ -16,6 +16,9 @@ $daoCharacteristics = new DAOCharacteristicsImpl($connectionProvider);
 $characteristicService = new CharacteristicsServiceImpl($daoCharacteristics);
 $productService = new ProductsServiceImpl($daoProduct, $characteristicService, $connectionProvider);
 
+$msg = "";
+$typeValidation = "";
+
 try {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $isEditMode = filter_var($_POST['is_edit_mode'] ?? false, FILTER_VALIDATE_BOOLEAN);
@@ -33,11 +36,11 @@ try {
         $characteristics = array_filter(array_map('trim', $lines));
 
         if (empty($name) || empty($slug) || empty($price) || empty($briefDescription) || empty($description)) {
-            throw new RuntimeException('Por favor ingrese toda la información del producto.');
+            throw new InvalidArgumentException('Por favor ingrese toda la información del producto.');
         }
 
         if ((int) $categoryId === 0) {
-            throw new RuntimeException('Por favor seleccione la categoría.');
+            throw new InvalidArgumentException('Por favor seleccione la categoría.');
         }
 
         $message = "";
@@ -48,14 +51,14 @@ try {
             $message = "Se ha modificado el producto";
         } else {
             if (!isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) {
-                throw new RuntimeException('No se pudo recibir la imagen');
+                throw new InvalidArgumentException('No se pudo recibir la imagen');
             }
 
             $imageFile = $_FILES['image'];
             $maxSize = 5 * 1024 * 1024;
 
             if ($imageFile['size'] > $maxSize) {
-                throw new RuntimeException('La imagen no puede superar los 5MB');
+                throw new InvalidArgumentException('La imagen no puede superar los 5MB');
             }
 
             $finfo = new finfo(FILEINFO_MIME_TYPE);
@@ -68,7 +71,7 @@ try {
             ];
 
             if (!isset($allowedTypes[$mimeType])) {
-                throw new RuntimeException('Formato no permitido. Usa JPG, PNG o WEBP');
+                throw new InvalidArgumentException('Formato no permitido. Usa JPG, PNG o WEBP');
             }
 
             $uploadDirectory = __DIR__ . '/../../img/products/';
@@ -87,16 +90,21 @@ try {
             }
 
             $imagePath = 'img/products/' . $fileName;
-            $productService->add($name, $slug, $categoryId, $price, $imagePath, $description, $briefDescription, $characteristics);
 
+            $productService->add($name, $slug, $categoryId, $price, $imagePath, $description, $briefDescription, $characteristics);
             $message = "Se ha registrado el producto";
         }
 
         header('Location: ../../view/admin/products.php?' . http_build_query(['msg' => $message, 'type' => 'success']));
         exit();
     }
+} catch (InvalidArgumentException $e) {
+    $msg = $e->getMessage();
+    $typeValidation = "warning";
 } catch (Throwable $e) {
-    $message = "Ha ocurrido un error al registrar el producto.\nError: " . $e->getMessage();
-    header('Location: ../../view/admin/products.php?' . http_build_query(['msg' => $message, 'type' => 'error']));
-    exit();
+    $msg = "Ha ocurrido un error al registrar el producto.\nError: " . $e->getMessage();
+    $typeValidation = "error";
 }
+
+header('Location: ../../view/admin/products.php?' . http_build_query(['msg' => $msg, 'type' => $typeValidation]));
+exit();

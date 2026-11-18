@@ -14,34 +14,38 @@ $daoProducts = new DAOProductsImpl($connectionProvider);
 $daoCharacteristics = new DAOCharacteristicsImpl($connectionProvider);
 
 $characteristicsService = new CharacteristicsServiceImpl($daoCharacteristics);
-$productService = new ProductsServiceImpl($daoProducts, $characteristicsService ,$connectionProvider);
+$productService = new ProductsServiceImpl($daoProducts, $characteristicsService, $connectionProvider);
+
+$msg = "";
+$typeValidation = "";
 
 try {
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $productId = $_GET['product_id'];
 
         if ($productId === null || $productId === 0) {
-            throw new RuntimeException('Por favor seleccione un producto válido.');
+            throw new InvalidArgumentException('Por favor seleccione un producto válido.');
         }
 
         $found = !($productService->findById($productId) === null);
-        $message = "";
-        $type = "";
 
         if ($found) {
             $productService->delete($productId);
             $message = "Se ha eliminado el producto correctamente";
-            $type = "success";
-        } else {
-            $message = "No se ha encontrado este producto. Verifique la información";
-            $type = "warning";
-        }
 
-        header("Location: ../../view/admin/products.php?" . http_build_query(['msg' => $message, 'type' => $type]));
-        exit();
+            header("Location: ../../view/admin/products.php?" . http_build_query(['msg' => $message, 'type' => "success"]));
+            exit();
+        } else {
+            throw new InvalidArgumentException("No se ha encontrado este producto. Verifique la información");
+        }
     }
+} catch (InvalidArgumentException $e) {
+    $msg = $e->getMessage();
+    $typeValidation = "warning";
 } catch (Throwable $e) {
-    $message = "Ha ocurrido un error al eliminar el producto.\nError: " . $e->getMessage();
-    header("Location: ../../view/admin/products.php?" . http_build_query(['msg' => $message, 'type' => 'error']));
-    exit();
+    $msg = "Ha ocurrido un error al eliminar el producto.\nError: " . $e->getMessage();
+    $typeValidation = "error";
 }
+
+header("Location: ../../view/admin/products.php?" . http_build_query(['msg' => $msg, 'type' => $typeValidation]));
+exit();

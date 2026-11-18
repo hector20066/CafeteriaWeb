@@ -14,6 +14,9 @@ $bcrypt = new BCryptEncryption();
 $daoUsers = new DAOUsersImpl($connectionProvider);
 $userService = new UsersServiceImpl($daoUsers, $bcrypt);
 
+$msg = "";
+$typeValidation = "";
+
 try {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $isEditMode = filter_var($_POST['is_edit_mode'] ?? false, FILTER_VALIDATE_BOOLEAN);
@@ -26,9 +29,7 @@ try {
         $type = "";
 
         if (empty($email) || empty($name) || empty($role)) {
-            $message = "Por favor ingrese todos los campos";
-            header("Location: ../../view/admin/users.php?" . http_build_query(['msg' => $message, 'type' => 'warning']));
-            exit();
+            throw new InvalidArgumentException("Por favor ingrese todos los campos");
         }
 
         if ($isEditMode) {
@@ -40,9 +41,7 @@ try {
             $plainPassword = $_POST['password'];
 
             if (empty($plainPassword)) {
-                $message = "Por favor ingrese la contraseña";
-                header("Location: ../../view/admin/users.php?" . http_build_query(['msg' => $message, 'type' => 'warning']));
-                exit();
+                throw new InvalidArgumentException("Por favor ingrese la contraseña");
             }
 
             $userService->add($name, $email, $plainPassword, Roles::from($role));
@@ -52,8 +51,13 @@ try {
         header("Location: ../../view/admin/users.php?" . http_build_query(['msg' => $message, 'type' => 'success']));
         exit();
     }
+} catch (InvalidArgumentException $e) {
+    $msg = $e->getMessage();
+    $typeValidation = "warning";
 } catch (Throwable $e) {
-    $message = "Ha ocurrido un error al registrar el usuario";
-    header("Location: ../../view/admin/users.php?" . http_build_query(['msg' => $message, 'type' => 'error']));
-    exit();
+    $msg = "Ha ocurrido un error al registrar el usuario.\nError: " . $e->getMessage();
+    $typeValidation = "error";
 }
+
+header("Location: ../../view/admin/users.php?" . http_build_query(['msg' => $msg, 'type' => $typeValidation]));
+exit();

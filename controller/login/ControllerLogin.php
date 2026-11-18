@@ -15,14 +15,16 @@ $bcrypt = new BCryptEncryption();
 $daoUsers = new DAOUsersImpl($connectionProvider);
 $usersService = new UsersServiceImpl($daoUsers, $bcrypt);
 
+$msg = "";
+$typeValidation = "";
+
 try {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = $_POST['email'];
         $plainPasswd = $_POST['passwd'];
 
         if (empty($email) || empty($plainPasswd)) {
-            header("Location: ../../view/login/login.php");
-            exit();
+            throw new InvalidArgumentException("Por favor ingrese las credenciales de acceso.");
         }
 
         $accessLogin = new Login($usersService, $bcrypt);
@@ -30,15 +32,18 @@ try {
         if ($accessLogin->login(trim($email), trim($plainPasswd))) {
             $message = "Inicio de sesión correcto. Bienvenido";
             header("Location: ../../view/admin/index.php?" . http_build_query(['msg' => $message, 'type' => 'success']));
+            exit();
         } else {
-            $message = "No se han encontrado estas credenciales de acceso";
-            header("Location: ../../view/login/login.php?" . http_build_query(['msg' => $message, 'type' => 'warning']));
+            throw new InvalidArgumentException("No se han encontrado estas credenciales de acceso");
         }
-
-        exit();
     }
+} catch (InvalidArgumentException $e) {
+    $msg = $e->getMessage();
+    $typeValidation = "warning";
 } catch (Throwable $e) {
-    $message = "Ha ocurrido un error al iniciar sesión";
-    header("Location: ../../view/login/login.php?" . http_build_query(['msg' => $message, 'type' => 'error']));
-    exit();
+    $msg = "Ha ocurrido un error al iniciar sesión";
+    $typeValidation = "error";
 }
+
+header("Location: ../../view/login/login.php?" . http_build_query(['msg' => $msg, 'type' => $typeValidation]));
+exit();
