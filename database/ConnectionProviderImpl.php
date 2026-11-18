@@ -11,6 +11,9 @@ class ConnectionProviderImpl implements ConnectionProvider {
         $this->db = $db;
     }
 
+    /**
+     * @return PDO
+     */
     public function getConnection() : PDO {
         return $this->db->getConnection();
     }
