@@ -12,11 +12,6 @@ class DTOProductDetails {
     private string $slug;
     private string $image;
 
-    /**
-     * @var Characteristics[]
-     */
-    private array $characteristics;
-
     public function __construct(DTOProductDetailsBuilder $builder) {
         $this->id = $builder->getId();
         $this->name = $builder->getName();
@@ -25,7 +20,6 @@ class DTOProductDetails {
         $this->category = $builder->getCategory();
         $this->slug = $builder->getSlug();
         $this->image = $builder->getImage();
-        $this->characteristics = $builder->getCharacteristics();
     }
 
     public function getId() : int {
@@ -54,10 +48,6 @@ class DTOProductDetails {
 
     public function getImage() : string {
         return $this->image;
-    }
-
-    public function getCharacteristics() : array {
-        return $this->characteristics;
     }
 
 }
