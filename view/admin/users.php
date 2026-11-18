@@ -15,7 +15,7 @@ $bcrypt = new BCryptEncryption();
 $daoUsers = new DAOUsersImpl($connectionProvider);
 $usersService = new UsersServiceImpl($daoUsers, $bcrypt);
 
-$isEditMode = filter_var($_POST['isEditMode'] ?? false, FILTER_VALIDATE_BOOLEAN);;
+$isEditMode = filter_var($_GET['isEditMode'] ?? false, FILTER_VALIDATE_BOOLEAN);
 $userEdit = null;
 $isUserEdit = 0;
 $usersList = [];
