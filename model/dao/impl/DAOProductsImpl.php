@@ -116,10 +116,10 @@ class DAOProductsImpl implements DAOProducts {
      * @param string $sql
      * @param PDO $connection
      * @param string $slug
-     * @return DTOProductDetails
+     * @return DTOProductDetails | null
      * @throws Exception
      */
-    private function findBySlugGeneric(string $sql, PDO $connection, string $slug) : DTOProductDetails {
+    private function findBySlugGeneric(string $sql, PDO $connection, string $slug) : ?DTOProductDetails {
         $dto = null;
         $statement = $connection->prepare($sql);
         $statement->bindParam(':slug', $slug);
@@ -170,7 +170,7 @@ class DAOProductsImpl implements DAOProducts {
      * @param string $sql
      * @param PDO $connection
      * @param int $productId
-     * @return DTOProductDetails|null
+     * @return DTOProductDetails | null
      * @throws Exception
      */
     private function findByIdGeneric(string $sql, PDO $connection, int $productId) : ?DTOProductDetails {
@@ -211,10 +211,10 @@ class DAOProductsImpl implements DAOProducts {
 
     /**
      * @param mixed $result
-     * @return DTOProductDetails
+     * @return DTOProductDetails | null
      * @throws Exception
      */
-    private function getDTOProductDetails(mixed $result) : DTOProductDetails {
+    private function getDTOProductDetails(mixed $result) : ?DTOProductDetails {
         return new DTOProductDetailsBuilder()
             ->id((int) $result['id'])
             ->name((string) $result['name'])
@@ -274,7 +274,7 @@ class DAOProductsImpl implements DAOProducts {
         }
     }
 
-    private function getDTOProductMenu(mixed $result) : DTOProductMenu {
+    private function getDTOProductMenu(mixed $result) : ?DTOProductMenu {
         return new DTOProductMenuBuilder()
             ->id((int)$result['id'])
             ->name((string)$result['name'])

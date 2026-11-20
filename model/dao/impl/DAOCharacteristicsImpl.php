@@ -106,7 +106,7 @@ class DAOCharacteristicsImpl implements DAOCharacteristics {
         }
     }
 
-    private function getDTOCharacteristics(mixed $result) : DTOCharacteristics {
+    private function getDTOCharacteristics(mixed $result) : ?DTOCharacteristics {
         $dto = new DTOCharacteristics();
         $dto->setId((int) $result['id']);
         $dto->setProductId((int) $result['id_product']);

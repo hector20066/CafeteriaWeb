@@ -79,7 +79,7 @@ class DAOCategoriesImpl implements DAOCategories {
         }
     }
 
-    private function getDTOCategory(mixed $result) : DTOCategory {
+    private function getDTOCategory(mixed $result) : ?DTOCategory {
         $dto = new DTOCategory();
         $dto->setId((int) $result['id']);
         $dto->setName((string) $result['name']);

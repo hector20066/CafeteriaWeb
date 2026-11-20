@@ -115,10 +115,10 @@ class DAOUsersImpl implements DAOUsers {
 
     /**
      * @param mixed $result
-     * @return DTOUsersDetails
+     * @return DTOUsersDetails | null
      * @throws Exception
      */
-    private function getDTOUserDetails(mixed $result) : DTOUsersDetails {
+    private function getDTOUserDetails(mixed $result) : ?DTOUsersDetails {
         $dto = new DTOUsersDetails();
         $dto->setId((int) $result['id']);
         $dto->setName((string) $result['name']);
