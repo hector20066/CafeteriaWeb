@@ -12,7 +12,7 @@ Aplicación web para una cafetería de especialidad que incluye un **menú públ
 - [Requisitos](#requisitos)
 - [Instalación](#instalación)
 - [Variables de entorno](#variables-de-entorno)
-- [Base de datos](#base-de-datos)
+- [Base de datos](#base-de-datos)[impl](service/impl)
 - [Creación del primer usuario administrador](#creación-del-primer-usuario-administrador)
 - [Ejecución](#ejecución)
 - [Rutas principales](#rutas-principales)
@@ -56,7 +56,7 @@ Aplicación web para una cafetería de especialidad que incluye un **menú públ
 
 ```
 CafeteriaWeb/
-├── index.html                  * Página de inicio
+├── index.php                   * Página de inicio
 ├── DATABASE.sql                * Script de creación de la base de datos
 ├── config/
 │   └── env.php                 * Carga de variables desde .env
@@ -185,7 +185,16 @@ VALUES ('Administrador', 'admin@granoyalma.com', '<HASH_GENERADO>', 'Administrad
 php -S localhost:8000
 ```
 
-La aplicación estará disponible en `http://localhost:8000`.
+La aplicación estará disponible en `http://localhost:8000` si ejecutas el servidor dentro de la carpeta del proyecto.
+
+Para ejecutar desde una carpeta que contiene a `CafeteriaWeb`:
+
+```bash
+cd ruta/que-contiene-a-CafeteriaWeb
+php -S localhost:8000
+```
+
+Accede a `http://localhost:8000/CafeteriaWeb/`. Las rutas relativas y `BASE_URL` se calculan según la ubicación del proyecto, por lo que no es necesario cambiar una ruta manual al moverlo a un dominio o subdirectorio.
 
 **XAMPP, Laragon o WAMP:** copiar el proyecto en el directorio `htdocs` (o `www`) y acceder a `http://localhost/CafeteriaWeb/`.
 
@@ -195,11 +204,11 @@ La aplicación estará disponible en `http://localhost:8000`.
 
 | Ruta | Descripción |
 |------|-------------|
-| `/index.html` | Inicio |
-| `/view/public/about.html` | Nosotros |
+| `/index.php` | Inicio |
+| `/view/public/about.php` | Nosotros |
 | `/view/public/menu.php` | Menú de productos |
 | `/view/public/details.php` | Detalle de un producto |
-| `/view/public/contact.html` | Contacto |
+| `/view/public/contact.php` | Contacto |
 | `/view/login/login.php` | Inicio de sesión |
 | `/view/admin/index.php` | Panel de administración |
 | `/view/admin/products.php` | Gestión de productos |
