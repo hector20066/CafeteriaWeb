@@ -1,3 +1,6 @@
+<?php
+require_once __DIR__ . '/config/Paths.php';
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -6,24 +9,24 @@
         <title>Grano & Alma - Un momento de calma en cada taza</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-        <link rel="icon" href="img/favicon.svg">
-        <link href="css/style.css" rel="stylesheet">
+        <link rel="icon" href="<?= url('img/favicon.svg') ?>">
+        <link href="<?= url('css/style.css') ?>" rel="stylesheet">
     </head>
     <body>
         <header class="site-header">
             <div class="container">
-                <a href="index.html" class="logo"><img src="img/favicon.svg" alt="grano&alma-icon" class="logo_icon" width="30" height="30">Grano & Alma</a>
+                <a href="<?= url('index.php') ?>" class="logo"><img src="<?= url('img/favicon.svg') ?>" alt="grano&alma-icon" class="logo_icon" width="30" height="30">Grano & Alma</a>
 
                 <nav class="principal-nav">
-                    <a href="index.html" class="active">Inicio</a>
-                    <a href="view/public/about.html">Nosotros</a>
-                    <a href="view/public/menu.php">Menú</a>
-                    <a href="view/public/contact.html">Contacto</a>
+                    <a href="<?= url('index.php') ?>" class="active">Inicio</a>
+                    <a href="<?= url('view/public/about.php') ?>">Nosotros</a>
+                    <a href="<?= url('view/public/menu.php') ?>">Menú</a>
+                    <a href="<?= url('view/public/contact.php') ?>">Contacto</a>
                 </nav>
 
                 <div class="header-actions">
-                    <a href="view/login/login.php" class="btn btn-secondary" style="padding: 10px 20px; font-size: 14px;">Iniciar sesión</a>
-                    <a href="view/public/menu.php" class="btn btn-primary">Ver menú</a>
+                    <a href="<?= url('view/login/login.php') ?>" class="btn btn-secondary" style="padding: 10px 20px; font-size: 14px;">Iniciar sesión</a>
+                    <a href="<?= url('view/public/menu.php') ?>" class="btn btn-primary">Ver menú</a>
 
                     <button class="btn-mobile-menu" id="btnOpenMenu" aria-label="Abrir menú">
                         <span></span><span></span><span></span>
@@ -35,19 +38,19 @@
         <!-- Menu móvil -->
         <nav class="nav-mobile" id="navMobile">
             <div class="nav-mobile-top">
-                <span class="logo"><img src="img/favicon.svg" alt="grano&alma-icon" class="logo_icon" width="30" height="30">Grano & Alma</span>
+                <span class="logo"><img src="<?= url('img/favicon.svg') ?>" alt="grano&alma-icon" class="logo_icon" width="30" height="30">Grano & Alma</span>
                 <button class="nav-mobile-close" id="btnCloseMenu" aria-label="Cerrar menú">&times;</button>
             </div>
 
             <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="view/public/about.html">Nosotros</a></li>
-                <li><a href="view/public/menu.php">Menú</a></li>
-                <li><a href="view/public/contact.html">Contacto</a></li>
+                <li><a href="<?= url('index.php') ?>">Inicio</a></li>
+                <li><a href="<?= url('view/public/about.php') ?>">Nosotros</a></li>
+                <li><a href="<?= url('view/public/menu.php') ?>">Menú</a></li>
+                <li><a href="<?= url('view/public/contact.php') ?>">Contacto</a></li>
             </ul>
 
-            <a href="view/public/menu.php" class="btn btn-primary">Ver menú</a>
-            <a href="view/login/login.php" class="btn btn-secondary" style="margin-top: 10px; text-align: center;">Iniciar sesión</a>
+            <a href="<?= url('view/public/menu.php') ?>" class="btn btn-primary">Ver menú</a>
+            <a href="<?= url('view/login/login.php') ?>" class="btn btn-secondary" style="margin-top: 10px; text-align: center;">Iniciar sesión</a>
         </nav>
 
         <!-- Hero -->
@@ -57,14 +60,14 @@
                     <span class="eyebrow">CAFÉ DE ESPECIALIDAD</span>
                     <h1>Un momento de calma<br>en cada taza.</h1>
                     <p class="text-secondary" style="margin: 18px 0 28px 0; font-size: 17px; max-width: 440px;">En Grano & Alma preparamos cada bebida con calma, usando granos seleccionados y técnicas de barista, en un espacio pensado para pausar el día.</p>
-                    <a href="view/public/menu.php" class="btn btn-primary">Ver menú</a>
-                    <a href="view/public/about.html" class="btn btn-secondary" style="margin-left: 12px;">Conócenos</a>
+                    <a href="<?= url('view/public/menu.php') ?>" class="btn btn-primary">Ver menú</a>
+                    <a href="<?= url('view/public/about.php') ?>" class="btn btn-secondary" style="margin-left: 12px;">Conócenos</a>
                 </div>
 
                 <div class="hero-visual">
                     <div class="hero-visual_shape"></div>
-                    <div class="hero-visual_main" style="background-image:url('img/coffe.jpg');"></div>
-                    <div class="hero-visual_secondary" style="background-image: url('img/coffeebeans.jpg');"></div>
+                    <div class="hero-visual_main" style="background-image:url('<?= url('img/coffe.jpg') ?>');"></div>
+                    <div class="hero-visual_secondary" style="background-image: url('<?= url('img/coffeebeans.jpg') ?>');"></div>
                 </div>
             </div> 
         </section>
@@ -72,7 +75,7 @@
         <!-- Presentation -->
         <section class="section section-alt">
             <div class="container grid-2">
-                <div class="cover-image" style="background-image: url('img/coffeeShop.jpg'); min-height: 280px;"></div>
+                <div class="cover-image" style="background-image: url('<?= url('img/coffeeShop.jpg') ?>'); min-height: 280px;"></div>
                 <div>
                     <span class="eyebrow">NUESTRO ESPACIO</span>
                     <h2>Un rincón tranquilo en medio de la ciudad</h2>
@@ -91,40 +94,40 @@
 
                 <div class="products-grid grid-3">
                     <div class="product-card">
-                        <div class="product-card-image" style="background-image: url('img/destacados-latte.jpg')"></div>
+                        <div class="product-card-image" style="background-image: url('<?= url('img/destacados-latte.jpg') ?>')"></div>
                         <div class="product-card-body">
                             <h3 class="product-card-name">Latte</h3>
                             <p class="text-secondary">Espresso suave con leche vaporizada y arte latte.</p>
 
                             <div class="product-card-footer">
                                 <span class="product-card-price">$ 9.500</span>
-                                <a href="" class="btn btn-secondary">Ver detalle</a>
+                                <a href="<?= url('view/public/menu.php#coffees') ?>" class="btn btn-secondary">Ver detalle</a>
                             </div>
                         </div>
                     </div>
 
                     <div class="product-card">
-                        <div class="product-card-image" style="background-image: url('img/destacados-colbrew.jpg');"></div>
+                        <div class="product-card-image" style="background-image: url('<?= url('img/destacados-colbrew.jpg') ?>');"></div>
                         <div class="product-card-body">
                             <h3 class="product-card-name">Cold Brew</h3>
-                            <p class="text-secondary">Café de extraccion fría, suave y refrescante.</p>
+                            <p class="text-secondary">Café de extracción fría, suave y refrescante.</p>
 
                             <div class="product-card-footer">
                                 <span class="product-card-price">$ 10.500</span>
-                                <a href="" class="btn btn-secondary">Ver detalle</a>
+                                <a href="<?= url('view/public/menu.php#drinks') ?>" class="btn btn-secondary">Ver detalle</a>
                             </div>
                         </div>
                     </div>
 
                     <div class="product-card">
-                        <div class="product-card-image" style="background-image: url(img/destacados-cheesecake.jpg);"></div>
+                        <div class="product-card-image" style="background-image: url('<?= url('img/destacados-cheesecake.jpg') ?>');"></div>
                         <div class="product-card-body">
                             <h3 class="product-card-name">Cheesecake</h3>
                             <p class="text-secondary">Cremoso, con base de galleta y toque de limón.</p>
 
                             <div class="product-card-footer">
                                 <span class="product-card-price">$ 11.000</span>
-                                <a href="" class="btn btn-secondary">Ver detalle</a>
+                                <a href="<?= url('view/public/menu.php#desserts') ?>" class="btn btn-secondary">Ver detalle</a>
                             </div>
                         </div>
                     </div>
@@ -176,7 +179,7 @@
 
         <!-- Final CTA -->
         <section style="position: relative; min-height: 380px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-            <div class="cover-image" style="position: absolute; inset: 0; min-height: 380px; border-radius: 0; background-image: url('img/visual-section.jpg'); background-attachment: fixed;"></div>
+            <div class="cover-image" style="position: absolute; inset: 0; min-height: 380px; border-radius: 0; background-image: url('<?= url('img/visual-section.jpg') ?>'); background-attachment: fixed;"></div>
             <div style="position:absolute; inset:0; background-color:rgba(46,32,25,0.45);"></div>
             <div class="container" style="position: relative; text-align: center;">
                 <span class="eyebrow" style="color: #f0e4d3;">NUESTRO RITUAL DIARIO</span>
@@ -188,7 +191,7 @@
             <div class="container">
                 <h2 style="color: #fff;">¿Listo para tu próxima taza?</h2>
                 <p style="color: #ead9c4; margin: 14px 0 26px 0;">Te esperamos todos los días con el café listo un lugar tranquilo para ti.</p>
-                <a href="view/public/contact.html" class="btn" style="background-color: #fff; color: var(--primary-color);">Visítanos</a>
+                <a href="<?= url('view/public/contact.php') ?>" class="btn" style="background-color: #fff; color: var(--primary-color);">Visítanos</a>
             </div>
         </section>
 
@@ -203,10 +206,10 @@
                     <h4>NAVEGACIÓN</h4>
 
                     <ul>
-                        <li><a href="index.html">Inicio</a></li>
-                        <li><a href="view/public/about.html">Nosotros</a></li>
-                        <li><a href="view/public/menu.php">Menú</a></li>
-                        <li><a href="view/public/contact.html">Contacto</a></li>
+                        <li><a href="<?= url('index.php') ?>">Inicio</a></li>
+                        <li><a href="<?= url('view/public/about.php') ?>">Nosotros</a></li>
+                        <li><a href="<?= url('view/public/menu.php') ?>">Menú</a></li>
+                        <li><a href="<?= url('view/public/contact.php') ?>">Contacto</a></li>
                     </ul>
                 </div>
 
@@ -248,6 +251,6 @@
             </svg>
         </button>
 
-        <script src="js/script.js"></script>
+        <script src="<?= url('js/script.js') ?>"></script>
     </body>
 </html>
