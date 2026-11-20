@@ -1,7 +1,9 @@
 <?php
 
+require_once __DIR__ . '/../../config/Paths.php';
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: ../../view/contact.html');
+    header('Location: ' . url('view/public/contact.php'));
     exit();
 }
 

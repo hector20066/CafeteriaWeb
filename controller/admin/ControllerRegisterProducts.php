@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . '/../../config/Paths.php';
 require_once __DIR__ . '/../../database/DataBase.php';
 require_once __DIR__ . '/../../database/ConnectionProviderImpl.php';
 require_once __DIR__ . '/../../model/dao/impl/DAOProductsImpl.php';
@@ -95,7 +96,7 @@ try {
             $message = "Se ha registrado el producto";
         }
 
-        header('Location: ../../view/admin/products.php?' . http_build_query(['msg' => $message, 'type' => 'success']));
+        header('Location: ' . url('view/admin/products.php?' . http_build_query(['msg' => $message, 'type' => 'success'])));
         exit();
     }
 } catch (InvalidArgumentException $e) {
@@ -106,5 +107,5 @@ try {
     $typeValidation = "error";
 }
 
-header('Location: ../../view/admin/products.php?' . http_build_query(['msg' => $msg, 'type' => $typeValidation]));
+header('Location: ' . url('view/admin/products.php?' . http_build_query(['msg' => $msg, 'type' => $typeValidation])));
 exit();

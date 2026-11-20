@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . '/../../config/Paths.php';
 require_once __DIR__ . '/../../database/DataBase.php';
 require_once __DIR__ . '/../../database/ConnectionProviderImpl.php';
 require_once __DIR__ . '/../../security/BCryptEncryption.php';
@@ -31,7 +32,7 @@ try {
 
         if ($accessLogin->login(trim($email), trim($plainPasswd))) {
             $message = "Inicio de sesión correcto. Bienvenido";
-            header("Location: ../../view/admin/index.php?" . http_build_query(['msg' => $message, 'type' => 'success']));
+            header('Location: ' . url('view/admin/index.php?' . http_build_query(['msg' => $message, 'type' => 'success'])));
             exit();
         } else {
             throw new InvalidArgumentException("No se han encontrado estas credenciales de acceso");
@@ -45,5 +46,5 @@ try {
     $typeValidation = "error";
 }
 
-header("Location: ../../view/login/login.php?" . http_build_query(['msg' => $msg, 'type' => $typeValidation]));
+header('Location: ' . url('view/login/login.php?' . http_build_query(['msg' => $msg, 'type' => $typeValidation])));
 exit();

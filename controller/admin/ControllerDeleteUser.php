@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . '/../../config/Paths.php';
 require_once __DIR__ . '/../../database/DataBase.php';
 require_once __DIR__ . '/../../database/ConnectionProviderImpl.php';
 require_once __DIR__ . '/../../model/dao/impl/DAOUsersImpl.php';
@@ -30,7 +31,7 @@ try {
             $userService->delete($user_id);
             $message = "Se ha eliminado el usuario correctamente";
 
-            header("Location: ../../view/admin/users.php?" . http_build_query(['msg' => $message, 'type' => "success"]));
+            header('Location: ' . url('view/admin/users.php?' . http_build_query(['msg' => $message, 'type' => 'success'])));
             exit();
         } else {
             throw new InvalidArgumentException("No se ha encontrado el usuario con el id: " . $user_id);
@@ -44,5 +45,5 @@ try {
     $typeValidation = "error";
 }
 
-header("Location: ../../view/admin/users.php?" . http_build_query(['msg' => $msg, 'type' => $typeValidation]));
+header('Location: ' . url('view/admin/users.php?' . http_build_query(['msg' => $msg, 'type' => $typeValidation])));
 exit();
