@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../config/Paths.php';
     $message = "";
 
     if (isset($_GET['msg'])) {
@@ -13,9 +14,9 @@
         <title>Iniciar sesión - Panel administrativo | Grano & Alma</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-        <link rel="icon" type="image/svg+xml" href="../../img/favicon.svg">
-        <link rel="stylesheet" href="../../css/style.css">
-        <link rel="stylesheet" href="../../css/admin.css">
+        <link rel="icon" type="image/svg+xml" href="<?= url('img/favicon.svg') ?>">
+        <link rel="stylesheet" href="<?= url('css/style.css') ?>">
+        <link rel="stylesheet" href="<?= url('css/admin.css') ?>">
     </head>
     <body>
         <?php if (!empty($message)) {
@@ -32,12 +33,12 @@
         <div class="admin-login">
             <div class="admin-login-card">
                 <div class="admin-login-logo">
-                    <img src="../../img/favicon.svg" alt="icono pagina">
+                    <img src="<?= url('img/favicon.svg') ?>" alt="icono pagina">
                     <span>Grano & Alma</span>
                 </div>
                 <p class="admin-login-subtitle">Panel administrativo - acceso exclusivo para empleados</p>
 
-                <form class="form" action="../../controller/login/ControllerLogin.php" method="post">
+                <form class="form" action="<?= url('controller/login/ControllerLogin.php') ?>" method="post">
                     <div class="input">
                         <label for="email">Correo</label>
                         <input type="email" id="email" name="email" placeholder="correo@gmail.com" required>
@@ -52,7 +53,7 @@
                 </form>
 
                 <div class="admin-login-return">
-                    <a href="../../index.html">&larr; Volver al sitio</a>
+                    <a href="<?= url('index.php') ?>">&larr; Volver al sitio</a>
                 </div>
             </div>
         </div>

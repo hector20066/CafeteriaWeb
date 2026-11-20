@@ -1,3 +1,6 @@
+<?php
+require_once __DIR__ . '/../../config/Paths.php';
+?>
 <!doctype html>
 <html lang="en">
     <head>
@@ -6,23 +9,23 @@
         <title>Contacto - Grano & Alma</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-        <link rel="icon" href="../../img/favicon.svg">
-        <link rel="stylesheet" href="../../css/style.css">
+        <link rel="icon" href="<?= url('img/favicon.svg') ?>">
+        <link rel="stylesheet" href="<?= url('css/style.css') ?>">
     </head>
     <body>
         <header class="site-header">
             <div class="container">
-                <a href="../../index.html" class="logo"><img src="../../img/favicon.svg" alt="grano&alma-icon" class="logo_icon" width="30" height="30">Grano & Alma</a>
+                <a href="<?= url('index.php') ?>" class="logo"><img src="<?= url('img/favicon.svg') ?>" alt="grano&alma-icon" class="logo_icon" width="30" height="30">Grano & Alma</a>
 
                 <nav class="principal-nav">
-                    <a href="../../index.html">Inicio</a>
-                    <a href="about.html">Nosotros</a>
-                    <a href="menu.php">Menú</a>
-                    <a href="contact.html" class="active">Contacto</a>
+                    <a href="<?= url('index.php') ?>">Inicio</a>
+                    <a href="<?= url('view/public/about.php') ?>">Nosotros</a>
+                    <a href="<?= url('view/public/menu.php') ?>">Menú</a>
+                    <a href="<?= url('view/public/contact.php') ?>" class="active">Contacto</a>
                 </nav>
 
                 <div class="header-actions">
-                    <a href="menu.php" class="btn btn-primary">Ver menú</a>
+                    <a href="<?= url('view/public/menu.php') ?>" class="btn btn-primary">Ver menú</a>
 
                     <button class="btn-mobile-menu" id="btnOpenMenu" aria-label="Abrir menú">
                         <span></span><span></span><span></span>
@@ -34,18 +37,18 @@
         <!-- Mobile menu -->
         <nav class="nav-mobile" id="navMobile">
             <div class="nav-mobile-top">
-                <span class="logo"><img src="../../img/favicon.svg" alt="grano&alma-icon" class="logo_icon" width="30" height="30">Grano & Alma</span>
+                <span class="logo"><img src="<?= url('img/favicon.svg') ?>" alt="grano&alma-icon" class="logo_icon" width="30" height="30">Grano & Alma</span>
                 <button class="nav-mobile-close" id="btnCloseMenu">&times;</button>
             </div>
 
             <ul>
-                <li><a href="../../index.html">Inicio</a></li>
-                <li><a href="about.html">Nosotros</a></li>
-                <li><a href="menu.php">Menú</a></li>
-                <li><a href="contact.html">Contacto</a></li>
+                <li><a href="<?= url('index.php') ?>">Inicio</a></li>
+                <li><a href="<?= url('view/public/about.php') ?>">Nosotros</a></li>
+                <li><a href="<?= url('view/public/menu.php') ?>">Menú</a></li>
+                <li><a href="<?= url('view/public/contact.php') ?>">Contacto</a></li>
             </ul>
 
-            <a href="menu.php" class="btn btn-primary">Ver menú</a>
+            <a href="<?= url('view/public/menu.php') ?>" class="btn btn-primary">Ver menú</a>
         </nav>
 
         <!-- Hero section -->
@@ -97,7 +100,7 @@
                 <div>
                     <h3 style="margin-bottom: 20px;">Envíanos un mensaje</h3>
 
-                    <form class="form" action="../../controller/public/ControllerContact.php" method="POST" target="_blank">
+                    <form class="form" action="<?= url('controller/public/ControllerContact.php') ?>" method="POST" target="_blank">
                         <div class="input">
                             <label for="name">Nombre completo</label>
                             <input type="text" id="name" name="name" required>
@@ -124,7 +127,7 @@
         <!-- Map -->
         <section class="section" style="padding-top: 0;">
             <div class="container">
-                <div class="cover-image" style="background-image: url('../../img/mapa.png'); min-height: 320px;"></div>
+                <div class="cover-image" style="background-image: url('<?= url('img/mapa.png') ?>'); min-height: 320px;"></div>
             </div>
         </section>
 
@@ -140,10 +143,10 @@
                     <h4>NAVEGACIÓN</h4>
 
                     <ul>
-                        <li><a href="../../index.html">Inicio</a></li>
-                        <li><a href="about.html">Nosotros</a></li>
-                        <li><a href="menu.php">Menú</a></li>
-                        <li><a href="contact.html">Contacto</a></li>
+                        <li><a href="<?= url('index.php') ?>">Inicio</a></li>
+                        <li><a href="<?= url('view/public/about.php') ?>">Nosotros</a></li>
+                        <li><a href="<?= url('view/public/menu.php') ?>">Menú</a></li>
+                        <li><a href="<?= url('view/public/contact.php') ?>">Contacto</a></li>
                     </ul>
                 </div>
 
@@ -185,7 +188,7 @@
             </svg>
         </button>
 
-        <script src="../../js/script.js"></script>
+        <script src="<?= url('js/script.js') ?>"></script>
         <script>
             const params = new URLSearchParams(window.location.search);
             const product = params.get('producto');

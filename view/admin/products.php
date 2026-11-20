@@ -60,9 +60,9 @@ if (isset($_GET['msg'])) {
         <title>Productos - Panel administrativo | Grano & Alma</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-        <link rel="icon" type="image/svg+xml" href="../../img/favicon.svg">
-        <link rel="stylesheet" href="../../css/admin.css">
-        <link rel="stylesheet" href="../../css/style.css">
+        <link rel="icon" type="image/svg+xml" href="<?= url('img/favicon.svg') ?>">
+        <link rel="stylesheet" href="<?= url('css/admin.css') ?>">
+        <link rel="stylesheet" href="<?= url('css/style.css') ?>">
     </head>
     <body>
         <?php if (!empty($message)) {
@@ -79,7 +79,7 @@ if (isset($_GET['msg'])) {
         <div class="admin-layout">
             <div class="admin-topbar-mobile">
                 <span class="admin-topbar-mobile-logo">
-                    <img src="../../img/favicon.svg" alt="logo" width="26" height="26">
+                    <img src="<?= url('img/favicon.svg') ?>" alt="logo" width="26" height="26">
                     Grano & Alma
                 </span>
                 <button class="btn-mobile-menu" id="btnOpenMenuAdmin" aria-label="Abrir menú">
@@ -89,37 +89,37 @@ if (isset($_GET['msg'])) {
 
             <nav class="nav-mobile" id="navMobileAdmin">
                 <div class="nav-mobile-top">
-                    <span class="logo"><img src="../../img/favicon.svg" alt="logo" class="logo_icon" width="30" height="30">Grano & Alma</span>
+                    <span class="logo"><img src="<?= url('img/favicon.svg') ?>" alt="logo" class="logo_icon" width="30" height="30">Grano & Alma</span>
                     <button class="nav-mobile-close" id="btnCloseMenuAdmin" aria-label="Cerrar menú">&times;</button>
                 </div>
 
                 <ul>
-                    <li><a href="index.php">Inicio</a></li>
-                    <li><a href="products.php">Productos</a></li>
-                    <li><a href="users.php?isEditMode=false">Usuarios</a></li>
-                    <li><a href="../login/login.php">Cerrar sesión</a></li>
+                    <li><a href="<?= url('view/admin/index.php') ?>">Inicio</a></li>
+                    <li><a href="<?= url('view/admin/products.php') ?>">Productos</a></li>
+                    <li><a href="<?= url('view/admin/users.php') ?>?isEditMode=false">Usuarios</a></li>
+                    <li><a href="<?= url('view/login/login.php') ?>">Cerrar sesión</a></li>
                 </ul>
             </nav>
 
             <!-- Sidebar solo para desktop -->
             <aside class="admin-sidebar">
                 <div class="admin-sidebar-logo">
-                    <img src="../../img/favicon.svg" alt="logo">
+                    <img src="<?= url('img/favicon.svg') ?>" alt="logo">
                     <span>Grano & Alma</span>
                 </div>
 
                 <nav class="admin-nav">
-                    <a href="index.php">
+                    <a href="<?= url('view/admin/index.php') ?>">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
                         Inicio
                     </a>
 
-                    <a href="products.php" class="active">
+                    <a href="<?= url('view/admin/products.php') ?>" class="active">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
                         Productos
                     </a>
 
-                    <a href="users.php">
+                    <a href="<?= url('view/admin/users.php') ?>">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.5 3.6-7 8-7s8 2.5 8 7"/></svg>
                         Usuarios
                     </a>
@@ -127,7 +127,7 @@ if (isset($_GET['msg'])) {
 
                 <div class="admin-sidebar-exit">
                     <nav class="admin-nav">
-                        <a href="../login/login.php">
+                        <a href="<?= url('view/login/login.php') ?>">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
                             Cerrar sesión
                         </a>
@@ -151,7 +151,7 @@ if (isset($_GET['msg'])) {
                 <div class="admin-card">
                     <h2>Agregar nuevo producto</h2>
 
-                    <form class="admin-form" action="../../controller/admin/ControllerRegisterProducts.php" method="post" enctype="multipart/form-data">
+                    <form class="admin-form" action="<?= url('controller/admin/ControllerRegisterProducts.php') ?>" method="post" enctype="multipart/form-data">
                         <?php if ($productEdit !== null) { ?>
                             <input type="hidden" name="product_id" value="<?= $productEdit->getId() ?>">
                             <input type="hidden" name="is_edit_mode" value="true">
@@ -228,14 +228,14 @@ if (isset($_GET['msg'])) {
                             <tbody id="productsTable">
                                 <?php foreach ($productList as $product) { ?>
                                     <tr>
-                                        <td data-label="Imagen" class="col-image"><div class="admin-table-miniature" style="background-image: url('<?= BASE_URL . htmlspecialchars($product->getImage(), ENT_QUOTES, 'UTF-8') ?>');"></div></td>
+                                        <td data-label="Imagen" class="col-image"><div class="admin-table-miniature" style="background-image: url('<?= url(htmlspecialchars($product->getImage(), ENT_QUOTES, 'UTF-8')) ?>');"></div></td>
                                         <td data-label="Nombre"><?= $product->getName() ?></td>
                                         <td data-label="Categoría"><span class="admin-badge"><?= $product->getCategory() ?></span></td>
                                         <td data-label="Precio" class="col-price"><?= $product->getPrice() ?></td>
                                         <td data-label="Acciones">
                                             <div class="admin-table-actions">
-                                                <a href="products.php?product_id=<?= rawurlencode((string) $product->getId()) ?>&isEditMode=true" class="edit">Editar</a>
-                                                <a href="../../controller/admin/ControllerDeleteProduct.php?product_id=<?= rawurlencode((string) $product->getId()) ?>" class="delete" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">Eliminar</a>
+                                                <a href="<?= url('view/admin/products.php') ?>?product_id=<?= rawurlencode((string) $product->getId()) ?>&isEditMode=true" class="edit">Editar</a>
+                                                <a href="<?= url('controller/admin/ControllerDeleteProduct.php') ?>?product_id=<?= rawurlencode((string) $product->getId()) ?>" class="delete" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">Eliminar</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -247,6 +247,6 @@ if (isset($_GET['msg'])) {
             </main>
         </div>
 
-        <script src="../../js/admin/script.js"></script>
+        <script src="<?= url('js/admin/script.js') ?>"></script>
     </body>
 </html>

@@ -16,7 +16,12 @@ $daoCharacteristics = new DAOCharacteristicsImpl($connectionProvider);
 $characteristicsService = new CharacteristicsServiceImpl($daoCharacteristics);
 $productService = new ProductsServiceImpl($daoProduct, $characteristicsService, $connectionProvider);
 
-$productSlug = $_GET['product'];
+$productSlug = trim($_GET['product'] ?? '');
+
+if ($productSlug === '') {
+    header('Location: ' . url('view/public/menu.php'));
+    exit();
+}
 
 $product = null;
 $productListCategory = [];
@@ -26,7 +31,7 @@ try {
     $product = $productService->findBySlug($productSlug);
 
     if ($product === null) {
-        header("Location: menu.php");
+        header('Location: ' . url('view/public/menu.php'));
         exit();
     }
 
@@ -53,8 +58,8 @@ if (isset($_GET['msg'])) {
         <title>Detalle - Grano & Alma</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-        <link rel="icon" href="../../img/favicon.svg">
-        <link rel="stylesheet" href="../../css/style.css">
+        <link rel="icon" href="<?= url('img/favicon.svg') ?>">
+        <link rel="stylesheet" href="<?= url('css/style.css') ?>">
     </head>
     <body>
         <?php if (!empty($message)) {
@@ -70,17 +75,17 @@ if (isset($_GET['msg'])) {
 
         <header class="site-header">
             <div class="container">
-                <a href="../../index.html" class="logo"><img src="../../img/favicon.svg" alt="grano&alma-icon" class="logo_icon" width="30" height="30">Grano & Alma</a>
+                <a href="<?= url('index.php') ?>" class="logo"><img src="<?= url('img/favicon.svg') ?>" alt="grano&alma-icon" class="logo_icon" width="30" height="30">Grano & Alma</a>
 
                 <nav class="principal-nav">
-                    <a href="../../index.html">Inicio</a>
-                    <a href="about.html">Nosotros</a>
-                    <a href="menu.php" class="active">Menú</a>
-                    <a href="contact.html">Contacto</a>
+                    <a href="<?= url('index.php') ?>">Inicio</a>
+                    <a href="<?= url('view/public/about.php') ?>">Nosotros</a>
+                    <a href="<?= url('view/public/menu.php') ?>" class="active">Menú</a>
+                    <a href="<?= url('view/public/contact.php') ?>">Contacto</a>
                 </nav>
 
                 <div class="header-actions">
-                    <a href="menu.php" class="btn btn-primary">Ver menú</a>
+                    <a href="<?= url('view/public/menu.php') ?>" class="btn btn-primary">Ver menú</a>
 
                     <button class="btn-mobile-menu" id="btnOpenMenu" aria-label="Abrir menú">
                         <span></span><span></span><span></span>
@@ -92,29 +97,29 @@ if (isset($_GET['msg'])) {
         <!-- Mobile menu -->
         <nav class="nav-mobile" id="navMobile">
             <div class="nav-mobile-top">
-                <span class="logo"><img src="../../img/favicon.svg" alt="grano&alma-icon" class="logo_icon" width="30" height="30">Grano & Alma</span>
+                <span class="logo"><img src="<?= url('img/favicon.svg') ?>" alt="grano&alma-icon" class="logo_icon" width="30" height="30">Grano & Alma</span>
                 <button class="nav-mobile-close" id="btnCloseMenu">&times;</button>
             </div>
 
             <ul>
-                <li><a href="../../index.html">Inicio</a></li>
-                <li><a href="about.html">Nosotros</a></li>
-                <li><a href="menu.php">Menú</a></li>
-                <li><a href="contact.html">Contacto</a></li>
+                <li><a href="<?= url('index.php') ?>">Inicio</a></li>
+                <li><a href="<?= url('view/public/about.php') ?>">Nosotros</a></li>
+                <li><a href="<?= url('view/public/menu.php') ?>">Menú</a></li>
+                <li><a href="<?= url('view/public/contact.php') ?>">Contacto</a></li>
             </ul>
 
-            <a href="menu.php" class="btn btn-primary">Ver menú</a>
+            <a href="<?= url('view/public/menu.php') ?>" class="btn btn-primary">Ver menú</a>
         </nav>
 
         <div id="principal-detail">
             <div class="container breadcrumb">
-                <a href="../../index.html">Inicio</a> / <a href="menu.php">Menú</a> / <span id="detail-breadcrumb-name"> <?= $product->getSlug() ?></span>
+                <a href="<?= url('index.php') ?>">Inicio</a> / <a href="<?= url('view/public/menu.php') ?>">Menú</a> / <span id="detail-breadcrumb-name"> <?= $product->getSlug() ?></span>
             </div>
 
             <!-- Principal section -->
             <section class="section">
                 <div class="container grid-2">
-                    <div class="cover-image cover-image-square" id="image-detail" style="background-image: url('<?= BASE_URL . htmlspecialchars($product->getImage(), ENT_QUOTES, 'UTF-8') ?>');"></div>
+                    <div class="cover-image cover-image-square" id="image-detail" style="background-image: url('<?= url(htmlspecialchars($product->getImage(), ENT_QUOTES, 'UTF-8')) ?>');"></div>
 
                     <div>
                         <span class="eyebrow" id="category-detail"><?= $product->getCategory() ?></span>
@@ -135,7 +140,7 @@ if (isset($_GET['msg'])) {
                             } ?>
                         </ul>
 
-                        <a href="contact.html?producto=<?= urlencode($product->getName()) ?>" class="btn btn-primary" style="margin-top: 32px;">
+                        <a href="<?= url('view/public/contact.php') ?>?producto=<?= urlencode($product->getName()) ?>" class="btn btn-primary" style="margin-top: 32px;">
                             Consultar disponibilidad
                         </a>
                     </div>
@@ -165,14 +170,14 @@ if (isset($_GET['msg'])) {
                             $i++;
                             ?>
                             <div class="product-card">
-                                <div class="product-card-image" style="background-image: url('<?= BASE_URL . htmlspecialchars($productCategory->getImage(), ENT_QUOTES, 'UTF-8') ?>');"></div>
+                                <div class="product-card-image" style="background-image: url('<?= url(htmlspecialchars($productCategory->getImage(), ENT_QUOTES, 'UTF-8')) ?>');"></div>
                                 <div class="product-card-body">
                                     <h3 class="product-card-name"><?= $productCategory->getName() ?></h3>
                                     <p class="text-secondary"><?= $productCategory->getBriefDescription() ?></p>
 
                                     <div class="product-card-footer">
                                         <span class="product-card-price"><?= $productCategory->getPrice() ?></span>
-                                        <a href="details.php?producto=<?= $productCategory->getSlug() ?>" class="btn btn-secondary">Ver detalle</a>
+                                        <a href="<?= url('view/public/details.php') ?>?product=<?= rawurlencode($productCategory->getSlug()) ?>" class="btn btn-secondary">Ver detalle</a>
                                     </div>
                                 </div>
                             </div>
@@ -194,10 +199,10 @@ if (isset($_GET['msg'])) {
                     <h4>NAVEGACIÓN</h4>
 
                     <ul>
-                        <li><a href="../../index.html">Inicio</a></li>
-                        <li><a href="about.html">Nosotros</a></li>
-                        <li><a href="menu.php">Menú</a></li>
-                        <li><a href="contact.html">Contacto</a></li>
+                        <li><a href="<?= url('index.php') ?>">Inicio</a></li>
+                        <li><a href="<?= url('view/public/about.php') ?>">Nosotros</a></li>
+                        <li><a href="<?= url('view/public/menu.php') ?>">Menú</a></li>
+                        <li><a href="<?= url('view/public/contact.php') ?>">Contacto</a></li>
                     </ul>
                 </div>
 
@@ -239,6 +244,6 @@ if (isset($_GET['msg'])) {
             </svg>
         </button>
 
-        <script src="../../js/script.js"></script>
+        <script src="<?= url('js/script.js') ?>"></script>
     </body>
 </html>
